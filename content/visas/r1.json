@@ -1,0 +1,175 @@
+{
+  "lastReviewedDate": "2026-07-14",
+  "timelineUpdatedDate": "2026-07",
+  "financeBlock": null,
+  "id": "r1",
+  "code": "R-1",
+  "name": "R-1 Religious Worker Visa",
+  "category": "work",
+  "parentVisaId": null,
+  "quickAnswer": "The R-1 visa allows a foreign national to work temporarily in the U.S. as a minister or in a religious occupation for a bona fide nonprofit religious organization. Initial stays can reach 30 months, with extensions possible up to five years total, and USCIS may conduct a site visit.",
+  "whoIsFor": [
+    "Ministers and religious workers with at least two years of recent membership in the denomination",
+    "People coming to work at least part-time for a qualifying U.S. nonprofit religious organization",
+    "Organizations that can prove tax-exempt religious status and ability to compensate the worker"
+  ],
+  "whoShouldNotApply": [
+    "Applicants without the required two-year membership history",
+    "Roles that are primarily secular even if hosted by a religious organization",
+    "Organizations unable to document 501(c)(3) religious nonprofit status",
+    "People seeking immediate permanent residence as the sole strategy without meeting immigrant religious-worker rules"
+  ],
+  "eligibility": [
+    "Membership in a religious denomination with a bona fide U.S. nonprofit religious organization for at least two years immediately before filing",
+    "Coming to work as a minister or in a qualifying religious occupation",
+    "At least 20 hours per week of compensated work for the petitioning organization",
+    "Petitioning organization must be a bona fide nonprofit religious organization in the United States"
+  ],
+  "denialReasons": [
+    "Organization cannot prove qualifying religious nonprofit status",
+    "Duties appear secular rather than religious",
+    "Insufficient evidence of two-year membership",
+    "Compensation or work-hour claims not supported",
+    "Adverse findings from a USCIS site inspection"
+  ],
+  "commonMistakes": [
+    "Underestimating documentation of the religious nature of daily duties",
+    "Weak proof of denomination membership timeline",
+    "Assuming volunteer-only arrangements satisfy compensation rules",
+    "Changing organizations without a new petition"
+  ],
+  "processSteps": [
+    {
+      "step": 1,
+      "title": "Confirm organizational eligibility and role",
+      "description": "Verify tax-exempt religious status, job duties, schedule, and compensation structure before filing.",
+      "timeframe": "1–3 weeks"
+    },
+    {
+      "step": 2,
+      "title": "File Form I-129 with supporting religious evidence",
+      "description": "Include denominational membership proof, organizational documents, and a detailed work description.",
+      "timeframe": "Preparation often several weeks"
+    },
+    {
+      "step": 3,
+      "title": "Complete any USCIS site visit and adjudication",
+      "description": "USCIS may inspect the premises. Premium processing may be available for faster decisions.",
+      "timeframe": "Weeks to months"
+    },
+    {
+      "step": 4,
+      "title": "Consular process or activate change of status",
+      "description": "Abroad, apply for an R-1 visa stamp after approval. Inside the U.S., change of status may be requested if eligible.",
+      "timeframe": "Additional weeks after approval"
+    }
+  ],
+  "fees": [
+    {
+      "name": "Form I-129 filing fee",
+      "amount": "$460",
+      "payer": "employer",
+      "note": "Confirm current fee schedule."
+    },
+    {
+      "name": "Asylum Program Fee (if applicable)",
+      "amount": "Varies",
+      "payer": "employer"
+    },
+    {
+      "name": "Premium processing (optional)",
+      "amount": "$2,805",
+      "payer": "employer"
+    },
+    {
+      "name": "MRV fee for consular applicants",
+      "amount": "$205",
+      "payer": "applicant"
+    }
+  ],
+  "documents": [
+    {
+      "item": "IRS determination letter or equivalent nonprofit evidence",
+      "why": "Shows the petitioner is a bona fide tax-exempt religious organization."
+    },
+    {
+      "item": "Letter detailing religious duties and compensation",
+      "why": "Establishes that the role is religious and paid according to the rules."
+    },
+    {
+      "item": "Proof of two-year denominational membership",
+      "why": "Statutory membership requirement."
+    },
+    {
+      "item": "Evidence of religious training or credentials",
+      "why": "Supports fitness for ministerial or religious occupational duties."
+    },
+    {
+      "item": "Passport and status history",
+      "why": "Needed for petition and visa processing."
+    }
+  ],
+  "timelineText": "R-1 timelines often exceed simple petition estimates because of possible site visits and detailed documentation review. Initial status can be granted for up to 30 months. Plan well ahead of intended start dates.",
+  "validityPeriod": "Initial R-1 admission or approval may run up to 30 months. Total stay is generally capped at five years.",
+  "extensionInfo": "Extensions require continued proof of the religious role, organizational status, and compensation. Track the five-year maximum carefully.",
+  "employmentRights": "You may work only for the petitioning religious organization in the approved religious capacity. A new organization requires a new petition.",
+  "travelRestrictions": "International travel typically requires a valid R-1 visa stamp and approval documents. Coordinate travel with pending petitions.",
+  "importantDeadlines": [
+    "Do not begin work before status or admission authorizes it",
+    "Prepare extension evidence early — religious-worker proof ages poorly if left to the last month",
+    "Remember the five-year total limit"
+  ],
+  "dependentsText": "Spouses and unmarried children under 21 may seek R-2 status. R-2 dependents may study but cannot work.",
+  "tips": [
+    {
+      "title": "Document religious duties in daily-language detail",
+      "body": "Generic claims like “church work” invite RFEs. Describe liturgies, teaching, counseling, or other religious functions specifically."
+    },
+    {
+      "title": "Prepare for a site visit as if it will happen",
+      "body": "Premises, schedules, and staff knowledge should match the petition narrative."
+    }
+  ],
+  "didYouKnow": [
+    "Some religious workers later explore special immigrant (EB-4) options after qualifying employment, subject to separate rules and visa-number limits.",
+    "USCIS site inspections are a normal risk factor in R-1 cases — not a rare exception."
+  ],
+  "faqs": [
+    {
+      "question": "What is the difference between a minister and a religious worker?",
+      "answer": "Ministers are authorized to conduct religious worship as clergy. Religious workers may perform religious occupations that are not ministerial but still primarily religious."
+    },
+    {
+      "question": "Can I change religious employers?",
+      "answer": "Only after a new petition is approved for the new organization. Do not start with a new employer early."
+    },
+    {
+      "question": "How long can I stay on R-1?",
+      "answer": "Up to 30 months initially, with extensions possible to a maximum of five years total in most cases."
+    },
+    {
+      "question": "Is there a green card path?",
+      "answer": "Potentially through special immigrant religious worker categories after meeting separate requirements. It is not automatic with R-1 approval."
+    }
+  ],
+  "relatedVisaIds": [
+    "h1b",
+    "h2a",
+    "h2b"
+  ],
+  "relatedWhen": [
+    {
+      "visaId": "h1b",
+      "when": "Choose H-1B for secular specialty occupations with a bachelor’s-degree professional role."
+    },
+    {
+      "visaId": "h2a",
+      "when": "Choose H-2A for temporary agricultural work, not religious employment."
+    },
+    {
+      "visaId": "h2b",
+      "when": "Choose H-2B for temporary non-agricultural seasonal or peak-load work."
+    }
+  ],
+  "sourceUrl": "https://www.uscis.gov/working-in-the-united-states/temporary-workers/r-1-nonimmigrant-religious-workers"
+}

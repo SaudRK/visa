@@ -1,0 +1,218 @@
+{
+  "id": "h1b",
+  "code": "H-1B",
+  "name": "H-1B Specialty Occupation Visa",
+  "category": "work",
+  "parentVisaId": null,
+  "quickAnswer": "The H-1B lets a U.S. employer temporarily hire a foreign professional for a specialty occupation that normally requires at least a bachelor’s degree (or equivalent) in a specific field. Cap-subject filings are limited each year and often selected by lottery; employers must also obtain a certified Labor Condition Application before filing with USCIS.",
+  "whoIsFor": [
+    "Professionals offered a specialty role that truly requires bachelor’s-level skills in a related field",
+    "Applicants with a qualifying degree or carefully documented equivalent experience",
+    "People with an employer willing to sponsor, pay required wages, and handle the petition",
+    "Candidates changing or extending status in the U.S., or applicants who will consular process abroad"
+  ],
+  "whoShouldNotApply": [
+    "Anyone without a real employer-sponsor for a specialty occupation",
+    "Roles that are routine, non-specialty, or only loosely related to your education",
+    "People seeking permanent work authorization as the sole purpose of this filing",
+    "Self-petitioners trying to work primarily for an unstructured personal venture"
+  ],
+  "eligibility": [
+    "The job must qualify as a specialty occupation — typically requiring a bachelor’s or higher in a specific specialty",
+    "You must hold the required degree (or equivalent education/experience) for that specialty",
+    "A U.S. employer must offer the role and pay at least the required wage for the worksite",
+    "The employer must obtain a certified Labor Condition Application (LCA) before filing Form I-129",
+    "If subject to the annual cap, registration must be selected before a full petition can be filed that season"
+  ],
+  "denialReasons": [
+    "Employer cannot show the role is a specialty occupation",
+    "Degree or experience does not relate closely enough to the offered duties",
+    "Wage, LCA, or worksite inconsistencies undermine the filing",
+    "Support letter and petition evidence tell different stories",
+    "Consular concerns about prior immigration history or incomplete interview documentation"
+  ],
+  "commonMistakes": [
+    "Assuming any college degree automatically fits every job title",
+    "Using a vague job description that fails to prove specialty need",
+    "Missing registration windows or misunderstanding cap-exempt employers",
+    "Starting work before status or stamping authorizes employment",
+    "Relying on marketing titles instead of true day-to-day duties"
+  ],
+  "processSteps": [
+    {
+      "step": 1,
+      "title": "Confirm role, wage, and specialty fit",
+      "description": "Employer and counsel map duties to specialty criteria, choose the right occupational classification, and confirm required wage for each worksite.",
+      "timeframe": "1–3 weeks"
+    },
+    {
+      "step": 2,
+      "title": "Complete cap registration if required",
+      "description": "For cap-subject cases, the employer registers during the designated USCIS window. Only selected registrations may file a full petition for that season.",
+      "timeframe": "Lottery season (typically spring)"
+    },
+    {
+      "step": 3,
+      "title": "File and certify the LCA",
+      "description": "Employer submits Form ETA-9035/9035E and completes required notice posting. The certified LCA must match the petitioned role and location(s).",
+      "timeframe": "About 7–10 business days after filing"
+    },
+    {
+      "step": 4,
+      "title": "File Form I-129 with USCIS",
+      "description": "Employer files the petition with LCA, support letter, degree evidence, and fees. Premium processing may be available for faster adjudication.",
+      "timeframe": "Depends on selection and start-date strategy"
+    },
+    {
+      "step": 5,
+      "title": "Respond to any RFE",
+      "description": "If USCIS requests more evidence, respond with specialty proof, wage documentation, or degree evaluations matching the notice.",
+      "timeframe": "Response window on the RFE notice"
+    },
+    {
+      "step": 6,
+      "title": "Activate status or obtain a visa stamp",
+      "description": "Inside the U.S., status begins on the approval terms. Abroad, complete DS-160 and the consular interview before entry for H-1B employment.",
+      "timeframe": "Embassy wait times vary widely"
+    }
+  ],
+  "fees": [
+    {
+      "name": "Form I-129 base filing fee",
+      "amount": "$780",
+      "payer": "employer",
+      "note": "Confirm the current USCIS fee schedule before filing."
+    },
+    {
+      "name": "ACWIA training fee",
+      "amount": "$750 or $1,500",
+      "payer": "employer",
+      "note": "Depends on employer size; some exempt entities may not owe this fee."
+    },
+    {
+      "name": "Fraud prevention and detection fee",
+      "amount": "$500",
+      "payer": "employer"
+    },
+    {
+      "name": "Asylum Program Fee (if applicable)",
+      "amount": "Varies by employer size",
+      "payer": "employer",
+      "note": "Check current USCIS rules for your employer category."
+    },
+    {
+      "name": "Premium processing (Form I-907, optional)",
+      "amount": "$2,805",
+      "payer": "employer"
+    },
+    {
+      "name": "MRV visa application fee (consular cases)",
+      "amount": "$205",
+      "payer": "applicant"
+    }
+  ],
+  "documents": [
+    {
+      "item": "Passport biographical page",
+      "why": "Core identity document for petitions and consular processing."
+    },
+    {
+      "item": "Degree certificates and transcripts",
+      "why": "Show you meet the specialty education requirement."
+    },
+    {
+      "item": "Credential evaluation (if foreign degree)",
+      "why": "Explains how a foreign degree compares to a U.S. bachelor’s equivalent."
+    },
+    {
+      "item": "Detailed employer support letter",
+      "why": "Connects duties to the need for specialized knowledge and your credentials."
+    },
+    {
+      "item": "Certified LCA",
+      "why": "Required wage and working-condition attestation attached to the petition."
+    },
+    {
+      "item": "Prior I-94 and I-797 history (if in the U.S.)",
+      "why": "Shows maintained status for change or extension filings."
+    },
+    {
+      "item": "Resume and specialty experience letters",
+      "why": "Useful when progressive experience supports qualification or role complexity."
+    }
+  ],
+  "timelineText": "Cap-subject H-1B cases generally follow the annual registration cycle, with new employment often tied to the fiscal year start (commonly October 1). Regular USCIS processing can take several months; premium processing can shorten the agency decision window when available. Consular appointment and administrative processing times then vary by embassy.",
+  "timelineUpdatedDate": "2026-07",
+  "lastReviewedDate": "2026-07-14",
+  "validityPeriod": "Initial approval is commonly up to three years, with extensions often possible up to six years total. Limited exceptions may allow time beyond six years when certain employment-based green card steps are underway.",
+  "extensionInfo": "Employers file extensions on Form I-129, ideally before status expires. H-1B portability may allow continued work after a timely extension or transfer filing if legal conditions are met. Track I-797 and I-94 end dates carefully.",
+  "employmentRights": "Employment is employer- and petition-specific. You generally may work only for the petitioning employer, or for concurrent employers that each have their own H-1B filing. Material changes in duties or worksite can require amended petitions.",
+  "travelRestrictions": "Reentry usually requires a valid H-1B visa stamp (with limited exceptions such as certain Canadian applicants), approval evidence, and current employment documents. Avoid traveling while a critical petition is pending unless counsel confirms the risk is acceptable.",
+  "importantDeadlines": [
+    "Do not start H-1B work before status or admission authorizes it",
+    "Begin extension planning several months before I-94 expiry",
+    "Cap registration windows are short — employers should not wait until the final day"
+  ],
+  "dependentsText": "Spouses and unmarried children under 21 may seek H-4 status. Some H-4 spouses may apply for employment authorization if the H-1B principal meets specific AC21-related criteria, such as an approved I-140 or certain extensions beyond the sixth year.",
+  "tips": [
+    {
+      "title": "Build the timeline backward from your start date",
+      "body": "Include registration, LCA, USCIS adjudication, and consular waits — then add buffer for RFEs or document delays."
+    },
+    {
+      "title": "Make the specialty story obvious",
+      "body": "An officer should not have to guess why this role needs a specialty degree. Duties, hiring norms, and your coursework should align cleanly."
+    },
+    {
+      "title": "Keep one source-of-truth packet",
+      "body": "Store receipts, I-797s, degree evaluations, and job letters together. You will reuse them for travel, extensions, and transfers."
+    }
+  ],
+  "didYouKnow": [
+    "Certain cap-exempt employers — including many universities and related research organizations — may file year-round without the lottery.",
+    "H-1B is generally treated as dual intent, so pursuing a green card is not automatically inconsistent with the status."
+  ],
+  "faqs": [
+    {
+      "question": "How long can I stay in H-1B status?",
+      "answer": "Most people are limited to six years total, often through an initial period plus extensions. Limited exceptions can allow more time when qualifying green card steps are pending or approved."
+    },
+    {
+      "question": "Can I change H-1B employers?",
+      "answer": "Yes. The new employer files a transfer petition. In qualifying cases, portability rules may let you start work once a non-frivolous transfer petition is filed."
+    },
+    {
+      "question": "What is the H-1B lottery?",
+      "answer": "When registrations exceed the annual numerical limit, USCIS randomly selects which registrations may file full petitions. Selection is not the same as petition approval."
+    },
+    {
+      "question": "Is an H-1B LCA the same as PERM?",
+      "answer": "No. The LCA supports temporary H-1B employment. PERM labor certification is a separate process used in many employment-based green card cases."
+    },
+    {
+      "question": "Can my spouse work on H-4?",
+      "answer": "Only in specific situations. Certain H-4 spouses may file Form I-765 when the H-1B holder meets AC21 criteria. Ordinary H-4 status alone does not authorize employment."
+    }
+  ],
+  "relatedVisaIds": ["l1", "tn", "f1-opt", "f1"],
+  "relatedWhen": [
+    {
+      "visaId": "l1",
+      "when": "Choose L-1 if you are transferring within the same multinational after qualifying foreign employment."
+    },
+    {
+      "visaId": "tn",
+      "when": "Choose TN if you are a Canadian or Mexican professional in a listed USMCA occupation and need a non-lottery option."
+    },
+    {
+      "visaId": "f1-opt",
+      "when": "Use OPT when you are an F-1 graduate gaining practical training before an H-1B transition."
+    },
+    {
+      "visaId": "f1",
+      "when": "Choose F-1 if full-time study, not specialty employment, is the purpose of your stay."
+    }
+  ],
+  "sourceUrl": "https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations",
+  "financeBlock": null
+}

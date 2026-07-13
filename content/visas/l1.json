@@ -1,0 +1,181 @@
+{
+  "lastReviewedDate": "2026-07-14",
+  "timelineUpdatedDate": "2026-07",
+  "financeBlock": null,
+  "id": "l1",
+  "code": "L-1",
+  "name": "L-1 Intracompany Transfer Visa",
+  "category": "work",
+  "parentVisaId": null,
+  "quickAnswer": "The L-1 lets a multinational transfer an executive, manager (L-1A), or specialized-knowledge employee (L-1B) to a related U.S. office after at least one continuous year of qualifying foreign employment within the prior three years. Blanket petitions can accelerate some large-company cases.",
+  "whoIsFor": [
+    "Employees of multinationals moving into a related U.S. entity",
+    "Managers or executives who will run a U.S. function or organization (L-1A)",
+    "Workers with proprietary, specialized knowledge of company systems or products (L-1B)",
+    "Companies opening or expanding a U.S. office with a qualifying transfer candidate"
+  ],
+  "whoShouldNotApply": [
+    "Applicants with no qualifying one-year foreign employment for the related company",
+    "Workers transferring to an unrelated U.S. employer",
+    "Roles that are ordinary skilled work without managerial or specialized-knowledge substance",
+    "People seeking a standalone freelancer path without a qualifying corporate relationship"
+  ],
+  "eligibility": [
+    "Qualifying corporate relationship between foreign and U.S. entities",
+    "One continuous year of employment abroad for the related organization within the last three years",
+    "U.S. role as executive/manager (L-1A) or specialized-knowledge capacity (L-1B)",
+    "For new offices, evidence the U.S. operation can support the claimed structure within the initial period"
+  ],
+  "denialReasons": [
+    "Corporate relationship not proven",
+    "One-year foreign employment requirement not met",
+    "U.S. role is not genuinely managerial, executive, or specialized",
+    "New-office petitions lacking realistic staffing, premises, or business plans",
+    "Job descriptions inflated beyond actual duties"
+  ],
+  "commonMistakes": [
+    "Counting non-qualifying employment toward the one-year requirement",
+    "Using managerial titles without managerial authority",
+    "Assuming specialized knowledge means general professional skill",
+    "Transferring before the corporate documents and org charts are ready"
+  ],
+  "processSteps": [
+    {
+      "step": 1,
+      "title": "Confirm qualifying relationship and employment history",
+      "description": "Gather ownership charts, entity documents, and proof of one year of qualifying foreign work.",
+      "timeframe": "1–3 weeks"
+    },
+    {
+      "step": 2,
+      "title": "File Form I-129 or use a blanket petition route",
+      "description": "Individual petitions go to USCIS. Qualifying organizations with blanket approval may process certain employees more directly at consulates.",
+      "timeframe": "Preparation often 2–6 weeks"
+    },
+    {
+      "step": 3,
+      "title": "Await adjudication or consular processing",
+      "description": "Premium processing may be available for individual petitions. Consular applicants complete visa stamping after approval or under blanket procedures.",
+      "timeframe": "Weeks to months"
+    },
+    {
+      "step": 4,
+      "title": "Enter and maintain L-1 compliance",
+      "description": "Work only in the approved capacity for the petitioning organization. Extensions need updated evidence of operations and role.",
+      "timeframe": "Throughout status"
+    }
+  ],
+  "fees": [
+    {
+      "name": "Form I-129 base filing fee",
+      "amount": "$1,385",
+      "payer": "employer",
+      "note": "Confirm current fee schedule."
+    },
+    {
+      "name": "Fraud prevention and detection fee",
+      "amount": "$500",
+      "payer": "employer"
+    },
+    {
+      "name": "Asylum Program Fee (if applicable)",
+      "amount": "Varies by employer size",
+      "payer": "employer"
+    },
+    {
+      "name": "Premium processing (optional)",
+      "amount": "$2,805",
+      "payer": "employer"
+    },
+    {
+      "name": "MRV fee for consular applicants",
+      "amount": "$205",
+      "payer": "applicant"
+    }
+  ],
+  "documents": [
+    {
+      "item": "Corporate ownership and relationship evidence",
+      "why": "Proves the entities qualify for intracompany transfer."
+    },
+    {
+      "item": "Payroll, tax, or HR proof of one-year foreign employment",
+      "why": "Establishes the statutory employment requirement."
+    },
+    {
+      "item": "Org charts and detailed U.S. job description",
+      "why": "Shows managerial/executive authority or specialized knowledge."
+    },
+    {
+      "item": "Business premises and operations evidence",
+      "why": "Especially important for new-office and extension filings."
+    },
+    {
+      "item": "Passport and prior immigration records",
+      "why": "Needed for petition and visa processing."
+    }
+  ],
+  "timelineText": "Individual L-1 petitions vary by service center and whether premium processing is used. Blanket processes can be faster for large qualifying organizations. New-office cases often receive a shorter initial approval and heavier evidence review at extension.",
+  "validityPeriod": "L-1A is generally limited to 7 years total. L-1B is generally limited to 5 years total. New offices often start with a one-year initial period.",
+  "extensionInfo": "Extensions require proof the U.S. role and company operations still support classification. Track maximum stay limits carefully.",
+  "employmentRights": "You work for the petitioning U.S. entity in the approved capacity. Material changes in role may require an amended petition. L-2 spouses may apply for work authorization.",
+  "travelRestrictions": "Reentry typically needs a valid L visa stamp and approval documentation. Coordinate travel around pending extensions.",
+  "importantDeadlines": [
+    "Do not assume foreign employment time counts if it was for an unrelated company",
+    "New-office extensions should be prepared early with strong operational evidence",
+    "Maximum 5- or 7-year limits are hard ceilings without a change in classification"
+  ],
+  "dependentsText": "Spouses and unmarried children under 21 may seek L-2 status. L-2 spouses can apply for employment authorization and may work more broadly than many other dependent categories.",
+  "tips": [
+    {
+      "title": "Document the one-year abroad meticulously",
+      "body": "Gaps, contractors, or related-but-not-qualifying entities are frequent weak points."
+    },
+    {
+      "title": "Write the U.S. role as it is truly performed",
+      "body": "Inflated managerial wording is a common RFE and denial theme, especially for L-1A."
+    }
+  ],
+  "didYouKnow": [
+    "L-1A managers often use the classification as a bridge toward EB-1C immigrant petitions.",
+    "Specialized knowledge is company-specific — not just advanced general skill in a profession."
+  ],
+  "faqs": [
+    {
+      "question": "What is the difference between L-1A and L-1B?",
+      "answer": "L-1A covers executives and managers (up to 7 years). L-1B covers specialized-knowledge employees (up to 5 years)."
+    },
+    {
+      "question": "Can a new U.S. office use L-1?",
+      "answer": "Yes, with extra evidence. Initial approval is often limited to one year while the office becomes operational."
+    },
+    {
+      "question": "Can L-1 lead to a green card?",
+      "answer": "Often yes for L-1A through EB-1C if requirements are met. L-1B holders typically explore other employment-based categories."
+    },
+    {
+      "question": "What is a blanket L petition?",
+      "answer": "A pre-approval for qualifying large organizations that can streamline subsequent individual employee applications at consulates."
+    }
+  ],
+  "relatedVisaIds": [
+    "h1b",
+    "e2",
+    "tn"
+  ],
+  "relatedWhen": [
+    {
+      "visaId": "h1b",
+      "when": "Choose H-1B when the job is a specialty occupation without a qualifying intracompany transfer history."
+    },
+    {
+      "visaId": "e2",
+      "when": "Choose E-2 if you are a treaty investor developing a substantial investment enterprise."
+    },
+    {
+      "visaId": "tn",
+      "when": "Choose TN for listed USMCA professions if you are Canadian or Mexican and need a faster non-petition route."
+    }
+  ],
+  "sourceUrl": "https://www.uscis.gov/working-in-the-united-states/temporary-workers/l-1a-intracompany-transferee-executive-or-manager"
+}

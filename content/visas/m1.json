@@ -1,0 +1,155 @@
+{
+  "lastReviewedDate": "2026-07-14",
+  "timelineUpdatedDate": "2026-07",
+  "financeBlock": null,
+  "id": "m1",
+  "code": "M-1",
+  "name": "M-1 Vocational Student Visa",
+  "category": "student",
+  "parentVisaId": null,
+  "quickAnswer": "The M-1 visa is for full-time vocational or nonacademic training at a SEVP-certified school — such as technical, flight, or trade programs. Work authorization is far more limited than F-1, and transfers or program changes are tightly controlled.",
+  "whoIsFor": [
+    "Students enrolled in vocational or technical programs rather than academic degrees",
+    "Applicants who can fund the full program without relying on U.S. employment",
+    "People seeking a fixed-length training path with a clear end date"
+  ],
+  "whoShouldNotApply": [
+    "Students pursuing university degree programs (use F-1)",
+    "Applicants who need flexible CPT/OPT-style work options",
+    "People expecting easy school transfers or open-ended practical training"
+  ],
+  "eligibility": [
+    "Acceptance to a SEVP-certified vocational or nonacademic program",
+    "Valid M-1 Form I-20 from the school",
+    "Proof of funds for tuition and living costs",
+    "Intent consistent with temporary vocational study",
+    "SEVIS I-901 payment before the visa interview"
+  ],
+  "denialReasons": [
+    "Insufficient funding evidence",
+    "Program does not appear genuinely vocational or SEVP-appropriate",
+    "Applicant seems focused on work rather than training",
+    "Incomplete consular package or SEVIS issues"
+  ],
+  "commonMistakes": [
+    "Choosing M-1 when F-1 is the correct academic category",
+    "Assuming F-1 OPT rules apply",
+    "Missing the narrower practical-training limits after program completion",
+    "Planning transfers the same way F-1 students do"
+  ],
+  "processSteps": [
+    {
+      "step": 1,
+      "title": "Secure admission and M-1 I-20",
+      "description": "Your vocational school issues an M-1 I-20 listing program length and costs.",
+      "timeframe": "Varies by school"
+    },
+    {
+      "step": 2,
+      "title": "Pay SEVIS and complete DS-160",
+      "description": "Pay I-901, submit DS-160, and schedule the consular interview.",
+      "timeframe": "1–4 weeks to appointment in many posts"
+    },
+    {
+      "step": 3,
+      "title": "Attend interview and travel",
+      "description": "Bring passport, I-20, funding proof, and admission documents. Enter only within allowed dates before the start date.",
+      "timeframe": "Often same-day visa decision"
+    },
+    {
+      "step": 4,
+      "title": "Maintain vocational status",
+      "description": "Stay enrolled full-time, follow school reporting, and do not work unless separately authorized.",
+      "timeframe": "Throughout the program"
+    }
+  ],
+  "fees": [
+    {
+      "name": "SEVIS I-901 fee",
+      "amount": "$350",
+      "payer": "applicant"
+    },
+    {
+      "name": "MRV visa application fee",
+      "amount": "$185",
+      "payer": "applicant"
+    }
+  ],
+  "documents": [
+    {
+      "item": "Passport and M-1 I-20",
+      "why": "Core identity and program evidence."
+    },
+    {
+      "item": "DS-160 confirmation and SEVIS receipt",
+      "why": "Required for the visa interview."
+    },
+    {
+      "item": "Proof of funds",
+      "why": "Shows you can complete training without unauthorized work."
+    },
+    {
+      "item": "Admission letter and training plan",
+      "why": "Explains why the vocational program fits your goals."
+    }
+  ],
+  "timelineText": "Visa wait times vary by embassy. M-1 stays are often admitted for a fixed period tied to the vocational program, not open-ended duration of status like many F-1 cases. Practical training after completion is limited and requires separate authorization.",
+  "validityPeriod": "Usually tied to the program length on the I-20, subject to maximum admission rules and any authorized extension.",
+  "extensionInfo": "Extensions may be possible if more time is needed to finish the same program. Transfers and practical training are more restricted than F-1 pathways.",
+  "employmentRights": "M-1 students generally cannot work during studies. After completion, limited practical training may be available under narrow formulas and approval requirements.",
+  "travelRestrictions": "Reentry requires valid visa documentation and a current I-20. Confirm travel rules with your DSO before leaving.",
+  "importantDeadlines": [
+    "Enter only within the permitted pre-start window",
+    "Finish training within authorized dates or seek an extension early",
+    "Do not begin any work without explicit authorization"
+  ],
+  "dependentsText": "Spouses and unmarried children under 21 may seek M-2 status. M-2 dependents generally cannot work and face study restrictions.",
+  "tips": [
+    {
+      "title": "Confirm F-1 vs M-1 before you pay SEVIS",
+      "body": "The wrong category wastes money and time. Academic degree paths usually belong on F-1."
+    },
+    {
+      "title": "Treat work expectations carefully",
+      "body": "If your plan depends on broad U.S. work rights, M-1 is rarely the right fit."
+    }
+  ],
+  "didYouKnow": [
+    "M-1 practical training is measured carefully and is not equivalent to F-1 OPT.",
+    "M-1 status is typically more date-certain than F-1 duration of status."
+  ],
+  "faqs": [
+    {
+      "question": "Can M-1 students work?",
+      "answer": "Generally not during the program. Limited post-completion practical training may be possible with approval and only for a short calculated period."
+    },
+    {
+      "question": "Can I switch from M-1 to F-1?",
+      "answer": "Possibly through change of status or consular processing, but it is not automatic. Discuss timing with your school and counsel."
+    },
+    {
+      "question": "Is M-1 good for university degrees?",
+      "answer": "No. Academic degree programs are normally F-1. M-1 is for vocational or nonacademic training."
+    }
+  ],
+  "relatedVisaIds": [
+    "f1",
+    "f1-opt",
+    "h1b"
+  ],
+  "relatedWhen": [
+    {
+      "visaId": "f1",
+      "when": "Choose F-1 for academic degree study with broader student benefits."
+    },
+    {
+      "visaId": "f1-opt",
+      "when": "OPT belongs to F-1 students, not M-1 vocational status."
+    },
+    {
+      "visaId": "h1b",
+      "when": "H-1B is an employer-sponsored specialty occupation path after training or other qualifying backgrounds."
+    }
+  ],
+  "sourceUrl": "https://studyinthestates.dhs.gov/students/get-started"
+}

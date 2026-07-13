@@ -1,0 +1,164 @@
+{
+  "lastReviewedDate": "2026-07-14",
+  "timelineUpdatedDate": "2026-07",
+  "financeBlock": null,
+  "id": "h2b",
+  "code": "H-2B",
+  "name": "H-2B Temporary Non-Agricultural Worker Visa",
+  "category": "work",
+  "parentVisaId": null,
+  "quickAnswer": "H-2B allows U.S. employers to hire foreign workers for temporary non-agricultural jobs — such as hospitality, landscaping, or seafood processing — when qualified U.S. workers are unavailable. The program has an annual numerical cap and requires a temporary labor certification from DOL before the USCIS petition.",
+  "whoIsFor": [
+    "Employers with one-time, seasonal, peak-load, or intermittent non-agricultural needs",
+    "Workers from eligible countries ready to fill certified temporary roles",
+    "Businesses prepared for recruitment, wage, and cap-season timing constraints"
+  ],
+  "whoShouldNotApply": [
+    "Employers with permanent year-round needs",
+    "Agricultural employers (consider H-2A)",
+    "Workers seeking unrestricted U.S. employment beyond the certified job"
+  ],
+  "eligibility": [
+    "Temporary need meeting one of the recognized H-2B standards",
+    "Employer recruitment showing insufficient U.S. workers",
+    "DOL temporary labor certification",
+    "Worker nationality on the eligible-country list unless an exception applies"
+  ],
+  "denialReasons": [
+    "Temporary need not proven",
+    "Cap limits reached for the half-year period",
+    "Labor certification or recruitment defects",
+    "Petition evidence inconsistent with the certified job"
+  ],
+  "commonMistakes": [
+    "Missing semi-annual cap filing windows",
+    "Recasting permanent roles as temporary on paper only",
+    "Confusing H-2B with uncapped H-2A",
+    "Assuming supplemental cap allocations will always appear"
+  ],
+  "processSteps": [
+    {
+      "step": 1,
+      "title": "Establish temporary need and begin DOL certification",
+      "description": "Document seasonal or peak-load facts, complete required recruitment, and seek labor certification.",
+      "timeframe": "Several weeks"
+    },
+    {
+      "step": 2,
+      "title": "File Form I-129 within cap constraints",
+      "description": "After certification, file with USCIS while numbers remain available for the relevant half-year period.",
+      "timeframe": "Cap-sensitive"
+    },
+    {
+      "step": 3,
+      "title": "Workers obtain visas and enter for the job",
+      "description": "Consular processing follows petition approval. Employment is limited to the certified employer and dates.",
+      "timeframe": "Weeks after approval"
+    },
+    {
+      "step": 4,
+      "title": "Complete the temporary period or pursue limited extensions",
+      "description": "Extensions may be possible, but total consecutive stay limits and departure requirements apply.",
+      "timeframe": "Generally up to 1 year initially, with capped total stay"
+    }
+  ],
+  "fees": [
+    {
+      "name": "Form I-129 filing fee",
+      "amount": "$460",
+      "payer": "employer",
+      "note": "Confirm current fee."
+    },
+    {
+      "name": "MRV visa fee",
+      "amount": "$205",
+      "payer": "applicant"
+    },
+    {
+      "name": "Recruitment and compliance costs",
+      "amount": "Varies",
+      "payer": "employer"
+    }
+  ],
+  "documents": [
+    {
+      "item": "DOL temporary labor certification",
+      "why": "Required foundation for the H-2B petition."
+    },
+    {
+      "item": "Evidence of temporary need",
+      "why": "Seasonality, peak load, or one-time need must be substantiated."
+    },
+    {
+      "item": "Worker identity and nationality documents",
+      "why": "Eligibility and consular processing depend on them."
+    },
+    {
+      "item": "Employment terms and wage details",
+      "why": "Must align with the certified job opportunity."
+    }
+  ],
+  "timelineText": "H-2B timing is driven by semi-annual cap seasons as well as DOL and USCIS processing. When demand exceeds available numbers, some employers wait for additional allocations or the next filing period. Start early and build contingency plans for peak seasons.",
+  "validityPeriod": "Usually matches the certified temporary period, commonly up to one year, subject to extension and total-stay limits.",
+  "extensionInfo": "Extensions may be available in increments toward a maximum consecutive stay, after which departure is typically required before returning in H-2B status.",
+  "employmentRights": "Authorization is employer- and job-specific. Workers generally cannot freelance or freely change employers without new authorized petitions.",
+  "travelRestrictions": "Travel requires valid visa documentation and continuing authorization tied to the temporary petition.",
+  "importantDeadlines": [
+    "Watch both first-half and second-half fiscal-year cap windows",
+    "Do not staff peak season on hope that late filings will clear",
+    "Track total consecutive H-2B time before promising another season"
+  ],
+  "dependentsText": "Spouses and unmarried children under 21 may seek H-4 status. H-4 dependents may study but generally cannot work.",
+  "tips": [
+    {
+      "title": "Build a cap calendar before you recruit abroad",
+      "body": "An otherwise perfect case fails if numbers are gone. Align sales forecasts, DOL steps, and USCIS filing strategy together."
+    },
+    {
+      "title": "Document temporariness with business evidence",
+      "body": "Weather seasons, tourist peaks, contracts, and staffing charts beat adjectives like “busy.”"
+    }
+  ],
+  "didYouKnow": [
+    "Congress sets an annual H-2B cap of 66,000 visas, split across fiscal-year halves, with occasional supplemental allocations.",
+    "H-2B is for non-agricultural work; agricultural temporary work generally belongs under H-2A."
+  ],
+  "faqs": [
+    {
+      "question": "What is the H-2B annual cap?",
+      "answer": "Generally 66,000 per fiscal year, split between the first and second halves of the year. Supplemental numbers are sometimes authorized separately."
+    },
+    {
+      "question": "What jobs use H-2B?",
+      "answer": "Common examples include hospitality, landscaping, forests support, amusement parks, and seafood processing — if temporary need is proven."
+    },
+    {
+      "question": "How is H-2B different from H-2A?",
+      "answer": "H-2A is agricultural and uncapped numerically. H-2B is non-agricultural and capped."
+    },
+    {
+      "question": "Can status be extended?",
+      "answer": "Limited extensions may be available, but total consecutive stay is capped and usually followed by a required departure period."
+    }
+  ],
+  "relatedVisaIds": [
+    "h2a",
+    "h1b",
+    "r1"
+  ],
+  "relatedWhen": [
+    {
+      "visaId": "h2a",
+      "when": "Choose H-2A for temporary agricultural work without an annual numerical cap."
+    },
+    {
+      "visaId": "h1b",
+      "when": "Choose H-1B for specialty professional employment rather than seasonal labor."
+    },
+    {
+      "visaId": "r1",
+      "when": "Choose R-1 for qualifying religious worker roles."
+    }
+  ],
+  "sourceUrl": "https://www.uscis.gov/working-in-the-united-states/temporary-workers/h-2b-non-agricultural-workers"
+}

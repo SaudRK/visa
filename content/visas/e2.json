@@ -1,0 +1,172 @@
+{
+  "lastReviewedDate": "2026-07-14",
+  "timelineUpdatedDate": "2026-07",
+  "financeBlock": null,
+  "id": "e2",
+  "code": "E-2",
+  "name": "E-2 Treaty Investor Visa",
+  "category": "work",
+  "parentVisaId": null,
+  "quickAnswer": "The E-2 visa allows nationals of qualifying treaty countries to enter the U.S. to develop and direct a business in which they have invested — or are actively investing — a substantial amount of capital at risk. There is no fixed dollar minimum, but the investment must be proportional, committed, and more than marginal.",
+  "whoIsFor": [
+    "Citizens of E-2 treaty countries investing in and directing a U.S. business",
+    "Investors who can show funds are lawful, at risk, and already committed",
+    "Owners with at least 50% ownership or operational control of the enterprise",
+    "Essential treaty-national employees of a qualifying E-2 enterprise in some cases"
+  ],
+  "whoShouldNotApply": [
+    "Nationals of countries without an E-2 treaty with the United States",
+    "People with only passive, speculative, or uncommitted funds",
+    "Businesses that exist solely to earn a living for the investor and family with little growth potential",
+    "Applicants seeking a direct green card path through E-2 alone"
+  ],
+  "eligibility": [
+    "Treaty-country nationality",
+    "Substantial investment that is irrevocably committed and at risk",
+    "A real, operating or nearly operating commercial enterprise",
+    "Investor coming to develop and direct the business",
+    "Enterprise that is more than marginal — generally expected to generate more than minimal living income and/or contribute meaningfully to the U.S. economy"
+  ],
+  "denialReasons": [
+    "Investment not substantial relative to the business cost",
+    "Funds not clearly sourced or not yet at risk",
+    "Business plan that looks speculative or nonviable",
+    "Investor lacks control or a credible directing role",
+    "Paper company with little evidence of real operations"
+  ],
+  "commonMistakes": [
+    "Parking money in a bank account and calling it an investment",
+    "Under-documenting the lawful source of funds",
+    "Submitting a template business plan with generic projections",
+    "Assuming any dollar amount automatically qualifies"
+  ],
+  "processSteps": [
+    {
+      "step": 1,
+      "title": "Structure the enterprise and move capital at risk",
+      "description": "Form the company, execute leases or purchases, and place funds into committed business expenses or qualifying escrow structures.",
+      "timeframe": "Several weeks to months"
+    },
+    {
+      "step": 2,
+      "title": "Assemble the E-2 evidence package",
+      "description": "Compile nationality proof, source of funds, investment tracing, ownership documents, and a detailed business plan.",
+      "timeframe": "2–6 weeks"
+    },
+    {
+      "step": 3,
+      "title": "Apply at a U.S. consulate or file for change of status",
+      "description": "Most applicants consular process. Change of status via Form I-129 is possible for some people already in the U.S., but travel later still needs a visa stamp.",
+      "timeframe": "Post-dependent; often weeks after submission"
+    },
+    {
+      "step": 4,
+      "title": "Maintain and renew the E-2 enterprise",
+      "description": "Keep the business operating, document growth and staffing when possible, and renew before status ends.",
+      "timeframe": "Renewable indefinitely while requirements continue"
+    }
+  ],
+  "fees": [
+    {
+      "name": "MRV visa application fee",
+      "amount": "$205",
+      "payer": "applicant"
+    },
+    {
+      "name": "Form I-129 fee for change/extend in U.S.",
+      "amount": "Varies",
+      "payer": "applicant",
+      "note": "Confirm current USCIS fees if filing inside the U.S."
+    },
+    {
+      "name": "Visa issuance/reciprocity fee",
+      "amount": "Varies by nationality",
+      "payer": "applicant"
+    }
+  ],
+  "documents": [
+    {
+      "item": "Passport showing treaty nationality",
+      "why": "E-2 nationality is mandatory."
+    },
+    {
+      "item": "Business plan with actionable financials",
+      "why": "Shows viability, job creation potential, and the investor’s directing role."
+    },
+    {
+      "item": "Wire trails, purchase contracts, leases, and invoices",
+      "why": "Prove the investment is real, committed, and at risk."
+    },
+    {
+      "item": "Source-of-funds evidence",
+      "why": "Officers need a clean story of where the capital came from."
+    },
+    {
+      "item": "Corporate formation and ownership documents",
+      "why": "Establish control and the existence of a bona fide enterprise."
+    }
+  ],
+  "timelineText": "Well-prepared consular E-2 cases are often decided within weeks of the interview, but packaging the investment evidence takes longer than applicants expect. Change-of-status filings through USCIS follow petition processing times and do not produce a visa stamp for travel.",
+  "validityPeriod": "Visa validity depends on reciprocity with your country. Admission is typically granted in increments of up to two years and can be renewed while the enterprise continues to qualify.",
+  "extensionInfo": "Renewals require proof the business is still operating and the investor still directs it. Weak revenue, dormancy, or unexplained fund changes are common renewal problems.",
+  "employmentRights": "The E-2 investor works in furtherance of the treaty enterprise. Certain essential employees of the same nationality may also qualify. E-2 spouses may apply for work authorization.",
+  "travelRestrictions": "Reentry requires a valid E-2 visa stamp (unless visa-exempt) and continuing evidence of the enterprise. Avoid long absences that undermine the “develop and direct” narrative.",
+  "importantDeadlines": [
+    "Do not claim funds still sitting unused in personal accounts as committed investment",
+    "Start renewal evidence collection months before expiry",
+    "If using change of status, plan travel carefully because you still need consular stamping later"
+  ],
+  "dependentsText": "Spouses and unmarried children under 21 may receive E-2 dependent status. Spouses can apply for employment authorization. Children may study but generally cannot work.",
+  "tips": [
+    {
+      "title": "Trace every dollar",
+      "body": "Source-of-funds and path-of-funds charts win or lose close cases. Make the money trail boringly clear."
+    },
+    {
+      "title": "Invest before you apply when possible",
+      "body": "Paper commitments without irrevocable placement of capital are a frequent weak point."
+    }
+  ],
+  "didYouKnow": [
+    "There is no official minimum investment amount — proportionality and risk matter more than a magic number.",
+    "E-2 is temporary and renewable, but it is not a direct substitute for EB-5 or other immigrant investor paths."
+  ],
+  "faqs": [
+    {
+      "question": "How much do I need to invest?",
+      "answer": "No fixed minimum. The investment must be substantial relative to the total cost of the business and sufficient to ensure the investor’s financial commitment to success."
+    },
+    {
+      "question": "Which nationalities qualify?",
+      "answer": "Only nationals of countries with an E-2 treaty. Some major economies, including India and mainland China, do not currently have E-2 treaties."
+    },
+    {
+      "question": "Can E-2 lead to a green card?",
+      "answer": "Not directly. Some investors later pursue EB-5, employment-based, or family-based immigrant options, each with separate rules."
+    },
+    {
+      "question": "Can employees get E-2 too?",
+      "answer": "Yes, in some cases — executives, supervisors, or essential-skills employees who share the treaty nationality of the owning enterprise."
+    }
+  ],
+  "relatedVisaIds": [
+    "l1",
+    "h1b",
+    "tn"
+  ],
+  "relatedWhen": [
+    {
+      "visaId": "l1",
+      "when": "Choose L-1 if you are transferring as a manager or specialized worker within an existing multinational group."
+    },
+    {
+      "visaId": "h1b",
+      "when": "Choose H-1B for specialty employment with an employer sponsor rather than an investor path."
+    },
+    {
+      "visaId": "tn",
+      "when": "Choose TN for listed professional employment if you are Canadian or Mexican and not investing."
+    }
+  ],
+  "sourceUrl": "https://www.uscis.gov/working-in-the-united-states/temporary-workers/e-2-treaty-investors"
+}

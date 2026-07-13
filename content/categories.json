@@ -1,0 +1,44 @@
+[
+  {
+    "id": "work",
+    "label": "Work Visas",
+    "slug": "work",
+    "description": "Temporary work visas for professionals, skilled workers, and specialty occupations in the United States."
+  },
+  {
+    "id": "student",
+    "label": "Students & Exchange",
+    "slug": "study",
+    "description": "Student visas and related work authorization for academic and vocational study in the U.S."
+  },
+  {
+    "id": "visitor",
+    "label": "Visitor Visas",
+    "slug": "visit",
+    "description": "Short-term visas for tourism, business visits, and temporary stays without employment authorization."
+  },
+  {
+    "id": "family-fiance",
+    "label": "Fiancé(e) & Family Nonimmigrant",
+    "slug": "family-visit",
+    "description": "Nonimmigrant visas for fiancés, spouses, and family members of U.S. citizens and residents."
+  },
+  {
+    "id": "family-green-card",
+    "label": "Family Green Cards",
+    "slug": "family-green-card",
+    "description": "Permanent residence through family sponsorship by U.S. citizens or lawful permanent residents."
+  },
+  {
+    "id": "employment-green-card",
+    "label": "Employment Green Cards",
+    "slug": "employment-green-card",
+    "description": "Employment-based permanent residence for workers, professionals, and investors."
+  },
+  {
+    "id": "humanitarian",
+    "label": "Humanitarian & Protection",
+    "slug": "protection",
+    "description": "Protection visas and humanitarian relief for those fleeing persecution or facing urgent circumstances."
+  }
+]

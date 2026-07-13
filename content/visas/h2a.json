@@ -1,0 +1,165 @@
+{
+  "lastReviewedDate": "2026-07-14",
+  "timelineUpdatedDate": "2026-07",
+  "financeBlock": null,
+  "id": "h2a",
+  "code": "H-2A",
+  "name": "H-2A Temporary Agricultural Worker Visa",
+  "category": "work",
+  "parentVisaId": null,
+  "quickAnswer": "H-2A lets U.S. employers hire foreign nationals for temporary or seasonal agricultural work when enough qualified U.S. workers are unavailable. Employers must obtain a temporary labor certification from the Department of Labor before filing with USCIS. There is no annual numerical cap like H-2B.",
+  "whoIsFor": [
+    "Agricultural employers with temporary or seasonal labor needs",
+    "Workers from eligible countries who will fill certified H-2A roles",
+    "Operations prepared to meet wage, housing, and recruitment obligations"
+  ],
+  "whoShouldNotApply": [
+    "Employers seeking permanent year-round staffing through H-2A",
+    "Workers hoping for open U.S. employment unrelated to the certified job",
+    "Non-agricultural roles (those may belong under H-2B if temporary need exists)"
+  ],
+  "eligibility": [
+    "Job must be temporary or seasonal agricultural work",
+    "Employer must show insufficient available U.S. workers",
+    "Employer must obtain temporary labor certification from DOL",
+    "Worker must be a national of an eligible H-2A country unless an exception applies"
+  ],
+  "denialReasons": [
+    "Failure to prove temporary or seasonal need",
+    "Recruitment or wage compliance problems",
+    "Labor certification issues",
+    "Worker ineligibility by country or prior immigration history"
+  ],
+  "commonMistakes": [
+    "Starting DOL recruitment too close to peak season",
+    "Confusing H-2A agricultural rules with H-2B non-agricultural rules",
+    "Underestimating housing and transportation obligations",
+    "Workers assuming they can change employers freely without new sponsorship"
+  ],
+  "processSteps": [
+    {
+      "step": 1,
+      "title": "Employer obtains DOL temporary labor certification",
+      "description": "File the agricultural labor certification package, complete required recruitment, and offer at least the required wage.",
+      "timeframe": "Several weeks"
+    },
+    {
+      "step": 2,
+      "title": "Employer files Form I-129 with USCIS",
+      "description": "Submit the certified labor certification with the H-2A petition.",
+      "timeframe": "USCIS processing varies"
+    },
+    {
+      "step": 3,
+      "title": "Workers apply for visas and enter",
+      "description": "Approved workers consular process and enter for the certified employment period.",
+      "timeframe": "2–6 weeks common after petition approval, embassy-dependent"
+    },
+    {
+      "step": 4,
+      "title": "Work for the certified period and exit or extend",
+      "description": "Employment is tied to the certified need. Extensions are limited and total stay rules apply.",
+      "timeframe": "Usually up to 1 year per certification, with limits on total stay"
+    }
+  ],
+  "fees": [
+    {
+      "name": "Form I-129 filing fee",
+      "amount": "$460",
+      "payer": "employer",
+      "note": "Confirm current fee."
+    },
+    {
+      "name": "MRV visa fee",
+      "amount": "$205",
+      "payer": "applicant"
+    },
+    {
+      "name": "Recruitment, housing, and compliance costs",
+      "amount": "Varies",
+      "payer": "employer",
+      "note": "Often substantial beyond filing fees."
+    }
+  ],
+  "documents": [
+    {
+      "item": "DOL labor certification approval",
+      "why": "Threshold requirement before USCIS petition filing."
+    },
+    {
+      "item": "Employer petition and contracts",
+      "why": "Show terms of work, wages, and temporary need."
+    },
+    {
+      "item": "Worker passport from an eligible country",
+      "why": "Country eligibility matters for H-2A."
+    },
+    {
+      "item": "Evidence supporting seasonal/temporary agricultural need",
+      "why": "Central to both DOL and USCIS review."
+    }
+  ],
+  "timelineText": "Employers should begin DOL steps far ahead of harvest or seasonal demand. The full path — certification, petition, and consular processing — often takes multiple months end to end. There is no annual numerical cap, but process friction still creates timing risk.",
+  "validityPeriod": "Generally matches the certified employment period, often up to one year, with extension possibilities subject to total-stay limits.",
+  "extensionInfo": "Extensions may be available in increments but total H-2A time is typically capped before a required departure period. Confirm current maximum-stay rules before planning consecutive seasons.",
+  "employmentRights": "Workers are authorized only for the certified employer and agricultural role. Housing and wage protections are core program features employers must honor.",
+  "travelRestrictions": "Travel and reentry depend on valid visa documentation and continuing employment authorization tied to the petition.",
+  "importantDeadlines": [
+    "Kick off DOL recruitment early — seasonal windows close fast",
+    "Do not bring workers in before petition and visa authorization are complete",
+    "Track total consecutive stay limits before offering another season"
+  ],
+  "dependentsText": "Spouses and unmarried children under 21 may seek H-4 status. H-4 dependents may study but generally cannot work.",
+  "tips": [
+    {
+      "title": "Treat compliance infrastructure as part of the petition",
+      "body": "Housing, wages, and recruitment records are not paperwork extras — they are the program."
+    },
+    {
+      "title": "Separate H-2A and H-2B strategy deliberately",
+      "body": "Agricultural versus non-agricultural need is a threshold issue, not a labeling preference."
+    }
+  ],
+  "didYouKnow": [
+    "H-2A has no annual numerical cap like H-2B.",
+    "Employers usually must provide housing or a housing allowance meeting program standards."
+  ],
+  "faqs": [
+    {
+      "question": "Is there an H-2A cap?",
+      "answer": "No annual numerical cap applies to H-2A visas."
+    },
+    {
+      "question": "What wages apply?",
+      "answer": "Employers generally must pay at least the highest of the adverse effect wage rate, prevailing wage, or applicable minimum wage standards."
+    },
+    {
+      "question": "Can H-2A workers change employers?",
+      "answer": "Generally only with new authorized sponsorship. Do not assume portability like some other statuses."
+    },
+    {
+      "question": "How long can someone stay?",
+      "answer": "Usually for the certified period up to one year, with limited extensions and an eventual required departure before restarting in many cases."
+    }
+  ],
+  "relatedVisaIds": [
+    "h2b",
+    "r1",
+    "h1b"
+  ],
+  "relatedWhen": [
+    {
+      "visaId": "h2b",
+      "when": "Choose H-2B for temporary non-agricultural work such as hospitality or landscaping."
+    },
+    {
+      "visaId": "h1b",
+      "when": "Choose H-1B for specialty professional roles requiring a degree-level specialty."
+    },
+    {
+      "visaId": "r1",
+      "when": "Choose R-1 for qualifying religious occupations, not agricultural labor."
+    }
+  ],
+  "sourceUrl": "https://www.uscis.gov/working-in-the-united-states/temporary-workers/h-2a-temporary-agricultural-workers"
+}
