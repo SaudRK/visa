@@ -1,0 +1,45 @@
+import { buildPageMetadata } from "@/lib/metadata";
+import CalculatorShell from "@/components/CalculatorShell";
+import RemittanceCalculator from "@/components/calculators/RemittanceCalculator";
+
+export const metadata = buildPageMetadata({
+  title: "Remittance Fee Calculator",
+  description:
+    "Estimate remittance fees and FX markup costs before sending money home from the U.S.",
+  path: "/calculators/remittance",
+});
+
+export default function RemittancePage() {
+  return (
+    <CalculatorShell
+      title="Remittance Fee Calculator"
+      description="Compare educational estimates of flat fees, mid-market FX models, and bank-style transfer costs."
+      guide={
+        <>
+          <h2>How to read remittance costs</h2>
+          <p>
+            The sticker fee is only part of what you pay. Many providers also
+            earn money on the exchange rate. A “$0 fee” transfer can still be
+            expensive if the FX spread is wide.
+          </p>
+          <h2>What immigrants usually compare</h2>
+          <ul>
+            <li>Total cost to send a fixed USD amount</li>
+            <li>Speed (minutes vs days)</li>
+            <li>Pickup method in the destination country</li>
+            <li>Limits, verification, and reliability</li>
+          </ul>
+          <h2>Practical tip</h2>
+          <p>
+            Run the same amount across 2–3 apps the day you send. Lock the rate
+            only after you confirm recipient details. This calculator uses sample
+            models so you can practice comparing fee vs FX — it is not a live
+            quote engine.
+          </p>
+        </>
+      }
+    >
+      <RemittanceCalculator />
+    </CalculatorShell>
+  );
+}

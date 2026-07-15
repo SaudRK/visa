@@ -2,71 +2,58 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { siteConfig } from "@/lib/siteConfig";
-
-const links = [
-  { href: "/#find-path", label: "Paths" },
-  { href: "/#popular", label: "Guides" },
-  { href: "/#journeys", label: "Journeys" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-];
+import { navSections, siteConfig } from "@/lib/siteConfig";
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 border-b transition-colors ${
-        scrolled
-          ? "border-line bg-bg/90 backdrop-blur-md"
-          : "border-transparent bg-transparent"
-      }`}
-    >
+    <header className="sticky top-0 z-50 border-b-2 border-ink bg-bg">
       <div className="page-shell flex h-[var(--header-h)] items-center justify-between gap-4">
-        <Link href="/" className="min-w-0" onClick={() => setOpen(false)}>
-          <span className="font-display text-[1.65rem] leading-none tracking-tight">
-            {siteConfig.name}
-          </span>
+        <Link
+          href="/"
+          className="shrink-0 text-base font-bold tracking-tight"
+          onClick={() => setOpen(false)}
+        >
+          {siteConfig.name}
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
-          {links.map((link) => (
+        <nav aria-label="Main" className="hidden items-center gap-0 lg:flex">
+          {navSections.map((item) => (
             <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-muted hover:text-ink transition-colors"
+              key={item.href}
+              href={item.href}
+              className="border-l-2 border-ink px-3 py-2 text-sm font-semibold hover:bg-ink hover:text-white"
             >
-              {link.label}
+              {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <Link href="/#find-path" className="btn btn-signal hidden sm:inline-flex">
-            Find path
+        <div className="flex items-center gap-2">
+          <Link
+            href="/calculators"
+            className="btn hidden !min-h-9 !px-3 !text-xs sm:inline-flex"
+          >
+            Calculators
           </Link>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center border border-ink lg:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center border-2 border-ink lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
-            aria-label="Toggle menu"
+            aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
           >
-            <span className="sr-only">Menu</span>
-            <span aria-hidden className="flex w-4 flex-col gap-1">
-              <span className="block h-0.5 w-full bg-ink" />
-              <span className="block h-0.5 w-full bg-ink" />
-              <span className="block h-0.5 w-3 bg-ink" />
+            <span aria-hidden className="font-mono text-xs font-bold">
+              {open ? "X" : "≡"}
             </span>
           </button>
         </div>
@@ -75,25 +62,25 @@ export default function Header() {
       {open ? (
         <div
           id="mobile-nav"
-          className="border-t border-line bg-bg lg:hidden"
+          className="absolute inset-x-0 top-[var(--header-h)] z-50 border-b-2 border-ink bg-bg lg:hidden"
         >
-          <nav className="page-shell flex flex-col gap-1 py-4" aria-label="Mobile">
-            {links.map((link) => (
+          <nav className="page-shell flex flex-col py-2" aria-label="Mobile">
+            {navSections.map((item) => (
               <Link
-                key={link.href}
-                href={link.href}
-                className="border-b border-line py-3 text-base font-medium"
+                key={item.href}
+                href={item.href}
+                className="border-b border-ink/20 py-3.5 text-sm font-bold"
                 onClick={() => setOpen(false)}
               >
-                {link.label}
+                {item.label}
               </Link>
             ))}
             <Link
-              href="/#find-path"
-              className="btn btn-signal mt-3"
+              href="/calculators"
+              className="btn mt-3 mb-3"
               onClick={() => setOpen(false)}
             >
-              Find path
+              Calculators
             </Link>
           </nav>
         </div>

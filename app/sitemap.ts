@@ -1,36 +1,27 @@
 import type { MetadataRoute } from "next";
-import { getCategories } from "@/lib/getCategories";
-import { getVisas } from "@/lib/getVisas";
 import { getSiteUrl } from "@/lib/siteConfig";
+import { sections } from "@/lib/contentMap";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", "/about", "/contact", "/privacy-policy"];
-  const categories = getCategories();
-  const visas = getVisas();
-
-  const entries: MetadataRoute.Sitemap = [
-    ...staticPages.map((path) => ({
-      url: getSiteUrl(path),
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: path === "" ? 1 : 0.5,
-    })),
-    ...categories.map((category) => ({
-      url: getSiteUrl(`/visas/${category.slug}`),
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    })),
-    ...visas.map((visa) => {
-      const category = categories.find((c) => c.id === visa.category);
-      return {
-        url: getSiteUrl(`/visas/${category?.slug}/${visa.id}`),
-        lastModified: new Date(),
-        changeFrequency: "weekly" as const,
-        priority: 0.9,
-      };
-    }),
+  const staticPaths = [
+    "",
+    "/about",
+    "/contact",
+    "/privacy-policy",
+    "/affiliate-disclosure",
   ];
 
-  return entries;
+  const sectionPaths = sections.map((s) => s.href);
+  const liveLinks = sections.flatMap((s) =>
+    s.links.filter((l) => l.status === "live").map((l) => l.href)
+  );
+
+  const urls = [...new Set([...staticPaths, ...sectionPaths, ...liveLinks])];
+
+  return urls.map((path) => ({
+    url: getSiteUrl(path),
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: path === "" ? 1 : path.includes("calculator") ? 0.9 : 0.7,
+  }));
 }

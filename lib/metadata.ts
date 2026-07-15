@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { siteConfig, getSiteUrl } from "./siteConfig";
+import { siteConfig, getSiteUrl } from "@/lib/siteConfig";
 
 interface PageMetadataOptions {
   title: string;
@@ -28,7 +28,14 @@ export function buildPageMetadata({
       url,
       siteName: siteConfig.name,
       type: "website",
-      images: [{ url: getSiteUrl("/og-image.png"), width: 1200, height: 630, alt: siteConfig.name }],
+      images: [
+        {
+          url: getSiteUrl("/og-image.png"),
+          width: 1200,
+          height: 630,
+          alt: siteConfig.name,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",

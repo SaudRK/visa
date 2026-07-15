@@ -9,7 +9,7 @@ export default function HeroSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_auto_1fr] lg:gap-4">
           {/* Left balloon */}
-          <div className="hidden lg:flex justify-end pr-4">
+          <div className="hidden justify-end pr-4 lg:flex">
             <div className="animate-float-slow">
               <HotAirBalloon size="lg" />
             </div>
@@ -30,49 +30,67 @@ export default function HeroSection() {
                   </div>
                 ))}
               </div>
-              <span className="text-sm font-semibold text-text">
+
+              <span className="text-sm font-semibold text-black">
                 10+ Visa Guides Available
               </span>
             </div>
 
-            <h1 className="text-4xl font-extrabold tracking-tight text-text sm:text-5xl lg:text-[3.25rem]">
+            <h1 className="text-4xl font-extrabold tracking-tight text-black sm:text-5xl lg:text-[3.25rem]">
               Your Dream Country Awaits
               <br />
-              <span className="bg-gradient-to-r from-primary-light to-primary bg-clip-text text-transparent">
+              <span className="text-black">
                 Let&apos;s Make It Happen.
               </span>
             </h1>
 
-            <p className="mx-auto mt-5 max-w-lg text-base text-text-muted sm:text-lg">
-              {siteConfig.tagline} Explore clear, step-by-step guides for U.S.
-              work visas, student visas, and green card pathways.
-            </p>
+                <p className="mx-auto mt-5 max-w-lg text-base sm:text-lg">
+                          <span className="text-white">{siteConfig.tagline}</span>{" "}
+                          <span className="text-black">
+                            Explore clear, step-by-step guides for U.S. work visas, student visas,
+                            and green card pathways.
+                          </span>
+                        </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link href="#visa-categories" className="btn-primary">
                 Get Started
               </Link>
+
               <Link href="/about" className="btn-outline">
                 How It Works
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 8h10M9 4l4 4-4 4"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </Link>
             </div>
           </div>
 
           {/* Right airplane */}
-          <div className="hidden lg:flex justify-start pl-4">
+          <div className="hidden justify-start pl-4 lg:flex">
             <AirplaneIllustration />
           </div>
         </div>
 
         {/* Mobile illustrations */}
         <div className="mt-8 flex items-end justify-between px-4 lg:hidden">
-          <div className="animate-float-slow scale-75 origin-bottom-left">
+          <div className="animate-float-slow origin-bottom-left scale-75">
             <HotAirBalloon size="sm" />
           </div>
-          <div className="scale-75 origin-bottom-right">
+
+          <div className="origin-bottom-right scale-75">
             <AirplaneIllustration />
           </div>
         </div>

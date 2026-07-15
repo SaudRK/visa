@@ -1,47 +1,79 @@
 import Link from "next/link";
-import { siteConfig } from "@/lib/siteConfig";
-import Disclaimer from "./Disclaimer";
+import { navSections, siteConfig } from "@/lib/siteConfig";
+import { sections } from "@/lib/contentMap";
 
 export default function Footer() {
+  const calcLinks =
+    sections
+      .find((s) => s.id === "calculators")
+      ?.links.filter((l) => l.status === "live") ?? [];
+
   return (
-    <footer className="mt-auto border-t border-ink bg-ink text-[#f2f4f7]">
-      <div className="page-shell py-14">
-        <div className="grid gap-10 lg:grid-cols-[1.3fr_1fr]">
-          <div>
-            <p className="font-display text-4xl tracking-tight">{siteConfig.name}</p>
-            <p className="mt-4 max-w-md text-[#b7bec8]">{siteConfig.tagline}</p>
-            <p className="mt-4 max-w-lg text-sm text-[#8b93a0]">{siteConfig.trustLine}</p>
-          </div>
-          <nav
-            aria-label="Footer"
-            className="grid grid-cols-2 gap-x-6 gap-y-3 self-start text-sm"
-          >
-            <Link href="/#find-path" className="hover:text-signal transition-colors">
-              Find path
-            </Link>
-            <Link href="/#popular" className="hover:text-signal transition-colors">
-              Guides
-            </Link>
-            <Link href="/about" className="hover:text-signal transition-colors">
-              About
-            </Link>
-            <Link href="/contact" className="hover:text-signal transition-colors">
-              Contact
-            </Link>
-            <Link href="/privacy-policy" className="hover:text-signal transition-colors">
-              Privacy
-            </Link>
-          </nav>
+    <footer className="mt-auto border-t-2 border-ink bg-ink text-white">
+      <div className="page-shell grid gap-0 border-x-2 border-ink lg:grid-cols-4">
+        <div className="border-b-2 border-white/15 p-6 lg:border-b-0 lg:border-r-2 lg:border-white/15">
+          <p className="text-lg font-bold tracking-tight">{siteConfig.name}</p>
+          <p className="mt-3 text-sm leading-relaxed text-white/60">
+            {siteConfig.tagline}
+          </p>
         </div>
-
-        <div className="mt-10 border border-[#2a303a] bg-[#161a21] p-5">
-          <Disclaimer invert />
+        <div className="border-b-2 border-white/15 p-6 lg:border-b-0 lg:border-r-2 lg:border-white/15">
+          <p className="mono-label !text-white/45">Explore</p>
+          <ul className="mt-3 space-y-2 text-sm text-white/70">
+            {navSections.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="hover:text-white">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-
-        <p className="mt-8 text-sm text-[#8b93a0]">
-          © {new Date().getFullYear()} {siteConfig.name}. Fees and policies can
-          change — verify official sources before filing.
-        </p>
+        <div className="border-b-2 border-white/15 p-6 lg:border-b-0 lg:border-r-2 lg:border-white/15">
+          <p className="mono-label !text-white/45">Calculators</p>
+          <ul className="mt-3 space-y-2 text-sm text-white/70">
+            {calcLinks.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="hover:text-white">
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="p-6">
+          <p className="mono-label !text-white/45">Legal</p>
+          <ul className="mt-3 space-y-2 text-sm text-white/70">
+            <li>
+              <Link href="/about" className="hover:text-white">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-white">
+                Contact
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy-policy" className="hover:text-white">
+                Privacy
+              </Link>
+            </li>
+            <li>
+              <Link href="/affiliate-disclosure" className="hover:text-white">
+                Affiliates
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="border-t-2 border-white/15">
+        <div className="page-shell flex flex-col gap-2 py-4 text-xs text-white/45 sm:flex-row sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {siteConfig.name}
+          </p>
+          <p>Educational only · Not financial / tax / legal advice</p>
+        </div>
       </div>
     </footer>
   );

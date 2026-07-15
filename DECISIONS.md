@@ -1,29 +1,25 @@
 # Build Decisions
 
-## Content loading: `fs.readdirSync`
+## Niche pivot (client report, June 2025)
 
-Visa JSON files are read at build time via `fs.readdirSync` in `lib/getVisas.ts`. This keeps adding new visa files a drop-in operation without updating import lists. All pages use `generateStaticParams` for full static generation.
+The site material was changed from a pure visa-encyclopedia product to an **immigrant & expat finance** resource (banking, taxes, remittances, investing, insurance, calculators, visa-specific money guides), following the client transformation report.
 
-## Design system vs original tokens
+## Brand naming
 
-Visual system is now an “atlas signal” language: cool gray field, ink black, sea teal, citrus-orange signal accents, Syne + IBM Plex, sharp 2px corners, mono tags, parallax hero layers, and scroll reveals. Purple palettes and pill CTAs were intentionally removed.
+The report’s sample brand name is **not** used in this codebase. Branding stays config-only via `lib/siteConfig.ts` / `NEXT_PUBLIC_SITE_NAME`. Current placeholder: **New American Guide**. Tagline: **Finance Made Simple for New Americans**.
 
-## Expanded visa schema
+## Design system
 
-Phase 1 visa JSON now includes practical applicant fields beyond the original launch schema (`whoIsFor`, `denialReasons`, `documents[].why`, `employmentRights`, etc.) while preserving the single visa template rule. `financeBlock` remains `null`.
+Navy `#1B3A6B`, accent blue `#2E86C1`, light blue `#E8EFF9`, gray `#F5F7FA`, Plus Jakarta Sans — aligned to the report’s visual specs (8px buttons, 12px cards).
 
-## Brand placeholder
+## Phase 1 live foundation
 
-Default `siteConfig.name` is `VisaHarbor` until domain/name are finalized via env vars.
+Live now: homepage audience/calculator/pillar layout, section landings, remittance calculator, H-1B tax estimator, substantial presence calculator, H-1B/F-1 financial guides, credit-building pillar, H-1B/F-1 tax guides, affiliate disclosure.
 
-## OG image placeholder
+## Legacy visa JSON templates
 
-`public/og-image.png` is referenced in metadata but not yet created. Add a 1200×630 branded image before launch.
+Older `/visas/...` encyclopedia routes may still exist in the repo from the prior build. Primary navigation and sitemap now point at the finance IA. Remove or redirect legacy visa routes in a later cleanup if desired.
 
-## Search Console / Bing submission
+## Affiliates
 
-Blocked until `NEXT_PUBLIC_SITE_DOMAIN` is finalized and the site is deployed.
-
-## Fee and timeline values
-
-Fee amounts are planning baselines drawn from publicly listed schedules and must be re-confirmed against official fee pages before publish. Guides show `timelineUpdatedDate` and `lastReviewedDate` for trust.
+No live affiliate network IDs are embedded yet. Disclosure copy and page are in place so links can be added after program approval with `rel="sponsored"`.
