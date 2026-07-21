@@ -13,8 +13,8 @@ export default function HomeClient({
 
   return (
     <div className="relative">
-      {/* Airplane trail spans full page height behind content */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* Airplane trail: z-30 = above content (z-10), below header (z-50) */}
+      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 30 }}>
         <AirplaneTrail />
       </div>
 

@@ -50,7 +50,9 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth removed — it desynchronises getBoundingClientRect
+     reads during fast scrolls, causing the airplane to lag. Smooth scrolling
+     for anchor links is handled per-link with JS when needed. */
 }
 
 body {
@@ -571,43 +573,60 @@ a.card:hover,
 .stagger-children.visible > *:nth-child(5) { transition-delay: 360ms; }
 .stagger-children.visible > *:nth-child(6) { transition-delay: 450ms; }
 
-/* ─── Airplane trail (full-page, scroll-driven, behind content) ─── */
+/* ─── Airplane trail (full-page, scroll-driven, above content) ─── */
 .airplane-layer {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 30; /* above page content (z-10), below sticky header (z-50) */
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible; /* allow airplane to peek slightly beyond edges */
+  /* Force GPU layer promotion for the whole airplane container */
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style;
 }
 
 .airplane-svg {
   position: absolute;
   inset: 0;
+  overflow: visible;
+  /* GPU-accelerate SVG compositing */
+  will-change: contents;
+  backface-visibility: hidden;
 }
 
 .trail-guide {
   fill: none;
-  stroke: color-mix(in srgb, var(--color-accent) 20%, transparent);
-  stroke-width: 1.4;
-  stroke-dasharray: 1.5 8;
+  stroke: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  stroke-width: 1.6;
+  stroke-dasharray: 2 10;
   stroke-linecap: round;
 }
 
 .trail-traveled {
   fill: none;
-  stroke: color-mix(in srgb, var(--color-accent) 42%, transparent);
-  stroke-width: 1.6;
+  stroke: var(--color-accent);
+  stroke-width: 2;
   stroke-linecap: round;
+  opacity: 0.45;
+  /* Smooth dash transitions */
+  will-change: stroke-dasharray;
 }
 
 .airplane-body {
   fill: var(--color-accent);
-  opacity: 0.62;
+  opacity: 0.92;
+  filter: drop-shadow(0 0 3px var(--color-accent));
 }
 
 .airplane-glow {
   fill: var(--color-accent);
-  opacity: 0.16;
+  opacity: 0.32;
+}
+
+.airplane-halo {
+  fill: var(--color-accent);
+  opacity: 0.08;
 }
 
 /* ─── Money rain (scroll-triggered, seamless, behind content) ─── */
