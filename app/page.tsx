@@ -1,81 +1,71 @@
 import Link from "next/link";
-import { siteConfig } from "@/lib/siteConfig";
 import { sections } from "@/lib/contentMap";
+import HomeShell from "@/components/HomeShell";
+import MoneyRain from "@/components/MoneyRain";
 
-const audience = [
-  {
-    label: "H-1B / Work Visa",
-    href: "/visa-guides/h1b",
-    detail: "Taxes, 401(k), investing on a work visa",
-    code: "01",
-    span: "md:col-span-2",
-  },
-  {
-    label: "F-1 / Student",
-    href: "/visa-guides/f1",
-    detail: "Banking, OPT income, first-year taxes",
-    code: "02",
-    span: "",
-  },
-  {
-    label: "Green Card",
-    href: "/visa-guides",
-    detail: "Credit, mortgages, long-term plans",
-    code: "03",
-    span: "",
-  },
-  {
-    label: "Send Money",
-    href: "/send-money",
-    detail: "Fees, FX, transfer apps",
-    code: "04",
-    span: "",
-  },
-  {
-    label: "Expat Abroad",
-    href: "/taxes",
-    detail: "FBAR, FATCA, foreign income",
-    code: "05",
-    span: "md:col-span-2",
-  },
+/* Small arrow used across index rows */
+function Arrow({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      aria-hidden="true"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  );
+}
+
+/* The reader's starting points, framed as a table of contents */
+const startHere = [
+  { no: "01", label: "H-1B / Work visa", meta: "Taxes · 401(k) · investing", href: "/visa-guides/h1b" },
+  { no: "02", label: "F-1 / Student", meta: "Banking · OPT taxes", href: "/visa-guides/f1" },
+  { no: "03", label: "New green card", meta: "Credit · mortgages", href: "/visa-guides" },
+  { no: "04", label: "Sending money home", meta: "Fees · FX · transfers", href: "/send-money" },
+  { no: "05", label: "Living abroad", meta: "FBAR · FATCA · filing", href: "/taxes" },
 ];
 
 const featuredCalcs = [
   {
-    title: "Remittance fees",
+    title: "Remittance fee calculator",
     href: "/calculators/remittance",
-    description: "Fee + FX cost before you send.",
-    code: "CALC/01",
+    description: "Compare fees and exchange rates across transfer services before you send money home.",
   },
   {
-    title: "H-1B tax estimate",
+    title: "H-1B tax estimator",
     href: "/calculators/h1b-tax",
-    description: "Federal, state, FICA, take-home.",
-    code: "CALC/02",
+    description: "Estimate federal, state, and FICA taxes so you can plan your real take-home pay.",
   },
   {
-    title: "Presence test",
+    title: "Substantial presence test",
     href: "/calculators/substantial-presence",
-    description: "IRS day-count for tax residency.",
-    code: "CALC/03",
+    description: "Run the IRS day-count formula to see whether you count as a U.S. tax resident.",
   },
 ];
 
 const latest = [
   {
-    title: "H-1B financial guide",
+    kicker: "Visa guide",
+    title: "The complete financial guide for H-1B holders",
     href: "/visa-guides/h1b",
-    excerpt: "Year-one banking, taxes, retirement.",
+    excerpt: "Set up banking, retirement, and taxes in your first year on an H-1B.",
   },
   {
-    title: "F-1 financial guide",
+    kicker: "Visa guide",
+    title: "The complete financial guide for F-1 students",
     href: "/visa-guides/f1",
-    excerpt: "Student banking, OPT taxes, remittances.",
+    excerpt: "OPT income taxes, student banking, and money basics from day one.",
   },
   {
-    title: "Build U.S. credit",
+    kicker: "Banking",
+    title: "How to build U.S. credit as an immigrant",
     href: "/banking/build-credit",
-    excerpt: "From zero history to usable score.",
+    excerpt: "A practical path from no credit history at all to a score you can use.",
   },
 ];
 
@@ -83,175 +73,228 @@ const pillars = sections.filter((s) => s.id !== "calculators");
 
 export default function HomePage() {
   return (
-    <div className="page-shell section space-y-10">
-      {/* Hero bento */}
-      <section className="bento grid-cols-1 md:grid-cols-6" aria-label="Hero">
-        <div className="cell cell-ink md:col-span-4 min-h-[280px] md:min-h-[340px]">
-          <div>
-            <p className="mono-label !text-white/50">{siteConfig.name}</p>
-            <h1 className="mt-4 max-w-xl text-4xl font-bold tracking-tight text-white md:text-6xl">
-              {siteConfig.tagline}
+    <HomeShell>
+      {/* ══════════════════════════════════════════════ */}
+      {/* MASTHEAD                                        */}
+      {/* ══════════════════════════════════════════════ */}
+      <section className="border-b border-line">
+        <div className="page-shell grid gap-12 py-16 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+          {/* Thesis */}
+          <div className="flex flex-col">
+            <p className="eyebrow load-in" style={{ animationDelay: "0ms" }}>
+              A field guide for new Americans
+            </p>
+
+            <h1 className="load-in mt-6 max-w-[14ch] text-ink" style={{ animationDelay: "80ms" }}>
+              American money,{" "}
+              <span className="text-accent">made clear.</span>
             </h1>
-            <div className="mt-5 h-1 w-16 bg-accent" />
-          </div>
-          <p className="max-w-lg text-base leading-relaxed text-white/70">
-            {siteConfig.description}
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/calculators" className="btn btn-on-dark">
-              Open calculators
-            </Link>
-            <Link
-              href="#audience"
-              className="btn border-2 border-white bg-transparent text-white hover:bg-white hover:text-ink"
+
+            <p
+              className="load-in mt-7 max-w-[44ch] text-[1.075rem] leading-[1.6] text-muted"
+              style={{ animationDelay: "160ms" }}
             >
-              Find your path
-            </Link>
+              Plain-English guides and free calculators for immigrants finding
+              their footing in the U.S. — banking, taxes, investing, and sending
+              money home. No sign-up, no sales pitch.
+            </p>
+
+            <div className="load-in mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "240ms" }}>
+              <Link href="/visa-guides" className="btn">
+                Browse the guides
+                <Arrow />
+              </Link>
+              <Link href="/calculators" className="btn btn-ghost">
+                Free calculators
+              </Link>
+            </div>
+
+            <p className="load-in mono-label mt-auto pt-12" style={{ animationDelay: "320ms" }}>
+              Free to use · No account · For H-1B, F-1 &amp; green-card holders
+            </p>
           </div>
-        </div>
-        <div className="cell cell-accent md:col-span-2 flex flex-col justify-between">
-          <p className="mono-label !text-white/80">Signal</p>
-          <p className="text-3xl font-bold tracking-tight text-white md:text-4xl">
-            Built for newcomers — not generic finance.
-          </p>
-          <p className="mono-label !text-white/80">{siteConfig.trustLine}</p>
-        </div>
-        <div className="cell cell-soft md:col-span-2">
-          <p className="mono-label">Live tools</p>
-          <p className="text-5xl font-bold tracking-tight">03</p>
-          <p className="muted text-sm">Calculators ready</p>
-        </div>
-        <div className="cell md:col-span-2">
-          <p className="mono-label">Guides</p>
-          <p className="text-5xl font-bold tracking-tight">06+</p>
-          <p className="muted text-sm">Foundation pages live</p>
-        </div>
-        <div className="cell md:col-span-2">
-          <p className="mono-label">Pillars</p>
-          <p className="text-5xl font-bold tracking-tight">07</p>
-          <p className="muted text-sm">Money topics mapped</p>
+
+          {/* Signature: the index */}
+          <div className="load-in lg:border-l lg:border-line lg:pl-16" style={{ animationDelay: "200ms" }}>
+            <div className="flex items-baseline justify-between">
+              <p className="mono-label">Start here</p>
+              <p className="mono-label">Pick where you are</p>
+            </div>
+
+            <nav className="index-list mt-5" aria-label="Choose your situation">
+              {startHere.map((item) => (
+                <Link key={item.no} href={item.href} className="index-row group">
+                  <span className="index-num">{item.no}</span>
+                  <span className="min-w-0">
+                    <span className="block font-heading text-[1.28rem] font-semibold leading-tight text-ink transition-colors group-hover:text-accent">
+                      {item.label}
+                    </span>
+                    <span className="mt-1 block font-mono text-[0.72rem] text-muted">
+                      {item.meta}
+                    </span>
+                  </span>
+                  <Arrow className="index-arrow" />
+                </Link>
+              ))}
+            </nav>
+          </div>
         </div>
       </section>
 
-      {/* Audience bento */}
-      <section id="audience">
-        <div className="mb-4 flex items-end justify-between gap-4">
-          <div>
-            <p className="eyebrow">Index / audience</p>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight">
-              What best describes you?
+      {/* ══════════════════════════════════════════════ */}
+      {/* § 01 — TOOLS  (subtle money rain)               */}
+      {/* ══════════════════════════════════════════════ */}
+      <section className="page-shell section relative isolate">
+        <MoneyRain soft />
+        <div className="relative z-10">
+          <div className="section-marker reveal">
+            <span>§&nbsp;01 — The tools</span>
+          </div>
+
+          <div className="reveal mt-8 grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
+            <h2 className="max-w-[18ch] text-ink">
+              Calculators built for immigrant money decisions
             </h2>
-          </div>
-        </div>
-        <div className="bento grid-cols-1 md:grid-cols-3">
-          {audience.map((item) => (
             <Link
-              key={item.label}
-              href={item.href}
-              className={`cell ${item.span}`}
+              href="/calculators"
+              className="inline-flex items-center gap-1.5 self-start font-mono text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-accent transition-colors hover:text-ink md:self-end"
             >
-              <p className="mono-label">{item.code}</p>
-              <div>
-                <h3 className="text-2xl font-bold tracking-tight">{item.label}</h3>
-                <p className="muted mt-2 text-sm">{item.detail}</p>
-              </div>
-              <span className="btn-link">
-                Enter <span aria-hidden>→</span>
-              </span>
+              All calculators <Arrow className="h-4 w-4" />
             </Link>
-          ))}
+          </div>
+
+          <ul className="bento stagger-children mt-10 grid-cols-1 md:grid-cols-3">
+            {featuredCalcs.map((item, i) => (
+              <li key={item.href} className="list-none">
+                <Link href={item.href} className="cell h-full">
+                  <div className="flex items-center justify-between">
+                    <span className="index-num">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="status-pill status-live">Live</span>
+                  </div>
+                  <div>
+                    <h3 className="text-ink">{item.title}</h3>
+                    <p className="muted mt-2.5 text-[0.95rem]">{item.description}</p>
+                  </div>
+                  <span className="btn-link">
+                    Open calculator <Arrow className="h-4 w-4" />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* Calculators bento */}
-      <section>
-        <div className="mb-4">
-          <p className="eyebrow">Tools</p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight">
-            Free calculators
+      {/* ══════════════════════════════════════════════ */}
+      {/* § 02 — THE LIBRARY                              */}
+      {/* ══════════════════════════════════════════════ */}
+      <section className="border-y border-line">
+        <div className="page-shell section">
+          <div className="section-marker reveal">
+            <span>§&nbsp;02 — The library</span>
+          </div>
+
+          <h2 className="reveal mt-8 max-w-[16ch] text-ink">
+            Everything, sorted the way a newcomer actually needs it
           </h2>
-        </div>
-        <div className="bento grid-cols-1 md:grid-cols-3">
-          {featuredCalcs.map((item) => (
-            <Link key={item.href} href={item.href} className="cell">
-              <p className="mono-label">{item.code}</p>
-              <div>
-                <h3 className="text-xl font-bold tracking-tight">{item.title}</h3>
-                <p className="muted mt-2 text-sm">{item.description}</p>
-              </div>
-              <span className="btn-link">
-                Launch <span aria-hidden>→</span>
-              </span>
-            </Link>
-          ))}
+
+          <ul className="bento stagger-children mt-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {pillars.map((pillar, i) => (
+              <li key={pillar.id} className="list-none">
+                <Link href={pillar.href} className="cell h-full">
+                  <div className="flex items-center justify-between">
+                    <span className="index-num">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="mono-label">{pillar.links.length} guides</span>
+                  </div>
+                  <div>
+                    <h3 className="text-ink">{pillar.label}</h3>
+                    <p className="muted mt-2.5 text-[0.95rem]">{pillar.description}</p>
+                  </div>
+                  <span className="btn-link">
+                    Explore <Arrow className="h-4 w-4" />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* Pillars bento */}
-      <section>
-        <div className="mb-4">
-          <p className="eyebrow">Library</p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight">
-            Everything you need
-          </h2>
+      {/* ══════════════════════════════════════════════ */}
+      {/* § 03 — LATEST                                   */}
+      {/* ══════════════════════════════════════════════ */}
+      <section className="page-shell section">
+        <div className="section-marker reveal">
+          <span>§&nbsp;03 — Latest guides</span>
         </div>
-        <div className="bento grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {pillars.map((pillar, i) => (
-            <Link key={pillar.id} href={pillar.href} className="cell">
-              <p className="mono-label">
-                {String(i + 1).padStart(2, "0")} / {pillar.label}
-              </p>
-              <p className="muted text-sm leading-relaxed">{pillar.description}</p>
-              <span className="btn-link">
-                Open <span aria-hidden>→</span>
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
 
-      {/* Latest + CTA bento */}
-      <section>
-        <div className="mb-4">
-          <p className="eyebrow">Reading</p>
-          <h2 className="mt-2 text-3xl font-bold tracking-tight">Latest guides</h2>
-        </div>
-        <div className="bento grid-cols-1 md:grid-cols-6">
+        <div className="stagger-children mt-8 border-t border-line">
           {latest.map((post, i) => (
             <Link
               key={post.href}
               href={post.href}
-              className={`cell ${i === 0 ? "md:col-span-3" : "md:col-span-3 lg:col-span-3"}`}
+              className="group grid grid-cols-[2.75rem_1fr_auto] items-start gap-4 border-b border-line py-6 pl-1 pr-2 transition-[background-color,padding-left] duration-200 hover:bg-soft hover:pl-3"
             >
-              <p className="mono-label">Guide</p>
-              <div>
-                <h3 className="text-2xl font-bold tracking-tight">{post.title}</h3>
-                <p className="muted mt-2 text-sm">{post.excerpt}</p>
-              </div>
-              <span className="btn-link">
-                Read <span aria-hidden>→</span>
+              <span className="index-num pt-1.5">
+                {String(i + 1).padStart(2, "0")}
               </span>
+              <span className="min-w-0">
+                <span className="eyebrow">{post.kicker}</span>
+                <span className="mt-1.5 block max-w-[42ch] font-heading text-2xl font-semibold leading-tight text-ink transition-colors group-hover:text-accent">
+                  {post.title}
+                </span>
+                <span className="mt-2 block max-w-[52ch] text-[0.95rem] leading-relaxed text-muted">
+                  {post.excerpt}
+                </span>
+              </span>
+              <Arrow className="mt-1.5 shrink-0 text-muted transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           ))}
-          <div className="cell cell-ink md:col-span-6">
-            <p className="mono-label !text-white/50">Next</p>
-            <p className="max-w-xl text-3xl font-bold tracking-tight text-white">
-              Clear money systems for immigrants — no generic advice recycled.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/visa-guides" className="btn btn-on-dark">
-                Visa money guides
-              </Link>
-              <Link
-                href="/banking/build-credit"
-                className="btn border-2 border-white bg-transparent text-white hover:bg-white hover:text-ink"
-              >
-                Build credit
-              </Link>
-            </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════ */}
+      {/* COLOPHON / CTA  (money rain, evergreen band)    */}
+      {/* ══════════════════════════════════════════════ */}
+      <section className="relative isolate overflow-hidden bg-accent">
+        <MoneyRain />
+        {/* Scrim: darkens the center where the text sits, so white copy stays
+            legible over the rain, while bills still show at the edges. */}
+        <div
+          className="pointer-events-none absolute inset-0 z-[1]"
+          style={{
+            background:
+              "radial-gradient(ellipse 68% 78% at 50% 50%, rgba(11,24,18,0.66), rgba(11,24,18,0.28) 58%, transparent 82%)",
+          }}
+        />
+        <div className="page-shell section relative z-10 text-center text-white">
+          <p className="eyebrow reveal" style={{ color: "rgba(255,255,255,0.7)" }}>
+            The colophon
+          </p>
+          <h2
+            className="reveal mx-auto mt-5 max-w-[20ch] text-white"
+            style={{ textShadow: "0 1px 12px rgba(11,24,18,0.45)" }}
+          >
+            Built by immigrants, for immigrants
+          </h2>
+          <p
+            className="reveal mx-auto mt-5 max-w-xl text-[1.02rem] leading-relaxed text-white/85"
+            style={{ textShadow: "0 1px 10px rgba(11,24,18,0.4)" }}
+          >
+            Clear money systems instead of generic advice. Start building your
+            financial footing in the U.S. today — everything here stays free.
+          </p>
+          <div className="reveal mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link href="/visa-guides" className="btn btn-on-dark">
+              Find your visa guide
+              <Arrow />
+            </Link>
+            <Link href="/banking/build-credit" className="btn btn-hero-secondary">
+              Start building credit
+            </Link>
           </div>
         </div>
       </section>
-    </div>
+    </HomeShell>
   );
 }
