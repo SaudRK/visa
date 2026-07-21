@@ -573,24 +573,22 @@ a.card:hover,
 .stagger-children.visible > *:nth-child(5) { transition-delay: 360ms; }
 .stagger-children.visible > *:nth-child(6) { transition-delay: 450ms; }
 
-/* ─── Airplane trail (full-page, scroll-driven, above content) ─── */
+/* ─── Airplane trail (full-page, scroll-driven, behind content) ─── */
 .airplane-layer {
   position: absolute;
   inset: 0;
-  z-index: 30; /* above page content (z-10), below sticky header (z-50) */
+  z-index: 0; /* behind page content (z-10) and header (z-50) */
   pointer-events: none;
-  overflow: visible; /* allow airplane to peek slightly beyond edges */
-  /* Force GPU layer promotion for the whole airplane container */
+  overflow: hidden;
   will-change: transform;
   transform: translateZ(0);
-  contain: layout style;
+  contain: layout style paint;
 }
 
 .airplane-svg {
   position: absolute;
   inset: 0;
   overflow: visible;
-  /* GPU-accelerate SVG compositing */
   will-change: contents;
   backface-visibility: hidden;
 }
@@ -609,7 +607,6 @@ a.card:hover,
   stroke-width: 2;
   stroke-linecap: round;
   opacity: 0.45;
-  /* Smooth dash transitions */
   will-change: stroke-dasharray;
 }
 

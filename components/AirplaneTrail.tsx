@@ -40,7 +40,14 @@ export default function AirplaneTrail() {
 
   // Build the sine-wave flight path
   const buildPath = useCallback((w: number, h: number) => {
-    const margin = Math.max(48, w * 0.09);
+    // ── Responsive Physics ──
+    // On narrow screens (mobile), use fewer left/right cycles so the turn radius isn't too tight
+    const isMobile = w < 768;
+    const cycles = isMobile ? 1.5 : CYCLES;
+    
+    // Calculate amplitude (how far left/right it swings)
+    // On mobile, keep it strictly within the screen by using a larger margin proportion
+    const margin = isMobile ? Math.max(32, w * 0.15) : Math.max(48, w * 0.09);
     const amp = Math.max(0, (w - margin * 2) / 2);
     const midX = w / 2;
     const pts: { x: number; y: number }[] = [];
@@ -48,7 +55,8 @@ export default function AirplaneTrail() {
 
     for (let i = 0; i <= SAMPLES; i++) {
       const t = i / SAMPLES;
-      const x = midX + Math.sin(t * CYCLES * Math.PI * 2) * amp;
+      // Start the sine wave at a phase that looks good (e.g. starting from middle going right)
+      const x = midX + Math.sin(t * cycles * Math.PI * 2) * amp;
       const y = t * h;
       pts.push({ x, y });
       if (i > 0) {

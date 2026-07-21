@@ -13,8 +13,8 @@ export default function HomeShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="relative">
-      {/* Airplane layer: z-30 = above content (z-10) but below header (z-50) */}
-      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 30 }}>
+      {/* Airplane trail: z-0 = behind content (z-10) and header (z-50) */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <AirplaneTrail />
       </div>
       <div className="relative z-10">{children}</div>
