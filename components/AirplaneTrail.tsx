@@ -38,27 +38,25 @@ export default function AirplaneTrail() {
     smoothAngle: 0,
   });
 
-  // ── Responsive Physics & Path Generation ──
-  // We use useMemo here but it's driven by state so it only recalculates on resize
+  // Build the sine-wave flight path
   const buildPath = useCallback((w: number, h: number) => {
+    // ── Responsive Physics ──
+    // On narrow screens (mobile), use fewer left/right cycles so the turn radius isn't too tight
     const isMobile = w < 768;
     const cycles = isMobile ? 1.5 : CYCLES;
     
-    // Reduce samples on mobile for better performance on older devices
-    const currentSamples = isMobile ? Math.floor(SAMPLES / 1.5) : SAMPLES;
-    
+    // Calculate amplitude (how far left/right it swings)
+    // On mobile, keep it strictly within the screen by using a larger margin proportion
     const margin = isMobile ? Math.max(32, w * 0.15) : Math.max(48, w * 0.09);
     const amp = Math.max(0, (w - margin * 2) / 2);
     const midX = w / 2;
     const pts: { x: number; y: number }[] = [];
     const lens: number[] = [0];
 
-    // Pre-calculate constants
-    const cycleMult = cycles * Math.PI * 2;
-
-    for (let i = 0; i <= currentSamples; i++) {
-      const t = i / currentSamples;
-      const x = midX + Math.sin(t * cycleMult) * amp;
+    for (let i = 0; i <= SAMPLES; i++) {
+      const t = i / SAMPLES;
+      // Start the sine wave at a phase that looks good (e.g. starting from middle going right)
+      const x = midX + Math.sin(t * cycles * Math.PI * 2) * amp;
       const y = t * h;
       pts.push({ x, y });
       if (i > 0) {
@@ -68,29 +66,22 @@ export default function AirplaneTrail() {
       }
     }
 
+    // Build SVG path with Catmull-Rom → cubic Bézier for a silky curve
     let path = `M ${pts[0].x.toFixed(1)},${pts[0].y.toFixed(1)}`;
-    const tension = 6;
-    
     for (let i = 0; i < pts.length - 1; i++) {
       const p0 = pts[Math.max(0, i - 1)];
       const p1 = pts[i];
       const p2 = pts[Math.min(pts.length - 1, i + 1)];
       const p3 = pts[Math.min(pts.length - 1, i + 2)];
-      
-      const cp1x = p1.x + (p2.x - p0.x) / tension;
-      const cp1y = p1.y + (p2.y - p0.y) / tension;
-      const cp2x = p2.x - (p3.x - p1.x) / tension;
-      const cp2y = p2.y - (p3.y - p1.y) / tension;
+      const t = 6;
+      const cp1x = p1.x + (p2.x - p0.x) / t;
+      const cp1y = p1.y + (p2.y - p0.y) / t;
+      const cp2x = p2.x - (p3.x - p1.x) / t;
+      const cp2y = p2.y - (p3.y - p1.y) / t;
       path += ` C ${cp1x.toFixed(1)},${cp1y.toFixed(1)} ${cp2x.toFixed(1)},${cp2y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;
     }
 
-    return { 
-      d: path, 
-      points: pts, 
-      lengths: lens, 
-      totalLen: lens[lens.length - 1] || 0,
-      samples: currentSamples
-    };
+    return { d: path, points: pts, lengths: lens, totalLen: lens[lens.length - 1] || 0 };
   }, []);
 
   // ── Animation loop: reads scroll progress, writes DOM ──
@@ -105,43 +96,41 @@ export default function AirplaneTrail() {
       const { points, lengths, totalLen, progress } = s;
       if (points.length === 0 || !trailRef.current || !planeRef.current) return;
 
-      // Skip DOM write if progress hasn't changed enough
-      // Increased threshold slightly for better performance on old devices
-      if (Math.abs(progress - s.lastRendered) < 0.0001) return;
+      // Skip DOM write if progress hasn't changed (within float epsilon)
+      if (Math.abs(progress - s.lastRendered) < 1e-7) return;
       s.lastRendered = progress;
 
-      // The actual sample count might be different than the global constant due to mobile optimization
-      const currentSamples = points.length - 1;
-
       // ── Sub-pixel position interpolation ──
-      const rawIdx = progress * currentSamples;
-      const lo = Math.max(0, Math.min(currentSamples - 1, Math.floor(rawIdx)));
-      const hi = Math.min(currentSamples, lo + 1);
+      const rawIdx = progress * SAMPLES;
+      const lo = Math.max(0, Math.min(SAMPLES - 1, Math.floor(rawIdx)));
+      const hi = Math.min(SAMPLES, lo + 1);
       const frac = rawIdx - lo;
 
-      const pLo = points[lo];
-      const pHi = points[hi];
-      const curX = pLo.x + (pHi.x - pLo.x) * frac;
-      const curY = pLo.y + (pHi.y - pLo.y) * frac;
+      const curX = points[lo].x + (points[hi].x - points[lo].x) * frac;
+      const curY = points[lo].y + (points[hi].y - points[lo].y) * frac;
 
       // ── Angle: computed from a wider window for steady rotation ──
       const aLo = Math.max(0, lo - ANGLE_WINDOW);
-      const aHi = Math.min(currentSamples, hi + ANGLE_WINDOW);
-      const pALo = points[aLo];
-      const pAHi = points[aHi];
-      
-      const rawAngle = (Math.atan2(pAHi.y - pALo.y, pAHi.x - pALo.x) * 180) / Math.PI;
+      const aHi = Math.min(SAMPLES, hi + ANGLE_WINDOW);
+      const rawAngle =
+        (Math.atan2(
+          points[aHi].y - points[aLo].y,
+          points[aHi].x - points[aLo].x,
+        ) * 180) / Math.PI;
 
-      // Exponential smoothing on the angle
+      // Exponential smoothing on the angle to eliminate rotation jitter
+      // (0.25 = responsive but no flicker)
       s.smoothAngle += (rawAngle - s.smoothAngle) * 0.25;
 
       // ── Trail dash length ──
       const traveled = lengths[lo] + (lengths[hi] - lengths[lo]) * frac;
+      trailRef.current.style.strokeDasharray = `${traveled} ${totalLen}`;
 
-      // ── Batch DOM Updates ──
-      // Using fast style updates and transforms
-      trailRef.current.style.strokeDasharray = `${traveled.toFixed(1)} ${totalLen.toFixed(1)}`;
-      planeRef.current.style.transform = `translate(${curX.toFixed(1)}px, ${curY.toFixed(1)}px) rotate(${s.smoothAngle.toFixed(1)}deg)`;
+      // ── Plane transform ──
+      planeRef.current.setAttribute(
+        "transform",
+        `translate(${curX.toFixed(1)}, ${curY.toFixed(1)}) rotate(${s.smoothAngle.toFixed(1)})`,
+      );
     };
 
     s.rafId = requestAnimationFrame(tick);
@@ -157,9 +146,7 @@ export default function AirplaneTrail() {
     const layer = layerRef.current;
     if (!layer) return;
 
-    let timeoutId: number;
-
-    const updatePath = () => {
+    const measure = () => {
       const w = layer.offsetWidth;
       const h = layer.offsetHeight;
       if (w === s.w && h === s.h) return;
@@ -177,30 +164,17 @@ export default function AirplaneTrail() {
         svg.setAttribute("width", String(w));
         svg.setAttribute("height", String(h));
         svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
-        
-        // Update paths
-        const guide = svg.querySelector('.trail-guide');
-        const traveled = trailRef.current;
-        if (guide) guide.setAttribute("d", d);
-        if (traveled) traveled.setAttribute("d", d);
       }
+      svg
+        ?.querySelectorAll("path.trail-guide, path.trail-traveled")
+        .forEach((p) => p.setAttribute("d", d));
     };
 
-    // Debounced measure for performance
-    const measure = () => {
-      if (timeoutId) window.cancelAnimationFrame(timeoutId);
-      timeoutId = window.requestAnimationFrame(updatePath);
-    };
-
-    // Initial run without debounce
-    updatePath();
-    
+    measure();
     const ro = new ResizeObserver(measure);
     ro.observe(layer);
-    window.addEventListener("resize", measure, { passive: true });
-    
+    window.addEventListener("resize", measure);
     return () => {
-      if (timeoutId) window.cancelAnimationFrame(timeoutId);
       ro.disconnect();
       window.removeEventListener("resize", measure);
     };
@@ -229,7 +203,7 @@ export default function AirplaneTrail() {
       <svg ref={svgRef} className="airplane-svg" preserveAspectRatio="none">
         <path d="" className="trail-guide" />
         <path d="" className="trail-traveled" ref={trailRef} />
-        <g className="airplane-group" ref={planeRef} style={{ transform: 'translate(0px, 0px) rotate(0deg)' }}>
+        <g ref={planeRef} transform="translate(0,0) rotate(0)">
           <g transform="scale(1.5)">
             <circle className="airplane-halo" cx="-14" cy="0" r="18" />
             <circle className="airplane-glow" cx="-14" cy="0" r="9" />

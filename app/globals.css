@@ -613,7 +613,7 @@ a.card:hover,
 .airplane-body {
   fill: var(--color-accent);
   opacity: 0.92;
-  /* Removed drop-shadow as it causes severe lag on mobile when animating */
+  filter: drop-shadow(0 0 3px var(--color-accent));
 }
 
 .airplane-glow {
@@ -624,18 +624,6 @@ a.card:hover,
 .airplane-halo {
   fill: var(--color-accent);
   opacity: 0.08;
-}
-
-.airplane-group {
-  /* Ensure CSS transform rotates from the correct center point */
-  transform-origin: 0 0;
-  will-change: transform;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .airplane-layer {
-    display: none;
-  }
 }
 
 /* ─── Money rain (scroll-triggered, seamless, behind content) ─── */
