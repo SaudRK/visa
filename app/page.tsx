@@ -1,7 +1,20 @@
 import Link from "next/link";
 import { sections } from "@/lib/contentMap";
+import { buildPageMetadata } from "@/lib/metadata";
+import { siteConfig } from "@/lib/siteConfig";
 import HomeShell from "@/components/HomeShell";
 import MoneyRain from "@/components/MoneyRain";
+
+/*
+  The homepage previously inherited the root layout's metadata, which meant its
+  title was just the brand name — no statement of what the site is for, and
+  nothing for a query to match on. It now declares its own.
+*/
+export const metadata = buildPageMetadata({
+  title: `${siteConfig.name} — US Visa Guides, Taxes & Free Calculators`,
+  description: siteConfig.description,
+  path: "/",
+});
 
 /* Small arrow used across index rows */
 function Arrow({ className = "" }: { className?: string }) {
@@ -23,11 +36,12 @@ function Arrow({ className = "" }: { className?: string }) {
 
 /* The reader's starting points, framed as a table of contents */
 const startHere = [
-  { no: "01", label: "H-1B / Work visa", meta: "Taxes · 401(k) · investing", href: "/visa-guides/h1b" },
-  { no: "02", label: "F-1 / Student", meta: "Banking · OPT taxes", href: "/visa-guides/f1" },
-  { no: "03", label: "New green card", meta: "Credit · mortgages", href: "/visa-guides" },
-  { no: "04", label: "Sending money home", meta: "Fees · FX · transfers", href: "/send-money" },
-  { no: "05", label: "Living abroad", meta: "FBAR · FATCA · filing", href: "/taxes" },
+  { no: "01", label: "Choosing a visa", meta: "Requirements · fees · timelines", href: "/visas" },
+  { no: "02", label: "H-1B / Work visa", meta: "Taxes · 401(k) · investing", href: "/visa-guides/h1b" },
+  { no: "03", label: "F-1 / Student", meta: "Banking · OPT taxes", href: "/visa-guides/f1" },
+  { no: "04", label: "New green card", meta: "Credit · mortgages", href: "/visa-guides" },
+  { no: "05", label: "Sending money home", meta: "Fees · FX · transfers", href: "/send-money" },
+  { no: "06", label: "Taxes & residency", meta: "FBAR · FATCA · filing", href: "/taxes" },
 ];
 
 const featuredCalcs = [
@@ -50,26 +64,59 @@ const featuredCalcs = [
 
 const latest = [
   {
-    kicker: "Visa guide",
-    title: "The complete financial guide for H-1B holders",
-    href: "/visa-guides/h1b",
-    excerpt: "Set up banking, retirement, and taxes in your first year on an H-1B.",
+    kicker: "Visa library",
+    title: "H-1B visa requirements, fees and timeline",
+    href: "/visas/work/h1b",
+    excerpt:
+      "Who qualifies as a specialty occupation, how the cap and lottery work, and what the petition costs.",
   },
   {
-    kicker: "Visa guide",
-    title: "The complete financial guide for F-1 students",
-    href: "/visa-guides/f1",
-    excerpt: "OPT income taxes, student banking, and money basics from day one.",
+    kicker: "Visa library",
+    title: "F-1 student visa, start to finish",
+    href: "/visas/study/f1",
+    excerpt:
+      "Eligibility, documents, the interview, and what your status does and does not allow.",
+  },
+  {
+    kicker: "Taxes",
+    title: "H-1B taxes explained",
+    href: "/taxes/h1b",
+    excerpt:
+      "Withholding, FICA, state income tax, and why identical offers differ by thousands.",
   },
   {
     kicker: "Banking",
     title: "How to build U.S. credit as an immigrant",
     href: "/banking/build-credit",
-    excerpt: "A practical path from no credit history at all to a score you can use.",
+    excerpt:
+      "A practical path from no credit history at all to a score you can use.",
   },
 ];
 
-const pillars = sections.filter((s) => s.id !== "calculators");
+/*
+  Section cards for the library grid. The visa library lives under /visas rather
+  than in contentMap's `sections`, so it is prepended explicitly — it is the
+  site's largest content cluster and needs a homepage link, not just a nav item.
+*/
+const pillars = [
+  {
+    id: "visas",
+    href: "/visas",
+    label: "Visas & Immigration",
+    description:
+      "Requirements, process, fees, and timelines for US work, student, and family visa categories.",
+    count: "10 guides",
+  },
+  ...sections
+    .filter((s) => s.id !== "calculators")
+    .map((s) => ({
+      id: s.id,
+      href: s.href,
+      label: s.label,
+      description: s.description,
+      count: `${s.links.length} guides`,
+    })),
+];
 
 export default function HomePage() {
   return (
@@ -82,26 +129,27 @@ export default function HomePage() {
           {/* Thesis */}
           <div className="flex flex-col">
             <p className="eyebrow load-in" style={{ animationDelay: "0ms" }}>
-              A field guide for new Americans
+              A field guide for new arrivals
             </p>
 
-            <h1 className="load-in mt-6 max-w-[14ch] text-ink" style={{ animationDelay: "80ms" }}>
-              American money,{" "}
+            <h1 className="load-in mt-6 max-w-[15ch] text-ink" style={{ animationDelay: "80ms" }}>
+              Settling in America,{" "}
               <span className="text-accent">made clear.</span>
             </h1>
 
             <p
-              className="load-in mt-7 max-w-[44ch] text-[1.075rem] leading-[1.6] text-muted"
+              className="load-in mt-7 max-w-[46ch] text-[1.075rem] leading-[1.6] text-muted"
               style={{ animationDelay: "160ms" }}
             >
-              Plain-English guides and free calculators for immigrants finding
-              their footing in the U.S. — banking, taxes, investing, and sending
-              money home. No sign-up, no sales pitch.
+              Plain-English visa guides, tax explainers, and free calculators for
+              people moving to the United States — from working out which visa
+              you need to understanding your first payslip. No sign-up, no sales
+              pitch.
             </p>
 
             <div className="load-in mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "240ms" }}>
-              <Link href="/visa-guides" className="btn">
-                Browse the guides
+              <Link href="/visas" className="btn">
+                Explore US visa types
                 <Arrow />
               </Link>
               <Link href="/calculators" className="btn btn-ghost">
@@ -194,9 +242,13 @@ export default function HomePage() {
             <span>§&nbsp;02 — The library</span>
           </div>
 
-          <h2 className="reveal mt-8 max-w-[16ch] text-ink">
+          <h2 className="reveal mt-8 max-w-[18ch] text-ink">
             Everything, sorted the way a newcomer actually needs it
           </h2>
+          <p className="reveal muted mt-4 max-w-2xl text-[0.98rem]">
+            Start with the visa that applies to you, then work through the money
+            side — accounts, taxes, credit, and transfers home.
+          </p>
 
           <ul className="bento stagger-children mt-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {pillars.map((pillar, i) => (
@@ -204,7 +256,7 @@ export default function HomePage() {
                 <Link href={pillar.href} className="cell h-full">
                   <div className="flex items-center justify-between">
                     <span className="index-num">{String(i + 1).padStart(2, "0")}</span>
-                    <span className="mono-label">{pillar.links.length} guides</span>
+                    <span className="mono-label">{pillar.count}</span>
                   </div>
                   <div>
                     <h3 className="text-ink">{pillar.label}</h3>
@@ -285,8 +337,8 @@ export default function HomePage() {
             financial footing in the U.S. today — everything here stays free.
           </p>
           <div className="reveal mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/visa-guides" className="btn btn-on-dark">
-              Find your visa guide
+            <Link href="/visas" className="btn btn-on-dark">
+              Find your visa
               <Arrow />
             </Link>
             <Link href="/banking/build-credit" className="btn btn-hero-secondary">

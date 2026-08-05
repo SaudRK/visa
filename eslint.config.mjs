@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // One-off Node utilities (content generators, image optimisation). They run
+    // directly via `node`, outside the bundler, so CommonJS `require()` is
+    // correct there and the app's TS/ESM rules do not apply.
+    "scripts/**",
   ]),
 ]);
 

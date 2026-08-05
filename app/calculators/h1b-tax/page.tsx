@@ -2,18 +2,30 @@ import { buildPageMetadata } from "@/lib/metadata";
 import CalculatorShell from "@/components/CalculatorShell";
 import H1bTaxCalculator from "@/components/calculators/H1bTaxCalculator";
 
+const PATH = "/calculators/h1b-tax";
+
 export const metadata = buildPageMetadata({
-  title: "H-1B Tax Estimator",
+  title: "H-1B Tax Calculator: Estimate Take-Home Pay",
   description:
-    "Estimate federal tax, state tax, FICA, and take-home pay for H-1B salary planning.",
-  path: "/calculators/h1b-tax",
+    "Free H-1B tax calculator. Estimate federal tax, state tax, FICA, and monthly take-home pay from an offered salary. Runs in your browser.",
+  path: PATH,
 });
 
 export default function H1bTaxPage() {
   return (
     <CalculatorShell
-      title="H-1B Tax Estimator"
+      title="H-1B tax calculator"
       description="A simplified salary-to-take-home planner for education and budgeting — not a substitute for tax software or a CPA."
+      path={PATH}
+      related={[
+        { href: "/taxes/h1b", label: "H-1B taxes explained" },
+        { href: "/visa-guides/h1b", label: "H-1B financial guide" },
+        { href: "/visas/work/h1b", label: "H-1B visa requirements" },
+        {
+          href: "/calculators/substantial-presence",
+          label: "Substantial presence test",
+        },
+      ]}
       guide={
         <>
           <h2>Why H-1B earners use an estimator</h2>

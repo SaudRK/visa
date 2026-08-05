@@ -2,19 +2,39 @@ import Link from "next/link";
 import { buildPageMetadata } from "@/lib/metadata";
 import GuideLayout from "@/components/GuideLayout";
 
+const PATH = "/visa-guides/f1";
+const TITLE = "F-1 Student Financial Guide for the US";
+const DESCRIPTION =
+  "Money basics for F-1 international students — opening a bank account, campus and OPT income, building credit, and sending money home.";
+
 export const metadata = buildPageMetadata({
-  title: "Complete Financial Guide for F-1 International Students",
-  description:
-    "Banking, OPT/CPT taxes, remittances, and credit-building basics for F-1 students in the USA.",
-  path: "/visa-guides/f1",
+  title: TITLE,
+  description: DESCRIPTION,
+  path: PATH,
+  type: "article",
 });
 
 export default function F1FinanceGuidePage() {
   return (
     <GuideLayout
-      eyebrow="Visa financial guide"
-      title="Complete Financial Guide for F-1 International Students"
+      eyebrow="Visa money guide"
+      title="F-1 student financial guide"
       description="How to handle your first U.S. bank account, campus income, OPT taxes, and money sent home — without expensive mistakes."
+      path={PATH}
+      crumbs={[
+        { name: "Visa guides", path: "/visa-guides" },
+        { name: "F-1", path: PATH },
+      ]}
+      sources={[
+        {
+          label: "USCIS — Students and Employment",
+          href: "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/students-and-employment",
+        },
+        {
+          label: "IRS — Foreign Students and Scholars",
+          href: "https://www.irs.gov/individuals/international-taxpayers/foreign-students-and-scholars",
+        },
+      ]}
     >
       <h2>Start with banking</h2>
       <p>
@@ -64,6 +84,37 @@ export default function F1FinanceGuidePage() {
         </Link>{" "}
         before you commit.
       </p>
+
+      <h2>Where to go deeper</h2>
+      <ul>
+        <li>
+          <Link
+            href="/visas/study/f1"
+            className="font-semibold text-accent hover:underline"
+          >
+            F-1 visa requirements and process
+          </Link>{" "}
+          — eligibility, documents, and the interview.
+        </li>
+        <li>
+          <Link
+            href="/visas/study/f1-opt"
+            className="font-semibold text-accent hover:underline"
+          >
+            F-1 OPT explained
+          </Link>{" "}
+          — how work authorisation after study actually works.
+        </li>
+        <li>
+          <Link
+            href="/taxes/f1"
+            className="font-semibold text-accent hover:underline"
+          >
+            F-1 student taxes
+          </Link>{" "}
+          — filing, FICA exemptions, and OPT income.
+        </li>
+      </ul>
     </GuideLayout>
   );
 }

@@ -5,7 +5,7 @@ import SectionPage from "@/components/SectionPage";
 const section = getSection("send-money")!;
 
 export const metadata = buildPageMetadata({
-  title: "Send Money Home",
+  title: "How to Send Money Home From the USA",
   description: section.description,
   path: "/send-money",
 });

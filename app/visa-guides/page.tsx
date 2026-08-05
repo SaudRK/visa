@@ -5,7 +5,7 @@ import SectionPage from "@/components/SectionPage";
 const section = getSection("visa-guides")!;
 
 export const metadata = buildPageMetadata({
-  title: "Visa Financial Guides",
+  title: "Money Guides by US Visa Status",
   description: section.description,
   path: "/visa-guides",
 });

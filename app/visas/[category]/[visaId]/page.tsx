@@ -5,11 +5,15 @@ import { getCategories, getCategoryById } from "@/lib/getCategories";
 import { getVisas } from "@/lib/getVisas";
 import { getVisaById } from "@/lib/getVisaById";
 import { buildPageMetadata } from "@/lib/metadata";
+import { buildArticleJsonLd, buildFaqJsonLd } from "@/lib/jsonLd";
 import {
-  buildBreadcrumbJsonLd,
-  buildFaqJsonLd,
-  buildWebPageJsonLd,
-} from "@/lib/jsonLd";
+  getMoneyGuidesFor,
+  visaPageDescription,
+  visaPageHeading,
+  visaPageTitle,
+} from "@/lib/visaSeo";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import JsonLd from "@/components/JsonLd";
 import QuickAnswerBox from "@/components/QuickAnswerBox";
 import AudienceSplit from "@/components/AudienceSplit";
 import EligibilityList from "@/components/EligibilityList";
@@ -53,9 +57,11 @@ export async function generateMetadata({
   const category = getCategoryById(visa.category);
 
   return buildPageMetadata({
-    title: `${visa.name}: Eligibility, Process, Fees & Timeline`,
-    description: visa.quickAnswer,
+    title: visaPageTitle(visa),
+    description: visaPageDescription(visa),
     path: `/visas/${category?.slug}/${visa.id}`,
+    type: "article",
+    modifiedTime: visa.lastReviewedDate,
   });
 }
 
@@ -72,6 +78,7 @@ const toc = [
   { id: "tips-heading", label: "Tips" },
   { id: "faq-heading", label: "FAQs" },
   { id: "related-heading", label: "Related visas" },
+  { id: "money-heading", label: "Money next steps" },
   { id: "source-heading", label: "Sources" },
 ];
 
@@ -87,49 +94,35 @@ export default async function VisaPage({ params }: VisaPageProps) {
   const parent = visa.parentVisaId ? getVisaById(visa.parentVisaId) : null;
   const parentCategory = parent ? getCategoryById(parent.category) : null;
 
-  const breadcrumbJsonLd = buildBreadcrumbJsonLd([
-    { name: "Home", path: "/" },
-    { name: category.label, path: `/visas/${category.slug}` },
-    { name: visa.name, path: pagePath },
-  ]);
-
-  const faqJsonLd = buildFaqJsonLd(visa.faqs);
-  const webPageJsonLd = buildWebPageJsonLd({
-    title: visa.name,
-    description: visa.quickAnswer,
-    path: pagePath,
-  });
+  const moneyGuides = getMoneyGuidesFor(visa.id);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
+      <JsonLd
+        schema={[
+          buildArticleJsonLd({
+            title: visaPageTitle(visa),
+            description: visaPageDescription(visa),
+            path: pagePath,
+            datePublished: visa.lastReviewedDate,
+            dateModified: visa.lastReviewedDate,
+            section: category.label,
+          }),
+          visa.faqs.length > 0 ? buildFaqJsonLd(visa.faqs) : null,
+        ]}
       />
 
       <div className="border-b border-line atlas-grid">
         <div className="page-shell py-10 sm:py-14">
-          <nav aria-label="Breadcrumb" className="text-sm text-muted">
-            <Link href="/" className="hover:text-primary">
-              Home
-            </Link>
-            <span className="mx-2">/</span>
-            <Link href={`/visas/${category.slug}`} className="hover:text-primary">
-              {category.label}
-            </Link>
-            <span className="mx-2">/</span>
-            <span>{visa.code}</span>
-          </nav>
+          <Breadcrumbs
+            items={[
+              { name: "Visas", path: "/visas" },
+              { name: category.label, path: `/visas/${category.slug}` },
+              { name: `${visa.code} visa`, path: pagePath },
+            ]}
+          />
 
-          <div className="mt-6 flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="tag tag-ink">{visa.code}</span>
             <span className="tag">{category.label}</span>
             <span className="tag">Reviewed {visa.lastReviewedDate}</span>
@@ -137,9 +130,9 @@ export default async function VisaPage({ params }: VisaPageProps) {
           </div>
 
           <h1 className="mt-5 max-w-3xl font-display text-4xl tracking-tight sm:text-5xl">
-            {visa.name}
+            {visaPageHeading(visa)}
           </h1>
-          <span className="signal-line mt-5 max-w-[7rem]" />
+          <span className="signal-line mt-5" />
           <p className="mt-5 max-w-2xl lede">{visa.quickAnswer}</p>
 
           {parent && parentCategory ? (
@@ -147,7 +140,7 @@ export default async function VisaPage({ params }: VisaPageProps) {
               Builds on{" "}
               <Link
                 href={`/visas/${parentCategory.slug}/${parent.id}`}
-                className="font-semibold text-primary hover:underline"
+                className="font-semibold text-accent hover:underline"
               >
                 {parent.code} — {parent.name}
               </Link>
@@ -211,15 +204,43 @@ export default async function VisaPage({ params }: VisaPageProps) {
               relatedWhen={visa.relatedWhen}
             />
 
-            {visa.financeBlock !== null ? (
-              <section aria-labelledby="finance-heading">
-                <h2 id="finance-heading">Financial planning</h2>
-              </section>
-            ) : null}
+            {/*
+              Money next-steps. This block is what keeps the visa page and the
+              finance pages from competing for the same query: this page owns
+              "<code> visa requirements", and it hands off explicitly to the
+              pages that own the tax, calculator, and planning intents.
+            */}
+            <section aria-labelledby="money-heading" className="space-y-5">
+              <h2 id="money-heading" className="section-title">
+                After you have {visa.code} status
+              </h2>
+              <p className="text-muted">
+                Getting the visa is the first half. These guides cover the money
+                side of actually settling in — payroll, tax residency, credit,
+                and sending money home.
+              </p>
+              <ul className="grid gap-3 sm:grid-cols-2">
+                {moneyGuides.map((guide) => (
+                  <li key={guide.href} className="list-none">
+                    <Link
+                      href={guide.href}
+                      className="block h-full border border-line bg-surface p-5 transition-colors hover:border-ink"
+                    >
+                      <span className="block font-heading text-lg font-semibold text-ink">
+                        {guide.label}
+                      </span>
+                      <span className="mt-1.5 block text-sm leading-relaxed text-muted">
+                        {guide.blurb}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
 
             <section aria-labelledby="source-heading" className="space-y-5">
               <h2 id="source-heading" className="section-title">
-                Official source & disclaimer
+                Official source &amp; disclaimer
               </h2>
               <Callout tone="info" title="Verify before you file">
                 Immigration rules, fees, and processing times change. Use this
@@ -233,10 +254,21 @@ export default async function VisaPage({ params }: VisaPageProps) {
                 href={visa.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex break-all font-semibold text-primary hover:underline"
+                className="inline-flex break-all font-semibold text-accent hover:underline"
               >
                 {visa.sourceUrl}
               </a>
+              <p className="text-sm text-muted">
+                Last reviewed{" "}
+                <time dateTime={visa.lastReviewedDate}>
+                  {visa.lastReviewedDate}
+                </time>
+                . Processing times last checked{" "}
+                <time dateTime={visa.timelineUpdatedDate}>
+                  {visa.timelineUpdatedDate}
+                </time>
+                .
+              </p>
               <Disclaimer />
             </section>
           </article>

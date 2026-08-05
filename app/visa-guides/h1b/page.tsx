@@ -2,19 +2,43 @@ import Link from "next/link";
 import { buildPageMetadata } from "@/lib/metadata";
 import GuideLayout from "@/components/GuideLayout";
 
+const PATH = "/visa-guides/h1b";
+const TITLE = "H-1B Financial Guide: Your First Year Checklist";
+const DESCRIPTION =
+  "A practical money checklist for your first year on an H-1B — payroll setup, withholding, 401(k) match, credit, and sending money home.";
+
 export const metadata = buildPageMetadata({
-  title: "Complete Financial Guide for H-1B Visa Holders",
-  description:
-    "Banking, taxes, retirement accounts, remittances, and investing basics for H-1B workers in the United States.",
-  path: "/visa-guides/h1b",
+  title: TITLE,
+  description: DESCRIPTION,
+  path: PATH,
+  type: "article",
 });
 
 export default function H1bFinanceGuidePage() {
   return (
     <GuideLayout
-      eyebrow="Visa financial guide"
-      title="Complete Financial Guide for H-1B Visa Holders"
+      eyebrow="Visa money guide"
+      title="H-1B financial guide: your first year"
       description="A practical money system for your first year on H-1B — what to set up, what to estimate, and which decisions can wait."
+      path={PATH}
+      crumbs={[
+        { name: "Visa guides", path: "/visa-guides" },
+        { name: "H-1B", path: PATH },
+      ]}
+      sources={[
+        {
+          label: "USCIS — H-1B Specialty Occupations",
+          href: "https://www.uscis.gov/working-in-the-united-states/temporary-workers/h-1b-specialty-occupations",
+        },
+        {
+          label: "IRS — Taxation of Nonresident Aliens",
+          href: "https://www.irs.gov/individuals/international-taxpayers/taxation-of-nonresident-aliens",
+        },
+        {
+          label: "IRS — 401(k) contribution limits",
+          href: "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-401k-and-profit-sharing-plan-contribution-limits",
+        },
+      ]}
     >
       <h2>Who this guide is for</h2>
       <p>
@@ -62,22 +86,56 @@ export default function H1bFinanceGuidePage() {
         .
       </p>
 
-      <h2>Related tools</h2>
+      <h2>Where to go deeper</h2>
+      <p>
+        This guide is the overview. Each of these covers one piece of it in
+        detail:
+      </p>
       <ul>
         <li>
-          <Link href="/calculators/h1b-tax" className="text-accent hover:underline">
-            H-1B tax estimator
-          </Link>
+          <Link
+            href="/visas/work/h1b"
+            className="font-semibold text-accent hover:underline"
+          >
+            H-1B visa requirements, fees and timeline
+          </Link>{" "}
+          — if you are still going through the petition process.
         </li>
         <li>
-          <Link href="/banking/build-credit" className="text-accent hover:underline">
-            Build credit as an immigrant
-          </Link>
+          <Link
+            href="/taxes/h1b"
+            className="font-semibold text-accent hover:underline"
+          >
+            H-1B taxes explained
+          </Link>{" "}
+          — withholding, FICA, and state tax in depth.
         </li>
         <li>
-          <Link href="/taxes/h1b" className="text-accent hover:underline">
-            H-1B tax guide
-          </Link>
+          <Link
+            href="/calculators/h1b-tax"
+            className="font-semibold text-accent hover:underline"
+          >
+            H-1B tax calculator
+          </Link>{" "}
+          — turn a salary offer into an estimated monthly figure.
+        </li>
+        <li>
+          <Link
+            href="/banking/build-credit"
+            className="font-semibold text-accent hover:underline"
+          >
+            Build US credit as an immigrant
+          </Link>{" "}
+          — the sequence that gets you a usable score.
+        </li>
+        <li>
+          <Link
+            href="/calculators/remittance"
+            className="font-semibold text-accent hover:underline"
+          >
+            Remittance fee calculator
+          </Link>{" "}
+          — compare the real cost of sending money home.
         </li>
       </ul>
     </GuideLayout>

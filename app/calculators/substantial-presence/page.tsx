@@ -2,18 +2,26 @@ import { buildPageMetadata } from "@/lib/metadata";
 import CalculatorShell from "@/components/CalculatorShell";
 import SubstantialPresenceCalculator from "@/components/calculators/SubstantialPresenceCalculator";
 
+const PATH = "/calculators/substantial-presence";
+
 export const metadata = buildPageMetadata({
   title: "Substantial Presence Test Calculator",
   description:
-    "Apply the IRS substantial presence day-count formula to explore U.S. tax residency.",
-  path: "/calculators/substantial-presence",
+    "Free substantial presence test calculator for the 183-day rule. Count weighted days across three years to check US tax residency.",
+  path: PATH,
 });
 
 export default function SubstantialPresencePage() {
   return (
     <CalculatorShell
-      title="Substantial Presence Test Calculator"
+      title="Substantial presence test calculator"
       description="Enter days in the U.S. across three years to see a simplified weighted count used in tax residency analysis."
+      path={PATH}
+      related={[
+        { href: "/taxes", label: "US taxes for visa holders" },
+        { href: "/taxes/f1", label: "F-1 student taxes" },
+        { href: "/taxes/h1b", label: "H-1B taxes explained" },
+      ]}
       guide={
         <>
           <h2>What the substantial presence test is</h2>

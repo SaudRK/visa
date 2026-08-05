@@ -15,11 +15,27 @@ export interface ContentLink {
   status?: "live" | "soon";
 }
 
+export interface SectionFaq {
+  question: string;
+  answer: string;
+}
+
 export interface SectionMeta {
   id: SectionId;
+  /** Short nav/card label. */
   label: string;
   href: string;
   description: string;
+  /**
+   * On-page H1. Deliberately separate from `label`: the nav needs "Banking",
+   * but the heading has to state the page's actual topic so it matches the
+   * title tag and the query it answers.
+   */
+  h1: string;
+  /** Real introductory copy. A hub with only a card grid is a thin page. */
+  intro: string[];
+  /** Optional Q&As covering the queries this hub genuinely answers. */
+  faqs?: SectionFaq[];
   links: ContentLink[];
 }
 
@@ -29,7 +45,30 @@ export const sections: SectionMeta[] = [
     label: "Banking & Credit",
     href: "/banking",
     description:
-      "Open accounts, build U.S. credit history, and understand cards, loans, and mortgages without a long credit file.",
+      "How to open a US bank account and build credit history as a newcomer — starter cards, ITIN options, and what lenders look for.",
+    h1: "Banking and credit for immigrants in the US",
+    intro: [
+      "Two things surprise almost everyone who moves to the United States: how much of daily life runs through a bank account, and how little your financial history from home counts for. Credit files are national. A decade of perfect repayment in another country usually does not transfer, so landlords, lenders, and card issuers see a blank file on day one.",
+      "That blank file is temporary, but the order you tackle it in matters. Opening the wrong products early can leave you with fees you cannot cancel, a hard-pulled credit report, and nothing to show for it. The guides here walk through the sequence that generally works — a primary account you keep, one card you can pay in full, and patience while the file ages.",
+      "Nothing on this page is a product recommendation dressed up as advice. Where a product category is genuinely useful we explain what it does and what it costs you, including the cases where the answer is to wait.",
+    ],
+    faqs: [
+      {
+        question: "Can I open a US bank account without an SSN?",
+        answer:
+          "Many banks accept an ITIN, and some accept a passport plus proof of address, because federal rules require identity verification rather than an SSN specifically. Policy varies by bank and sometimes by branch, so it is worth calling ahead and asking which documents that institution accepts for a non-citizen applicant. Bring your passport, visa documentation, and proof of a US address.",
+      },
+      {
+        question: "How long does it take to build a US credit score?",
+        answer:
+          "Most scoring models need about six months of reported activity on at least one account before they can generate a score at all. Reaching a score that unlocks good rates on cards, car loans, or a mortgage usually takes longer — often one to two years of on-time payments and low balances. Time is the ingredient you cannot shortcut.",
+      },
+      {
+        question: "Does carrying a balance help my credit score?",
+        answer:
+          "No. This is one of the most expensive myths for newcomers. Credit scores reward on-time payments and low utilisation, not interest paid. Paying your statement in full every month builds history just as effectively as carrying a balance, and costs you nothing in interest.",
+      },
+    ],
     links: [
       {
         title: "Best banks for immigrants",
@@ -73,7 +112,35 @@ export const sections: SectionMeta[] = [
     label: "Taxes",
     href: "/taxes",
     description:
-      "Resident vs nonresident status, treaty basics, ITIN filing, FBAR/FATCA awareness, and visa-specific tax realities.",
+      "US taxes for visa holders and immigrants — resident vs nonresident status, the substantial presence test, treaties, ITINs, and FBAR.",
+    h1: "US taxes for visa holders and immigrants",
+    intro: [
+      "US tax status is not the same thing as immigration status, and confusing the two is the single most common source of expensive mistakes. You can hold a nonimmigrant visa and still be a resident for tax purposes, which generally means reporting worldwide income rather than just what you earned in the United States.",
+      "What decides it is usually the substantial presence test — a weighted count of days physically present across three years — with exceptions for certain student and exchange categories. Get that determination right first, because it drives which forms you file, which treaty benefits you can claim, and whether foreign accounts need reporting.",
+      "These guides explain the concepts and the vocabulary so you can have a productive conversation with tax software or a professional. They are not a substitute for either, particularly in a dual-status year or when a treaty is in play.",
+    ],
+    faqs: [
+      {
+        question: "Am I a resident or nonresident for US tax purposes?",
+        answer:
+          "For most people it comes down to the substantial presence test: days in the US this year, plus one third of last year's days, plus one sixth of the year before. Reaching 183 weighted days generally makes you a resident for tax purposes, though F and J categories can exclude certain exempt days in their early years, and a closer-connection exception may apply. Our substantial presence calculator walks through the arithmetic.",
+      },
+      {
+        question: "Do I have to file a US tax return if I earned nothing?",
+        answer:
+          "Possibly. Nonresidents in certain visa categories may still have a filing obligation even with no US income, and scholarship or stipend income can create one where wages did not. Filing when not strictly required is also often harmless and creates a paper trail. Check your specific category rather than assuming zero income means zero paperwork.",
+      },
+      {
+        question: "What is an ITIN and do I need one?",
+        answer:
+          "An Individual Taxpayer Identification Number lets people who are not eligible for a Social Security number meet US tax filing obligations. If you are eligible for an SSN you should get that instead. ITINs are commonly needed by dependants and by people with US tax obligations but no work authorisation.",
+      },
+      {
+        question: "Do I need to report my bank accounts back home?",
+        answer:
+          "If you are a US person for tax purposes and your foreign financial accounts exceed certain aggregate thresholds at any point in the year, FBAR and possibly FATCA reporting apply. These are separate from your tax return, have their own deadlines, and carry meaningful penalties for non-filing — so they are worth checking even if the accounts are small and dormant.",
+      },
+    ],
     links: [
       {
         title: "H-1B tax guide",
@@ -124,7 +191,30 @@ export const sections: SectionMeta[] = [
     label: "Send Money Home",
     href: "/send-money",
     description:
-      "Compare transfer apps, understand fees and FX spreads, and plan remittances without surprises.",
+      "How to send money home from the US without overpaying — comparing transfer fees, exchange rate markups, and delivery speed.",
+    h1: "Sending money home from the United States",
+    intro: [
+      "The advertised fee is rarely what a transfer actually costs. Most providers make money in two places: the upfront fee and the margin they add to the exchange rate. A service promoting “zero fees” can easily be the most expensive option once you compare the rate you receive against the mid-market rate.",
+      "The practical habit is to compare total cost — what actually lands in the recipient's account — rather than the headline fee. That number changes with the corridor you are sending to, the amount, the payment method, and how fast you need it to arrive.",
+      "Our remittance calculator lets you model the common fee structures side by side so you can see how a wide exchange rate margin outweighs a small flat fee. Run your real amount before you commit to a provider.",
+    ],
+    faqs: [
+      {
+        question: "What is the cheapest way to send money home from the US?",
+        answer:
+          "It depends on the destination country, the amount, and how you pay. As a rule, bank-account-funded transfers on mid-market-rate providers cost less than card-funded transfers or cash pickup, and larger amounts favour providers charging a percentage margin over those charging flat fees. The only reliable method is to compare the amount received across two or three providers on the day you send.",
+      },
+      {
+        question: "Why is the exchange rate different from what I see on Google?",
+        answer:
+          "The rate on Google is the mid-market rate — the midpoint between buy and sell prices in the interbank market. Most consumer providers add a margin to that rate and keep the difference. This margin is often the largest part of what a transfer costs you, and it is not always disclosed as a fee.",
+      },
+      {
+        question: "Are there limits on how much money I can send home?",
+        answer:
+          "Providers set their own transfer limits, and larger amounts trigger additional identity and source-of-funds verification. Separately, large gifts and transfers can carry US tax reporting implications depending on who is sending and receiving. Sending your own after-tax income to your own family is ordinary, but very large or unusual transfers are worth discussing with a tax professional.",
+      },
+    ],
     links: [
       {
         title: "Wise vs Remitly vs Western Union",
@@ -154,7 +244,30 @@ export const sections: SectionMeta[] = [
     label: "Investing",
     href: "/investing",
     description:
-      "Brokerage access on a visa, retirement accounts, and what happens to U.S. accounts if you leave.",
+      "Investing in the US on a visa — brokerage access, 401(k) and IRA questions, and what happens to your accounts if you leave.",
+    h1: "Investing in the US while on a visa",
+    intro: [
+      "Holding a temporary visa does not, by itself, stop you from investing in the United States. Brokerage accounts, employer retirement plans, and index funds are generally available to visa holders who can satisfy identity and tax documentation requirements. The complications are rarely about permission — they are about tax treatment and what happens when you leave.",
+      "Two questions matter more than picking investments. First, does your employer match retirement contributions? An unmatched decision about which fund to hold is far less consequential than leaving free matching money on the table. Second, what happens to each account if you move abroad, since some brokerages restrict or close accounts for non-US-resident holders.",
+      "These guides cover the mechanics and the questions worth asking before you fund an account. Which specific investments suit you depends on facts we cannot see, and on your tax residency — which is why the tax section comes first.",
+    ],
+    faqs: [
+      {
+        question: "Can H-1B holders invest in US stocks?",
+        answer:
+          "Generally yes. Buying and selling publicly traded securities is passive investment income, not unauthorised employment, so it does not conflict with H-1B work restrictions. Active day trading as a business, however, sits in murkier territory, and running an investment business would be a different question — worth confirming with an immigration attorney if that is your plan.",
+      },
+      {
+        question: "Should I contribute to a 401(k) if I might leave the US?",
+        answer:
+          "An employer match is usually worth capturing even for a short stay, because it is an immediate return no market can guarantee. What needs planning is the exit: you can typically leave the account invested, roll it over, or withdraw it with tax and early-withdrawal consequences. Understand which option you would use before you decide how much to contribute.",
+      },
+      {
+        question: "What happens to my brokerage account if I leave the US?",
+        answer:
+          "It varies by institution. Some brokerages let non-resident clients keep accounts with restrictions on new purchases, some require transfer to an international arm, and some close accounts entirely. Because the answer is provider-specific, ask your brokerage directly before you move rather than after.",
+      },
+    ],
     links: [
       {
         title: "Investing on a visa",
@@ -191,7 +304,30 @@ export const sections: SectionMeta[] = [
     label: "Insurance",
     href: "/insurance",
     description:
-      "Health, life, and auto coverage considerations when your U.S. history is still short.",
+      "Health, life, and car insurance for visa holders and new immigrants — what coverage you need and why quotes start high.",
+    h1: "Insurance for visa holders and new immigrants",
+    intro: [
+      "Insurance is where a short US history costs you real money. Health coverage is the urgent one, because an uninsured hospital visit in the United States can run to five figures, and coverage rules differ sharply depending on whether you are employed, studying, or between statuses.",
+      "Car insurance is the one people find most unfair. Insurers price on the driving record they can verify, and most cannot verify a licence history from another country — so twenty years of clean driving abroad often produces a first-year quote priced like a new driver. There are ways to reduce that, and it does come down over time.",
+      "These guides explain what each type of coverage is for, when it becomes urgent, and which questions get you a usable quote rather than a placeholder one.",
+    ],
+    faqs: [
+      {
+        question: "Do I need health insurance on a US visa?",
+        answer:
+          "Some visa categories and many universities require proof of coverage as a condition of status or enrolment. Even where it is not required, the financial exposure from going uninsured in the US is severe enough that coverage is effectively a necessity rather than an option. Check your specific category's requirements and your school's or employer's plan first.",
+      },
+      {
+        question: "Why is my car insurance quote so high as a new immigrant?",
+        answer:
+          "Insurers price on verifiable risk history, and a foreign driving record usually cannot be verified through the databases they use. That means you are underwritten closer to an inexperienced driver regardless of your actual experience. Some insurers do accept a letter of experience from your previous insurer, which is worth requesting before you leave your home country.",
+      },
+      {
+        question: "Can I get life insurance on a temporary visa?",
+        answer:
+          "Often yes, though underwriting is more involved and some insurers set minimum US residency periods or restrict certain visa categories. It matters most if people depend financially on your income — including family in another country. Expect questions about your status, your travel patterns, and how long you intend to remain.",
+      },
+    ],
     links: [
       {
         title: "Health insurance for visa holders",
@@ -221,7 +357,12 @@ export const sections: SectionMeta[] = [
     label: "Calculators",
     href: "/calculators",
     description:
-      "Free tools built for immigrant money decisions — remittances, taxes, and residency tests.",
+      "Free calculators for immigrants and visa holders — H-1B take-home pay, remittance costs, and the IRS substantial presence test.",
+    h1: "Free calculators for immigrants and visa holders",
+    intro: [
+      "Most financial calculators assume you have always lived in the United States. These do not. They are built around the specific arithmetic newcomers actually need: what an offered salary becomes after federal, state, and FICA withholding; what a transfer home really costs once the exchange rate margin is counted; and whether your days in the country have made you a tax resident.",
+      "All of them run entirely in your browser. Nothing you type is sent to a server, stored, or attached to an account, and there is no sign-up. They are planning tools built on published rates and formulas, which means they are useful for deciding and budgeting, and not a substitute for tax software or a professional when you file.",
+    ],
     links: [
       {
         title: "Remittance fee calculator",
@@ -258,7 +399,13 @@ export const sections: SectionMeta[] = [
     label: "Visa Guides",
     href: "/visa-guides",
     description:
-      "Financial playbooks by status — what to do with banking, taxes, and investing once you know your visa path.",
+      "Money guides organised by visa status — what to set up, estimate, and avoid in your first year on an H-1B, F-1, or green card.",
+    h1: "Money guides by visa status",
+    intro: [
+      "Your visa status changes almost every financial question you will ask in your first year: how you are taxed, which retirement accounts you can use, whether you can work a second job, and what happens to your accounts if you leave. Generic personal finance advice skips all of it.",
+      "These guides are organised the way your situation actually is — by status. Each one covers what to set up in the first weeks, what to estimate before your first payslip, and which decisions can safely wait until you have settled.",
+      "If you are still working out which status applies to you, start with the visa library, which covers requirements, process, fees, and timelines for each category.",
+    ],
     links: [
       {
         title: "H-1B financial guide",

@@ -2,18 +2,26 @@ import { buildPageMetadata } from "@/lib/metadata";
 import CalculatorShell from "@/components/CalculatorShell";
 import RemittanceCalculator from "@/components/calculators/RemittanceCalculator";
 
+const PATH = "/calculators/remittance";
+
 export const metadata = buildPageMetadata({
-  title: "Remittance Fee Calculator",
+  title: "Remittance Fee Calculator: Compare Transfer Costs",
   description:
-    "Estimate remittance fees and FX markup costs before sending money home from the U.S.",
-  path: "/calculators/remittance",
+    "Free remittance calculator. See the true cost of sending money home from the US once exchange rate markup is counted, not just the flat fee.",
+  path: PATH,
 });
 
 export default function RemittancePage() {
   return (
     <CalculatorShell
-      title="Remittance Fee Calculator"
+      title="Remittance fee calculator"
       description="Compare educational estimates of flat fees, mid-market FX models, and bank-style transfer costs."
+      path={PATH}
+      related={[
+        { href: "/send-money", label: "Sending money home from the US" },
+        { href: "/banking", label: "Banking and credit for immigrants" },
+        { href: "/visa-guides/h1b", label: "H-1B financial guide" },
+      ]}
       guide={
         <>
           <h2>How to read remittance costs</h2>

@@ -56,18 +56,25 @@ export default function FloatingMoney() {
               width: `${bill.size}px`,
             }}
           >
+            {/*
+              Decorative, so alt is empty by design. `unoptimized` was dropped:
+              these bills render at 40-90px from ~500KB source PNGs, and letting
+              next/image resize and re-encode them saves the bulk of that. They
+              are also below the fold and lazy by default, so they never compete
+              with the LCP element.
+            */}
             <Image
               src={bill.image}
               alt=""
               width={bill.size}
               height={bill.size}
+              sizes={`${Math.round(bill.size)}px`}
               style={{
                 width: bill.size,
                 height: "auto",
                 pointerEvents: "none",
                 filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.1))",
               }}
-              unoptimized
             />
           </div>
         ))}

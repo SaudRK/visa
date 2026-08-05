@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { navSections } from "@/lib/siteConfig";
+import { navSections, siteConfig } from "@/lib/siteConfig";
+import Wordmark from "./Wordmark";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -33,9 +34,10 @@ export default function Header() {
         <Link
           href="/"
           onClick={() => setOpen(false)}
+          aria-label={`${siteConfig.name} — home`}
           className="shrink-0 font-heading text-[1.55rem] font-medium tracking-tight text-ink"
         >
-          Finovly<span className="text-accent">.</span>
+          <Wordmark />
         </Link>
 
         {/* Desktop nav */}

@@ -39,3 +39,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# markdown notes and internal docs — kept locally, not committed.
+# README.md is the deliberate exception: it documents the repo for the client.
+*.md
+!README.md
+
+# AI agent / assistant working directories
+.agents/
+.claude/
+.agent/
+
+# env files (already covered by .env* above; listed explicitly for clarity)
+.env
+.env.*

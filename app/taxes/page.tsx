@@ -5,7 +5,7 @@ import SectionPage from "@/components/SectionPage";
 const section = getSection("taxes")!;
 
 export const metadata = buildPageMetadata({
-  title: "Taxes for Immigrants & Visa Holders",
+  title: "US Taxes for Visa Holders & Immigrants",
   description: section.description,
   path: "/taxes",
 });
