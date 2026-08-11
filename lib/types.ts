@@ -43,6 +43,12 @@ export interface Visa {
   category: VisaCategory;
   parentVisaId: string | null;
   quickAnswer: string;
+  /**
+   * Search-result copy for this page. Authored rather than derived, because
+   * clamping `quickAnswer` to 155 characters produces explanatory prose aimed
+   * at a reader who has already arrived. Falls back to the clamp when absent.
+   */
+  metaDescription?: string;
   whoIsFor: string[];
   whoShouldNotApply: string[];
   eligibility: string[];
@@ -73,5 +79,12 @@ export interface Category {
   id: VisaCategory;
   label: string;
   slug: string;
+  /** On-page lede. Also the fallback meta description. */
   description: string;
+  /** Overrides the generated "US {label}: Types & Requirements" title. */
+  seoTitle?: string;
+  /** Overrides the generated "US {label}" H1. */
+  h1?: string;
+  /** Overrides the clamped `description` as search-result copy. */
+  metaDescription?: string;
 }

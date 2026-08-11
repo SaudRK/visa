@@ -34,6 +34,14 @@ interface VisaPageProps {
   params: Promise<{ category: string; visaId: string }>;
 }
 
+/*
+  Only the generated category/visa pairs are routable. The in-page guards below
+  already 404 a mismatched pair such as /visas/study/h1b, but with dynamic
+  params enabled every junk URL was still server-rendered before being thrown
+  away. Matching the parent segment's behaviour turns those into a static 404.
+*/
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const visas = getVisas();
   const categories = getCategories();
@@ -112,8 +120,16 @@ export default async function VisaPage({ params }: VisaPageProps) {
         ]}
       />
 
+      {/*
+        Masthead as a case file: the heading carries the page, and the facts a
+        reader came to check — code, category, validity, review date — stand in a
+        ledger rail beside it instead of being flattened into a row of identical
+        chips. The review date is the page's one stamp; on a reference page about
+        rules that change, "when was this checked" is the trust signal, so it is
+        the single element allowed to break the grid's angle.
+      */}
       <div className="border-b border-line atlas-grid">
-        <div className="page-shell py-10 sm:py-14">
+        <div className="page-wide py-10 sm:py-14">
           <Breadcrumbs
             items={[
               { name: "Visas", path: "/visas" },
@@ -122,35 +138,69 @@ export default async function VisaPage({ params }: VisaPageProps) {
             ]}
           />
 
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="tag tag-ink">{visa.code}</span>
-            <span className="tag">{category.label}</span>
-            <span className="tag">Reviewed {visa.lastReviewedDate}</span>
-            <span className="tag">Timeline {visa.timelineUpdatedDate}</span>
+          <div className="grid gap-10 lg:grid-cols-[1fr_15rem] lg:gap-16">
+            <div>
+              <p className="eyebrow">
+                {visa.code} · {category.label}
+              </p>
+
+              <h1 className="mt-4 max-w-[24ch] text-ink">
+                {visaPageHeading(visa)}
+              </h1>
+              <span className="signal-line mt-6" />
+              <p className="lede mt-6 max-w-2xl">{visa.quickAnswer}</p>
+
+              {parent && parentCategory ? (
+                <p className="mt-5 text-sm text-muted">
+                  Builds on{" "}
+                  <Link
+                    href={`/visas/${parentCategory.slug}/${parent.id}`}
+                    className="font-semibold text-accent hover:underline"
+                  >
+                    {parent.code} — {parent.name}
+                  </Link>
+                </p>
+              ) : null}
+            </div>
+
+            {/* Standing facts */}
+            <dl className="h-fit border-t-2 border-ink pt-5 text-sm">
+              <div className="flex items-baseline justify-between gap-4 border-b border-line pb-2.5">
+                <dt className="mono-label">Visa</dt>
+                <dd className="font-mono font-semibold tabular-nums text-ink">
+                  {visa.code}
+                </dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4 border-b border-line py-2.5">
+                <dt className="mono-label">Category</dt>
+                <dd className="text-right text-[0.86rem] text-ink">
+                  {category.label}
+                </dd>
+              </div>
+              <div className="border-b border-line py-2.5">
+                <dt className="mono-label">Validity</dt>
+                <dd className="mt-1 text-[0.9rem] leading-snug text-ink">
+                  {visa.validityPeriod}
+                </dd>
+              </div>
+              <div className="py-3.5">
+                <dt className="sr-only">Last reviewed</dt>
+                <dd>
+                  <span className="stamp">
+                    Reviewed{" "}
+                    <time dateTime={visa.lastReviewedDate}>
+                      {visa.lastReviewedDate}
+                    </time>
+                  </span>
+                </dd>
+              </div>
+            </dl>
           </div>
-
-          <h1 className="mt-5 max-w-3xl font-display text-4xl tracking-tight sm:text-5xl">
-            {visaPageHeading(visa)}
-          </h1>
-          <span className="signal-line mt-5" />
-          <p className="mt-5 max-w-2xl lede">{visa.quickAnswer}</p>
-
-          {parent && parentCategory ? (
-            <p className="mt-4 text-sm text-muted">
-              Builds on{" "}
-              <Link
-                href={`/visas/${parentCategory.slug}/${parent.id}`}
-                className="font-semibold text-accent hover:underline"
-              >
-                {parent.code} — {parent.name}
-              </Link>
-            </p>
-          ) : null}
         </div>
       </div>
 
-      <div className="page-shell py-12 lg:py-16">
-        <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_240px]">
+      <div className="page-wide py-12 lg:py-16">
+        <div className="grid gap-10 xl:grid-cols-[minmax(0,1fr)_15rem] xl:gap-16">
           <article className="min-w-0 space-y-16">
             <QuickAnswerBox answer={visa.quickAnswer} visaCode={visa.code} />
 

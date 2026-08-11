@@ -5,6 +5,7 @@
   "category": "work",
   "parentVisaId": null,
   "quickAnswer": "The H-1B lets a U.S. employer temporarily hire a foreign professional for a specialty occupation that normally requires at least a bachelor’s degree (or equivalent) in a specific field. Cap-subject filings are limited each year and often selected by lottery; employers must also obtain a certified Labor Condition Application before filing with USCIS.",
+  "metaDescription": "H-1B visa requirements explained: the specialty occupation test, the annual cap and lottery, the LCA and petition steps, employer fees, and timelines.",
   "whoIsFor": [
     "Professionals offered a specialty role that truly requires bachelor’s-level skills in a related field",
     "Applicants with a qualifying degree or carefully documented equivalent experience",
@@ -194,7 +195,12 @@
       "answer": "Only in specific situations. Certain H-4 spouses may file Form I-765 when the H-1B holder meets AC21 criteria. Ordinary H-4 status alone does not authorize employment."
     }
   ],
-  "relatedVisaIds": ["l1", "tn", "f1-opt", "f1"],
+  "relatedVisaIds": [
+    "l1",
+    "tn",
+    "f1-opt",
+    "f1"
+  ],
   "relatedWhen": [
     {
       "visaId": "l1",

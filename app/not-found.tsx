@@ -4,16 +4,25 @@ import Link from "next/link";
 /*
   404 page.
 
-  The route already returns a real 404 status, so no noindex is needed — Google
-  drops 404s on its own. What matters here is recovery: the previous version
-  offered two links, which sent most lost visitors straight back out. These cover
-  every main entry point, and the internal links give crawlers that land on a
-  stale URL a path back into the live structure.
+  `robots` has to be declared here. Next.js emits its own `noindex` for this
+  route, but the page still inherits the root layout's `index, follow` on top
+  of it — two contradictory directives in one head. Google resolves that by
+  taking the most restrictive, so it was not actively harmful, but overriding
+  it means both tags now agree.
+
+  The null canonical is the other half. The root layout no longer declares one,
+  and stating it here stops a future root-level canonical from silently
+  pointing every dead URL at the homepage, which is what used to happen.
+
+  The rest is recovery. These links cover every main entry point, so a visitor
+  or a crawler landing on a stale URL has a path back into the live structure.
 */
 export const metadata: Metadata = {
   title: "Page not found",
   description:
     "That page does not exist. Browse US visa guides, tax explainers, and free calculators instead.",
+  robots: { index: false, follow: true },
+  alternates: { canonical: null },
 };
 
 const destinations = [

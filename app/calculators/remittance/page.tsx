@@ -5,7 +5,9 @@ import RemittanceCalculator from "@/components/calculators/RemittanceCalculator"
 const PATH = "/calculators/remittance";
 
 export const metadata = buildPageMetadata({
-  title: "Remittance Fee Calculator: Compare Transfer Costs",
+  // Kept short: with the " | SettleinUS" suffix the previous title rendered at
+  // 62 characters, past where Google truncates.
+  title: "Remittance Fee Calculator: Compare Costs",
   description:
     "Free remittance calculator. See the true cost of sending money home from the US once exchange rate markup is counted, not just the flat fee.",
   path: PATH,

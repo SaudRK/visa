@@ -16,30 +16,38 @@ export default function FeesTable({ fees }: FeesTableProps) {
         description="Amounts can change. Treat these as a planning baseline and confirm on the official fee schedule before you pay."
       />
 
-      <div className="overflow-x-auto border border-line">
-        <table className="w-full min-w-[32rem] text-left text-sm">
-          <thead className="border-b border-line bg-surface">
+      {/*
+        A ledger, not a boxed table. Rules instead of a container, amounts in
+        tabular mono so the column aligns down the page, and the amount
+        right-aligned the way a figure column is set in print. The horizontal
+        scroll container stays — it is what keeps this readable at 360px.
+      */}
+      <div className="overflow-x-auto">
+        <table className="ledger min-w-[30rem]">
+          <thead>
             <tr>
-              <th scope="col" className="px-4 py-3 font-semibold">
-                Fee
-              </th>
-              <th scope="col" className="px-4 py-3 font-semibold">
+              <th scope="col">Fee</th>
+              <th scope="col" className="text-right">
                 Amount
               </th>
-              <th scope="col" className="px-4 py-3 font-semibold">
-                Usually paid by
-              </th>
+              <th scope="col">Usually paid by</th>
             </tr>
           </thead>
           <tbody>
             {fees.map((fee) => (
-              <tr key={fee.name} className="border-t border-line align-top">
-                <td className="px-4 py-3">
-                  <p className="font-medium">{fee.name}</p>
-                  {fee.note ? <p className="mt-1 text-muted">{fee.note}</p> : null}
+              <tr key={fee.name}>
+                <td>
+                  <span className="font-medium text-ink">{fee.name}</span>
+                  {fee.note ? (
+                    <span className="mt-1 block text-[0.88rem] text-muted">
+                      {fee.note}
+                    </span>
+                  ) : null}
                 </td>
-                <td className="px-4 py-3 font-semibold">{fee.amount}</td>
-                <td className="px-4 py-3 capitalize text-muted">{fee.payer}</td>
+                <td className="num text-right font-semibold text-ink">
+                  {fee.amount}
+                </td>
+                <td className="capitalize text-muted">{fee.payer}</td>
               </tr>
             ))}
           </tbody>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SettleinUS — Brand Kit</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; background: #F5F7FA; color: #1A202C; }
+
+  .header { background: #1B3A6B; padding: 40px 48px; }
+  .header h1 { color: white; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; margin-bottom: 8px; }
+  .header h2 { color: white; font-size: 32px; font-weight: 300; }
+  .header span { color: #5BA4CF; font-weight: 600; }
+
+  .section { padding: 48px; border-bottom: 1px solid #E2E8F0; background: white; }
+  .section:nth-child(even) { background: #F7FAFC; }
+  .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #718096; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid #1B3A6B; display: inline-block; }
+  .section h3 { font-size: 20px; font-weight: 600; color: #1A202C; margin-bottom: 8px; }
+  .section p { font-size: 14px; color: #718096; margin-bottom: 24px; line-height: 1.6; }
+
+  /* Logo display */
+  .logo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .logo-card { border: 1px solid #E2E8F0; border-radius: 12px; overflow: hidden; }
+  .logo-preview { padding: 40px 32px; display: flex; align-items: center; justify-content: center; min-height: 140px; }
+  .logo-preview.light { background: #FFFFFF; }
+  .logo-preview.dark { background: #1B3A6B; }
+  .logo-preview.gray { background: #F5F7FA; }
+  .logo-meta { padding: 14px 16px; background: white; border-top: 1px solid #E2E8F0; display: flex; justify-content: space-between; align-items: center; }
+  .logo-meta-name { font-size: 13px; font-weight: 600; color: #1A202C; }
+  .logo-meta-info { font-size: 11px; color: #A0AEC0; }
+  .logo-preview img, .logo-preview svg { max-width: 100%; height: auto; }
+
+  /* Colors */
+  .colors-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .color-card { border-radius: 12px; overflow: hidden; border: 1px solid #E2E8F0; }
+  .color-swatch { height: 80px; }
+  .color-info { padding: 12px 14px; background: white; }
+  .color-name { font-size: 13px; font-weight: 600; color: #1A202C; margin-bottom: 3px; }
+  .color-hex { font-size: 12px; color: #718096; font-family: 'Courier New', monospace; margin-bottom: 3px; }
+  .color-use { font-size: 11px; color: #A0AEC0; line-height: 1.4; }
+
+  /* Typography */
+  .type-row { display: grid; grid-template-columns: 200px 1fr; gap: 24px; align-items: start; padding: 24px 0; border-bottom: 1px solid #F0F4F8; }
+  .type-row:last-child { border-bottom: none; }
+  .type-label { font-size: 12px; font-weight: 600; color: #718096; }
+  .type-label span { display: block; font-size: 11px; font-weight: 400; margin-top: 3px; color: #A0AEC0; }
+  .type-specimen { }
+
+  /* Favicon grid */
+  .favicon-grid { display: flex; gap: 32px; align-items: flex-end; flex-wrap: wrap; }
+  .favicon-item { text-align: center; }
+  .favicon-item .size { font-size: 11px; color: #A0AEC0; margin-top: 10px; }
+  .favicon-item .label { font-size: 12px; font-weight: 600; color: #718096; margin-top: 4px; }
+  .favicon-bg { background: #F5F7FA; border: 1px solid #E2E8F0; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; padding: 8px; }
+
+  /* Usage rules */
+  .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .rule-card { border-radius: 10px; padding: 20px; }
+  .rule-card.do { background: #F0FFF4; border: 1px solid #C6F6D5; }
+  .rule-card.dont { background: #FFF5F5; border: 1px solid #FED7D7; }
+  .rule-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 12px; }
+  .rule-card.do h4 { color: #22543D; }
+  .rule-card.dont h4 { color: #742A2A; }
+  .rule-card ul { list-style: none; }
+  .rule-card ul li { font-size: 13px; color: #4A5568; padding: 5px 0; padding-left: 18px; position: relative; line-height: 1.5; }
+  .rule-card.do ul li::before { content: "✓"; position: absolute; left: 0; color: #27AE60; font-weight: 700; }
+  .rule-card.dont ul li::before { content: "✕"; position: absolute; left: 0; color: #E53E3E; font-weight: 700; }
+
+  /* Sizing guide */
+  .size-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .size-table th { background: #1B3A6B; color: white; padding: 10px 16px; text-align: left; font-weight: 600; font-size: 12px; }
+  .size-table td { padding: 10px 16px; border-bottom: 1px solid #E2E8F0; color: #4A5568; }
+  .size-table tr:nth-child(even) td { background: #F7FAFC; }
+
+  .footer { background: #0F2447; padding: 32px 48px; color: rgba(255,255,255,0.5); font-size: 12px; display: flex; justify-content: space-between; }
+  .footer span { color: #5BA4CF; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Brand Identity</h1>
+  <h2>SettleinUS <span>Brand Kit</span></h2>
+</div>
+
+<!-- PRIMARY LOGOS -->
+<div class="section">
+  <div class="section-label">01 — Logo Variants</div>
+  <h3>Primary Logo System</h3>
+  <p>The SettleinUS logo combines a compass-rose icon mark with a serif wordmark. The compass needle points north-east — arrival, direction, a new start. Use the primary horizontal version wherever possible.</p>
+
+  <div class="logo-grid">
+    <div class="logo-card">
+      <div class="logo-preview light">
+        <img src="logo-primary-2x.png" alt="SettleinUS primary logo on white" style="max-height:70px;">
+      </div>
+      <div class="logo-meta">
+        <span class="logo-meta-name">Primary — Light background</span>
+        <span class="logo-meta-info">logo-primary.svg / .png</span>
+      </div>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-preview dark">
+        <img src="logo-dark-bg.png" alt="SettleinUS logo on dark background" style="max-height:70px;">
+      </div>
+      <div class="logo-meta">
+        <span class="logo-meta-name">Reversed — Dark background</span>
+        <span class="logo-meta-info">logo-dark-bg.svg / .png</span>
+      </div>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-preview gray">
+        <img src="logo-stacked.png" alt="SettleinUS stacked logo" style="max-height:110px;">
+      </div>
+      <div class="logo-meta">
+        <span class="logo-meta-name">Stacked — Square format</span>
+        <span class="logo-meta-info">logo-stacked.svg / .png</span>
+      </div>
+    </div>
+
+    <div class="logo-card">
+      <div class="logo-preview light" style="gap:32px;">
+        <img src="icon-256.png" alt="SettleinUS icon mark" style="max-height:80px; margin-right:24px;">
+        <img src="icon-128.png" alt="SettleinUS icon mark small" style="max-height:52px; margin-right:24px;">
+        <img src="icon-64.png" alt="SettleinUS icon mark tiny" style="max-height:36px;">
+      </div>
+      <div class="logo-meta">
+        <span class="logo-meta-name">Icon mark only</span>
+        <span class="logo-meta-info">icon-only.svg / 64 / 128 / 256px</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAVICONS -->
+<div class="section">
+  <div class="section-label">02 — Favicons</div>
+  <h3>Favicon & App Icons</h3>
+  <p>Use these files directly in your website head. The SVG favicon is the most versatile — all modern browsers support it and it scales perfectly to any size.</p>
+
+  <div class="favicon-grid">
+    <div class="favicon-item">
+      <div class="favicon-bg" style="width:64px; height:64px;">
+        <img src="favicon-32x32.png" width="32" height="32" alt="32px favicon">
+      </div>
+      <div class="size">32 × 32</div>
+      <div class="label">favicon-32x32.png</div>
+    </div>
+    <div class="favicon-item">
+      <div class="favicon-bg" style="width:48px; height:48px;">
+        <img src="favicon-16x16.png" width="16" height="16" alt="16px favicon">
+      </div>
+      <div class="size">16 × 16</div>
+      <div class="label">favicon-16x16.png</div>
+    </div>
+    <div class="favicon-item">
+      <div class="favicon-bg" style="width:100px; height:100px;">
+        <img src="favicon-180x180.png" width="80" height="80" alt="Apple touch icon">
+      </div>
+      <div class="size">180 × 180</div>
+      <div class="label">favicon-180x180.png<br><span style="font-size:10px; color:#A0AEC0;">Apple touch icon</span></div>
+    </div>
+    <div class="favicon-item">
+      <div class="favicon-bg" style="width:80px; height:80px;">
+        <img src="icon-64.png" width="64" height="64" alt="64px icon">
+      </div>
+      <div class="size">64 × 64</div>
+      <div class="label">icon-64.png</div>
+    </div>
+    <div class="favicon-item">
+      <div class="favicon-bg" style="width:80px; height:80px;">
+        <img src="icon-128.png" width="64" height="64" alt="128px icon">
+      </div>
+      <div class="size">128 × 128</div>
+      <div class="label">icon-128.png</div>
+    </div>
+    <div class="favicon-item">
+      <div class="favicon-bg" style="width:80px; height:80px;">
+        <img src="icon-256.png" width="64" height="64" alt="256px icon">
+      </div>
+      <div class="size">256 × 256</div>
+      <div class="label">icon-256.png</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 28px; background: #1A202C; border-radius: 10px; padding: 20px 24px;">
+    <div style="font-size: 11px; font-weight: 700; color: #5BA4CF; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.1em;">Paste into your &lt;head&gt;</div>
+    <pre style="font-size: 12px; color: #A0AEC0; line-height: 1.8; font-family: 'Courier New', monospace; white-space: pre-wrap;">&lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png"&gt;</pre>
+  </div>
+</div>
+
+<!-- COLORS -->
+<div class="section">
+  <div class="section-label">03 — Color Palette</div>
+  <h3>Brand Colors</h3>
+  <p>Navy anchors the brand with trust and authority. Steel blue is the action color — compass needle, links, highlights. Together they say guidance without aggression.</p>
+
+  <div class="colors-grid">
+    <div class="color-card">
+      <div class="color-swatch" style="background:#1B3A6B;"></div>
+      <div class="color-info">
+        <div class="color-name">Navy</div>
+        <div class="color-hex">#1B3A6B</div>
+        <div class="color-use">Primary brand, nav, footer, headings</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#5BA4CF;"></div>
+      <div class="color-info">
+        <div class="color-name">Steel Blue</div>
+        <div class="color-hex">#5BA4CF</div>
+        <div class="color-use">Compass needle, links, "US" in logo, accents</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#4A6FA5;"></div>
+      <div class="color-info">
+        <div class="color-name">Mid Blue</div>
+        <div class="color-hex">#4A6FA5</div>
+        <div class="color-use">Tagline text, secondary text on light</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#EBF5FF; border:1px solid #E2E8F0;"></div>
+      <div class="color-info">
+        <div class="color-name">Ice Blue</div>
+        <div class="color-hex">#EBF5FF</div>
+        <div class="color-use">Light fills, calculator boxes, callouts</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background:#0F2447;"></div>
+      <div class="color-info">
+        <div class="color-name">Deep Navy</div>
+        <div class="color-hex">#0F2447</div>
+        <div class="color-use">Footer, darkest backgrounds only</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TYPOGRAPHY -->
+<div class="section">
+  <div class="section-label">04 — Typography</div>
+  <h3>Type System</h3>
+  <p>Georgia for the wordmark — authoritative, human, and legible at any size. Inter for all UI and body copy — the clearest workhorse on the web.</p>
+
+  <div class="type-row">
+    <div class="type-label">Display / Wordmark<span>Georgia Bold · Logo only</span></div>
+    <div class="type-specimen">
+      <div style="font-family: Georgia, serif; font-size: 36px; font-weight: 700; color: #1B3A6B; letter-spacing: -1px;">SettleinUS</div>
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-label">Page Heading H1<span>Inter 600 · 36–42px</span></div>
+    <div class="type-specimen">
+      <div style="font-family: -apple-system, 'Helvetica Neue', sans-serif; font-size: 36px; font-weight: 600; color: #1A202C; letter-spacing: -0.5px; line-height: 1.2;">Settling in America,<br>made clear.</div>
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-label">Section H2<span>Inter 600 · 24–28px</span></div>
+    <div class="type-specimen">
+      <div style="font-family: -apple-system, 'Helvetica Neue', sans-serif; font-size: 26px; font-weight: 600; color: #1B3A6B;">Calculators built for immigrant money decisions</div>
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-label">Body Text<span>Inter 400 · 16px · 1.7 line-height</span></div>
+    <div class="type-specimen">
+      <div style="font-family: -apple-system, 'Helvetica Neue', sans-serif; font-size: 16px; font-weight: 400; color: #2C3E50; line-height: 1.7; max-width: 560px;">Your W-4 choices affect every paycheck. If you under-withhold, you may owe a balance later. If you over-withhold, you loan money to the IRS for free. Recheck after raises, bonuses, or marriage.</div>
+    </div>
+  </div>
+  <div class="type-row">
+    <div class="type-label">Label / Eyebrow<span>Inter 600 · 11px · uppercase</span></div>
+    <div class="type-specimen">
+      <div style="font-family: -apple-system, 'Helvetica Neue', sans-serif; font-size: 11px; font-weight: 600; color: #718096; letter-spacing: 0.1em; text-transform: uppercase;">Free calculator · No signup required</div>
+    </div>
+  </div>
+</div>
+
+<!-- SIZING TABLE -->
+<div class="section">
+  <div class="section-label">05 — File Sizes & Usage</div>
+  <h3>When to Use Each File</h3>
+  <br>
+  <table class="size-table">
+    <tr>
+      <th>File</th>
+      <th>Format</th>
+      <th>Dimensions</th>
+      <th>Use For</th>
+    </tr>
+    <tr>
+      <td>logo-primary.svg</td>
+      <td>SVG (vector)</td>
+      <td>Scalable</td>
+      <td>Website nav, email headers, any digital use — always prefer SVG</td>
+    </tr>
+    <tr>
+      <td>logo-primary-2x.png</td>
+      <td>PNG (transparent)</td>
+      <td>560 × 128px</td>
+      <td>Social media posts, presentations, Canva embeds</td>
+    </tr>
+    <tr>
+      <td>logo-primary-400w.png</td>
+      <td>PNG (transparent)</td>
+      <td>400 × ~90px</td>
+      <td>Email signatures, smaller embeds</td>
+    </tr>
+    <tr>
+      <td>logo-dark-bg.svg</td>
+      <td>SVG (vector)</td>
+      <td>Scalable</td>
+      <td>Footer, dark overlays, navy backgrounds</td>
+    </tr>
+    <tr>
+      <td>logo-stacked.svg</td>
+      <td>SVG (vector)</td>
+      <td>Scalable</td>
+      <td>Social media profile photos, app stores, square spaces</td>
+    </tr>
+    <tr>
+      <td>icon-only.svg</td>
+      <td>SVG (vector)</td>
+      <td>Scalable</td>
+      <td>Browser tab companion, small UI elements, watermarks</td>
+    </tr>
+    <tr>
+      <td>favicon.svg</td>
+      <td>SVG (vector)</td>
+      <td>32 × 32</td>
+      <td>Primary favicon — best for modern browsers</td>
+    </tr>
+    <tr>
+      <td>favicon-32x32.png</td>
+      <td>PNG</td>
+      <td>32 × 32px</td>
+      <td>Favicon fallback for older browsers</td>
+    </tr>
+    <tr>
+      <td>favicon-16x16.png</td>
+      <td>PNG</td>
+      <td>16 × 16px</td>
+      <td>Favicon at smallest size</td>
+    </tr>
+    <tr>
+      <td>favicon-180x180.png</td>
+      <td>PNG</td>
+      <td>180 × 180px</td>
+      <td>Apple touch icon (iPhone home screen)</td>
+    </tr>
+    <tr>
+      <td>icon-64.png</td>
+      <td>PNG</td>
+      <td>64 × 64px</td>
+      <td>Small app icon, chat avatars</td>
+    </tr>
+    <tr>
+      <td>icon-128.png</td>
+      <td>PNG</td>
+      <td>128 × 128px</td>
+      <td>Medium app icon, PWA manifest</td>
+    </tr>
+    <tr>
+      <td>icon-256.png</td>
+      <td>PNG</td>
+      <td>256 × 256px</td>
+      <td>Large app icon, social avatar</td>
+    </tr>
+  </table>
+</div>
+
+<!-- USAGE RULES -->
+<div class="section">
+  <div class="section-label">06 — Usage Rules</div>
+  <h3>Logo Do's and Don'ts</h3>
+  <br>
+  <div class="rules-grid">
+    <div class="rule-card do">
+      <h4>✓ Do</h4>
+      <ul>
+        <li>Use the SVG version whenever possible</li>
+        <li>Maintain clear space equal to the height of the "S" in "Settle" on all sides</li>
+        <li>Use logo-dark-bg.svg on navy or dark backgrounds</li>
+        <li>Use the icon-only mark when space is very limited</li>
+        <li>Keep the wordmark and icon mark together unless space requires separation</li>
+        <li>Use the stacked version for square formats like social avatars</li>
+      </ul>
+    </div>
+    <div class="rule-card dont">
+      <h4>✕ Don't</h4>
+      <ul>
+        <li>Stretch, skew, or distort the logo in any dimension</li>
+        <li>Change any of the brand colors</li>
+        <li>Place the light logo on a medium-gray background — use the dark version</li>
+        <li>Add drop shadows, outlines, or effects to the logo</li>
+        <li>Recreate the logo in a different font</li>
+        <li>Place the logo on a busy photo without a solid color backing</li>
+        <li>Resize the icon below 16px — it becomes illegible</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>© 2026 SettleinUS — Brand Identity System</span>
+  <span>All files included in this kit are production-ready</span>
+</div>
+
+</body>
+</html>

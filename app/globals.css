@@ -1616,13 +1616,10 @@ a.card:hover,
   position: fixed;
   bottom: 1.12rem;
   left: 1.12rem;
-  /* Above the sections, unlike the aircraft: an instrument that reads through
-     the page is an instrument, one that hides behind it is a bug. */
   z-index: 2;
   display: flex;
   align-items: center;
   gap: 0.48rem;
-  font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.528rem;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -1631,18 +1628,6 @@ a.card:hover,
   pointer-events: none;
   opacity: 0;
   transition: opacity 900ms var(--ease-out);
-  /*
-    Its own material, for the same reason the masthead has one: the readout is
-    chrome floating over the document, and the document scrolls underneath it.
-    Without this the mono type collided with body copy in the lower sections and
-    both became unreadable — an instrument has to be legible over whatever it
-    happens to be above.
-  */
-  padding: 0.32rem 0.576rem;
-  border-radius: var(--radius-chip);
-  border: 1px solid color-mix(in srgb, var(--color-line) 65%, transparent);
-  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
-  backdrop-filter: blur(9px) saturate(140%);
 }
 
 @media (prefers-reduced-transparency: reduce) {
@@ -1657,8 +1642,6 @@ a.card:hover,
 }
 
 .approach-readout-alt {
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-variant-numeric: tabular-nums;
   font-weight: 600;
   color: var(--color-accent);
 }

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" fill="none">
+  <!-- Icon mark: compass rose / arrival path -->
+  <g>
+    <!-- Outer ring -->
+    <circle cx="32" cy="32" r="28" stroke="#1B3A6B" stroke-width="2"/>
+    <!-- Inner fill -->
+    <circle cx="32" cy="32" r="22" fill="#1B3A6B"/>
+    <!-- Compass / path lines -->
+    <line x1="32" y1="14" x2="32" y2="50" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+    <line x1="14" y1="32" x2="50" y2="32" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+    <!-- North pointer - arrival arrow pointing up-right -->
+    <path d="M32 32 L40 18 L32 22 Z" fill="#5BA4CF"/>
+    <path d="M32 32 L40 18 L44 24 Z" fill="white" opacity="0.6"/>
+    <!-- South pointer -->
+    <path d="M32 32 L24 46 L32 42 Z" fill="white" opacity="0.4"/>
+    <!-- Small dot center -->
+    <circle cx="32" cy="32" r="3" fill="white"/>
+    <!-- Stars / dots - arrival points -->
+    <circle cx="32" cy="12" r="2" fill="#5BA4CF"/>
+    <circle cx="48" cy="20" r="1.5" fill="#5BA4CF" opacity="0.7"/>
+    <circle cx="16" cy="20" r="1.5" fill="white" opacity="0.5"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="74" y="26" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#1B3A6B" letter-spacing="-0.5">Settle</text>
+  <text x="147" y="26" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="400" fill="#1B3A6B" letter-spacing="-0.5">in</text>
+  <text x="166" y="26" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="700" fill="#5BA4CF" letter-spacing="-0.5">US</text>
+
+  <!-- Tagline -->
+  <text x="74" y="46" font-family="'Helvetica Neue', Arial, sans-serif" font-size="10.5" font-weight="400" fill="#4A6FA5" letter-spacing="2.5">YOUR GUIDE TO SETTLING IN AMERICA</text>
+
+  <!-- Thin rule under tagline -->
+  <line x1="74" y1="52" x2="272" y2="52" stroke="#5BA4CF" stroke-width="1" opacity="0.4"/>
+</svg>

@@ -3,13 +3,17 @@
     "id": "work",
     "label": "Work Visas",
     "slug": "work",
-    "description": "Temporary work visas for professionals, skilled workers, and specialty occupations in the United States."
+    "description": "Temporary work visas for professionals, skilled workers, and specialty occupations in the United States.",
+    "metaDescription": "Compare US work visas — H-1B, L-1, TN, E-2, R-1, and the H-2 seasonal categories — with eligibility, employer steps, fees, and processing times."
   },
   {
     "id": "student",
     "label": "Students & Exchange",
     "slug": "study",
-    "description": "Student visas and related work authorization for academic and vocational study in the U.S."
+    "description": "Student visas and related work authorization for academic and vocational study in the U.S.",
+    "seoTitle": "US Student Visas: F-1, M-1 and OPT",
+    "h1": "US student and exchange visas",
+    "metaDescription": "US student visa options compared — F-1 academic study, M-1 vocational training, and F-1 OPT work authorization, with requirements, fees, and timelines."
   },
   {
     "id": "visitor",

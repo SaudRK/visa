@@ -1,16 +1,58 @@
 import type { Category, Visa } from "./types";
 
+/*
+  Abbreviations whose trailing period is not a sentence ending. Without this,
+  "…transfer an executive to a related U.S. office" clamped to "…to a related
+  U.S." — a fragment, shipped as the L-1 page's meta description.
+*/
+const ABBREVIATIONS = new Set([
+  "u.s",
+  "u.k",
+  "e.g",
+  "i.e",
+  "etc",
+  "vs",
+  "approx",
+  "no",
+  "inc",
+  "ltd",
+  "co",
+  "dept",
+  "est",
+  "st",
+  "mr",
+  "mrs",
+  "ms",
+  "dr",
+  "jr",
+  "sr",
+]);
+
+/** Is the period at `dot` a real sentence ending rather than an abbreviation? */
+function isSentenceEnd(text: string, dot: number): boolean {
+  const word = (text.slice(0, dot).match(/[^\s("']+$/) ?? [""])[0].toLowerCase();
+  if (ABBREVIATIONS.has(word)) return false;
+  // Any dotted initialism — "u.s", "n.y", "a.b" — regardless of the list above.
+  if (/^(?:[a-z]\.)+[a-z]$/i.test(word)) return false;
+  // A single capital is an initial ("J. Smith"), not the end of a sentence.
+  if (/^[A-Z]$/.test(text.slice(dot - 1, dot))) return false;
+  return true;
+}
+
 /**
  * Trim prose to a meta-description-friendly length without cutting mid-word.
- * Prefers ending on the first sentence boundary that fits.
+ * Prefers ending on the last genuine sentence boundary that fits.
  */
 export function clampDescription(text: string, max = 155): string {
   const clean = text.replace(/\s+/g, " ").trim();
   if (clean.length <= max) return clean;
 
-  // Prefer a clean sentence ending inside the budget.
-  const sentenceEnd = clean.slice(0, max + 1).lastIndexOf(". ");
-  if (sentenceEnd > max * 0.55) return clean.slice(0, sentenceEnd + 1);
+  // Walk sentence-ending candidates backwards until one is not an abbreviation.
+  const window = clean.slice(0, max + 1);
+  const floor = max * 0.55;
+  for (let i = window.lastIndexOf(". "); i > floor; i = window.lastIndexOf(". ", i - 1)) {
+    if (isSentenceEnd(clean, i)) return clean.slice(0, i + 1);
+  }
 
   const cut = clean.lastIndexOf(" ", max - 1);
   return `${clean.slice(0, cut > 0 ? cut : max - 1).replace(/[,;:.\s]+$/, "")}…`;
@@ -28,8 +70,17 @@ export function visaPageTitle(visa: Visa): string {
   return `${visa.code} Visa Requirements, Fees & Timeline`;
 }
 
+/**
+ * Meta description for a visa detail page.
+ *
+ * Prefers the authored `metaDescription` in the visa's JSON. Machine-clamping
+ * `quickAnswer` is the fallback, but it is explanatory prose written for a
+ * reader who has already landed — it opens "The E-2 visa allows…" and, at 155
+ * characters, frequently trails off mid-clause. The authored line instead front
+ * loads what the page answers, which is what a searcher is scanning for.
+ */
 export function visaPageDescription(visa: Visa): string {
-  return clampDescription(visa.quickAnswer);
+  return visa.metaDescription ?? clampDescription(visa.quickAnswer);
 }
 
 /** H1 for a visa detail page — matches the title's intent in natural prose. */
@@ -37,8 +88,22 @@ export function visaPageHeading(visa: Visa): string {
   return `${visa.name}: requirements, process and fees`;
 }
 
+/*
+  Category SEO. The generated defaults read correctly only when the label is
+  already a noun phrase ending in "Visas" — "US Work Visas: Types &
+  Requirements" works, "US Students & Exchange: Types & Requirements" does not.
+  Categories may therefore override the title, heading, and description.
+*/
 export function categoryPageTitle(category: Category): string {
-  return `US ${category.label}: Types & Requirements`;
+  return category.seoTitle ?? `US ${category.label}: Types & Requirements`;
+}
+
+export function categoryPageHeading(category: Category): string {
+  return category.h1 ?? `US ${category.label.toLowerCase()}`;
+}
+
+export function categoryPageDescription(category: Category): string {
+  return category.metaDescription ?? clampDescription(category.description);
 }
 
 /**
