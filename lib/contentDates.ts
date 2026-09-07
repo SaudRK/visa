@@ -51,6 +51,9 @@ export const contentDates: Record<string, ContentDate> = {
     reviewed: "2026-08-06",
   },
 
+  // Blog. The posts live in Soro; only this hub has a date we control.
+  "/blog": { published: "2026-09-07", reviewed: "2026-09-07" },
+
   // Company / legal
   "/about": { published: "2026-07-14", reviewed: "2026-08-06" },
   "/contact": { published: "2026-07-14", reviewed: "2026-08-06" },

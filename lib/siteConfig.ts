@@ -90,6 +90,7 @@ export const footerColumns = [
     id: "about",
     heading: "About",
     links: [
+      { href: "/blog", label: "Blog" },
       { href: "/about", label: `About ${siteConfig.name}` },
       { href: "/contact", label: "Contact" },
       { href: "/privacy-policy", label: "Privacy policy" },

@@ -49,6 +49,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     push(section.href, 0.8, "monthly");
   }
 
+  /*
+    Blog hub. Individual posts are not listed: they live in Soro and this repo
+    has no way to enumerate them at build time. If Soro publishes its own
+    sitemap for the posts, submit that alongside this one.
+  */
+  push("/blog", 0.7, "weekly");
+
   // Visa categories and guides. Reference content on a review cadence.
   for (const { category, visas } of getCategoriesWithVisas()) {
     push(`/visas/${category.slug}`, 0.7, "monthly");
