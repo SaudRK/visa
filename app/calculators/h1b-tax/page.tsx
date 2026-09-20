@@ -7,7 +7,7 @@ const PATH = "/calculators/h1b-tax";
 export const metadata = buildPageMetadata({
   title: "H-1B Tax Calculator: Estimate Take-Home Pay",
   description:
-    "Free H-1B tax calculator. Estimate federal tax, state tax, FICA, and monthly take-home pay from an offered salary. Runs in your browser.",
+    "Free H-1B tax calculator. Estimate federal tax, state tax, FICA, and your salary after tax in any US state from an offered salary. Runs in your browser.",
   path: PATH,
 });
 

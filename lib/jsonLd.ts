@@ -1,5 +1,6 @@
 import type { Faq } from "./types";
 import { getSiteUrl, siteConfig, siteEmail } from "./siteConfig";
+import { getPageKeywords } from "./seoKeywords";
 
 /*
   Structured data is emitted as one connected graph rather than isolated blobs.
@@ -13,6 +14,17 @@ const SITE_ID = `${getSiteUrl()}/#website`;
 
 /** Reference to the publisher node defined once in the root layout. */
 export const organizationRef = { "@id": ORG_ID };
+
+/**
+ * schema.org `keywords` for a CreativeWork node. Comma-separated text is the
+ * form Google's structured-data docs show. Falls back to the path's entry in
+ * lib/seoKeywords.ts so the shared layouts (GuideLayout, SectionPage,
+ * CalculatorShell) pick keywords up without each page repeating them.
+ */
+function keywordsProperty(path: string, keywords?: string[]) {
+  const terms = keywords ?? getPageKeywords(path);
+  return terms.length > 0 ? { keywords: terms.join(", ") } : {};
+}
 
 export function buildOrganizationJsonLd() {
   return {
@@ -98,10 +110,12 @@ export function buildWebPageJsonLd({
   title,
   description,
   path,
+  keywords,
 }: {
   title: string;
   description: string;
   path: string;
+  keywords?: string[];
 }) {
   return {
     "@context": "https://schema.org",
@@ -112,6 +126,7 @@ export function buildWebPageJsonLd({
     inLanguage: "en-US",
     isPartOf: { "@id": SITE_ID },
     publisher: organizationRef,
+    ...keywordsProperty(path, keywords),
   };
 }
 
@@ -127,6 +142,7 @@ export function buildArticleJsonLd({
   datePublished,
   dateModified,
   section,
+  keywords,
 }: {
   title: string;
   description: string;
@@ -134,6 +150,7 @@ export function buildArticleJsonLd({
   datePublished: string;
   dateModified: string;
   section?: string;
+  keywords?: string[];
 }) {
   return {
     "@context": "https://schema.org",
@@ -150,6 +167,7 @@ export function buildArticleJsonLd({
     publisher: organizationRef,
     image: getSiteUrl("/opengraph-image"),
     ...(section ? { articleSection: section } : {}),
+    ...keywordsProperty(path, keywords),
   };
 }
 
@@ -158,10 +176,12 @@ export function buildCalculatorJsonLd({
   title,
   description,
   path,
+  keywords,
 }: {
   title: string;
   description: string;
   path: string;
+  keywords?: string[];
 }) {
   return {
     "@context": "https://schema.org",
@@ -180,6 +200,7 @@ export function buildCalculatorJsonLd({
       priceCurrency: "USD",
     },
     publisher: organizationRef,
+    ...keywordsProperty(path, keywords),
   };
 }
 

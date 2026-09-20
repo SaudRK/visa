@@ -3,12 +3,17 @@ import { buildPageMetadata } from "@/lib/metadata";
 import { siteConfig, siteEmail } from "@/lib/siteConfig";
 import { getContentDate, formatReviewMonth } from "@/lib/contentDates";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import JsonLd from "@/components/JsonLd";
+import { buildWebPageJsonLd } from "@/lib/jsonLd";
 
 const PATH = "/privacy-policy";
 
+const TITLE = "Privacy Policy";
+const DESCRIPTION = `How ${siteConfig.name} handles your data: what the site collects, what it does not, and why calculator inputs never leave your browser.`;
+
 export const metadata = buildPageMetadata({
-  title: "Privacy Policy",
-  description: `How ${siteConfig.name} handles your data: what the site collects, what it does not, and why calculator inputs never leave your browser.`,
+  title: TITLE,
+  description: DESCRIPTION,
   path: PATH,
 });
 
@@ -17,6 +22,13 @@ export default function PrivacyPolicyPage() {
 
   return (
     <div>
+      <JsonLd
+        schema={buildWebPageJsonLd({
+          title: TITLE,
+          description: DESCRIPTION,
+          path: PATH,
+        })}
+      />
       <div className="border-b border-line bg-light">
         <div className="page-shell section">
           <Breadcrumbs items={[{ name: "Privacy policy", path: PATH }]} />

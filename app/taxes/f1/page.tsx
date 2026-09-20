@@ -5,7 +5,7 @@ import GuideLayout from "@/components/GuideLayout";
 const PATH = "/taxes/f1";
 const TITLE = "F-1 Student Taxes: Filing, OPT Income & FICA";
 const DESCRIPTION =
-  "How US taxes work on an F-1 visa — who has to file, how OPT and CPT wages are taxed, FICA exemptions, and treaty basics.";
+  "How US taxes work on an F-1 visa — who must file Form 1040-NR or 8843, how OPT and CPT wages are taxed, the FICA exemption, and treaty basics.";
 
 export const metadata = buildPageMetadata({
   title: TITLE,

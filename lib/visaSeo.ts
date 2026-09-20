@@ -88,6 +88,27 @@ export function visaPageHeading(visa: Visa): string {
   return `${visa.name}: requirements, process and fees`;
 }
 
+/**
+ * Search terms for a visa detail page.
+ *
+ * Authored `keywords` in the JSON win. The fallback is generated from the code
+ * in both the hyphenated form the page uses and the bare form people type —
+ * "h1b visa requirements" outnumbers "h-1b visa requirements" in autocomplete
+ * for every code on the site.
+ */
+export function visaPageKeywords(visa: Visa): string[] {
+  if (visa.keywords && visa.keywords.length > 0) return visa.keywords;
+  const bare = visa.code.replace(/-/g, "").toLowerCase();
+  return [
+    `${visa.code} visa`,
+    `${bare} visa`,
+    `${bare} visa requirements`,
+    `${bare} visa fees`,
+    `${bare} visa processing time`,
+    `${bare} visa application`,
+  ];
+}
+
 /*
   Category SEO. The generated defaults read correctly only when the label is
   already a noun phrase ending in "Visas" — "US Work Visas: Types &
@@ -104,6 +125,12 @@ export function categoryPageHeading(category: Category): string {
 
 export function categoryPageDescription(category: Category): string {
   return category.metaDescription ?? clampDescription(category.description);
+}
+
+export function categoryPageKeywords(category: Category): string[] {
+  if (category.keywords && category.keywords.length > 0) return category.keywords;
+  const label = category.label.toLowerCase();
+  return [`US ${label}`, `${label} USA`, `${label} requirements`, `types of ${label}`];
 }
 
 /**

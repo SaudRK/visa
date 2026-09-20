@@ -1,6 +1,5 @@
 import { buildPageMetadata } from "@/lib/metadata";
 import { buildWebPageJsonLd } from "@/lib/jsonLd";
-import { siteConfig } from "@/lib/siteConfig";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import SoroBlog from "@/components/SoroBlog";
@@ -16,8 +15,9 @@ import SoroBlog from "@/components/SoroBlog";
 
 const PATH = "/blog";
 // No brand in the title — the root layout's template appends it.
-const TITLE = "Blog";
-const DESCRIPTION = `Guides, updates, and explainers on US visas, taxes, and money from ${siteConfig.name}.`;
+const TITLE = "US Visa, Tax & Immigrant Money Blog";
+const DESCRIPTION =
+  "New guides and updates on US visas, H-1B and F-1 taxes, building credit, and sending money home, written for people settling in the United States.";
 
 export const metadata = buildPageMetadata({
   title: TITLE,

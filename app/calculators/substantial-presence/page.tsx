@@ -7,7 +7,7 @@ const PATH = "/calculators/substantial-presence";
 export const metadata = buildPageMetadata({
   title: "Substantial Presence Test Calculator",
   description:
-    "Free substantial presence test calculator for the 183-day rule. Count weighted days across three years to check US tax residency.",
+    "Free substantial presence test calculator for the IRS 183-day rule. Count weighted days across three years to check if you are a US tax resident.",
   path: PATH,
 });
 

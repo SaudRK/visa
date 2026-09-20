@@ -2,12 +2,17 @@ import { buildPageMetadata } from "@/lib/metadata";
 import { siteConfig, siteEmail } from "@/lib/siteConfig";
 import { getContentDate, formatReviewMonth } from "@/lib/contentDates";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import JsonLd from "@/components/JsonLd";
+import { buildWebPageJsonLd } from "@/lib/jsonLd";
 
 const PATH = "/affiliate-disclosure";
 
+const TITLE = "Affiliate Disclosure";
+const DESCRIPTION = `How ${siteConfig.name} makes money, when affiliate links appear, and why a commission never buys a recommendation.`;
+
 export const metadata = buildPageMetadata({
-  title: "Affiliate Disclosure",
-  description: `How ${siteConfig.name} makes money, when affiliate links appear, and why a commission never buys a recommendation.`,
+  title: TITLE,
+  description: DESCRIPTION,
   path: PATH,
 });
 
@@ -16,6 +21,13 @@ export default function AffiliateDisclosurePage() {
 
   return (
     <div>
+      <JsonLd
+        schema={buildWebPageJsonLd({
+          title: TITLE,
+          description: DESCRIPTION,
+          path: PATH,
+        })}
+      />
       <div className="border-b border-line bg-light">
         <div className="page-shell section">
           <Breadcrumbs items={[{ name: "Affiliate disclosure", path: PATH }]} />

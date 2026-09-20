@@ -23,11 +23,14 @@ interface BlogPostProps {
   params: Promise<{ slug: string }>;
 }
 
-/** "h1b-tax-brackets-2026" → "H1b tax brackets 2026" */
+/** "h1b-tax-brackets-2026" → "H1b Tax Brackets 2026" */
 function titleFromSlug(slug: string): string {
   const words = decodeURIComponent(slug).replace(/[-_]+/g, " ").trim();
   if (!words) return "Blog";
-  return words.charAt(0).toUpperCase() + words.slice(1);
+  return words
+    .split(" ")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
 }
 
 export async function generateMetadata({

@@ -45,7 +45,7 @@ export const sections: SectionMeta[] = [
     label: "Banking & Credit",
     href: "/banking",
     description:
-      "How to open a US bank account and build credit history as a newcomer — starter cards, ITIN options, and what lenders look for.",
+      "How to open a US bank account without an SSN and build credit history as a newcomer — starter cards, ITIN options, and what lenders look for.",
     h1: "Banking and credit for immigrants in the US",
     intro: [
       "Two things surprise almost everyone who moves to the United States: how much of daily life runs through a bank account, and how little your financial history from home counts for. Credit files are national. A decade of perfect repayment in another country usually does not transfer, so landlords, lenders, and card issuers see a blank file on day one.",
@@ -191,7 +191,7 @@ export const sections: SectionMeta[] = [
     label: "Send Money Home",
     href: "/send-money",
     description:
-      "How to send money home from the US without overpaying — comparing transfer fees, exchange rate markups, and delivery speed.",
+      "The cheapest way to send money home from the USA — compare transfer fees, exchange rate markups, and delivery speed before you pick a provider.",
     h1: "Sending money home from the United States",
     intro: [
       "The advertised fee is rarely what a transfer actually costs. Most providers make money in two places: the upfront fee and the margin they add to the exchange rate. A service promoting “zero fees” can easily be the most expensive option once you compare the rate you receive against the mid-market rate.",
@@ -244,7 +244,7 @@ export const sections: SectionMeta[] = [
     label: "Investing",
     href: "/investing",
     description:
-      "Investing in the US on a visa — brokerage access, 401(k) and IRA questions, and what happens to your accounts if you leave.",
+      "Investing in the US on a visa — can H-1B holders buy stocks, 401(k) and Roth IRA rules, brokerage access, and what happens to your accounts if you leave.",
     h1: "Investing in the US while on a visa",
     intro: [
       "Holding a temporary visa does not, by itself, stop you from investing in the United States. Brokerage accounts, employer retirement plans, and index funds are generally available to visa holders who can satisfy identity and tax documentation requirements. The complications are rarely about permission — they are about tax treatment and what happens when you leave.",
@@ -304,7 +304,7 @@ export const sections: SectionMeta[] = [
     label: "Insurance",
     href: "/insurance",
     description:
-      "Health, life, and car insurance for visa holders and new immigrants — what coverage you need and why quotes start high.",
+      "Health, life, and car insurance for H-1B, F-1, and other visa holders and new immigrants — what coverage you need and why quotes start high.",
     h1: "Insurance for visa holders and new immigrants",
     intro: [
       "Insurance is where a short US history costs you real money. Health coverage is the urgent one, because an uninsured hospital visit in the United States can run to five figures, and coverage rules differ sharply depending on whether you are employed, studying, or between statuses.",

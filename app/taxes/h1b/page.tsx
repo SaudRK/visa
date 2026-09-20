@@ -5,7 +5,7 @@ import GuideLayout from "@/components/GuideLayout";
 const PATH = "/taxes/h1b";
 const TITLE = "H-1B Taxes: Withholding, FICA & State Tax";
 const DESCRIPTION =
-  "How H-1B taxes actually work — W-4 withholding, FICA, state income tax, and tax residency in your first year on payroll.";
+  "How H-1B taxes actually work — federal tax rate and W-4 withholding, FICA, state income tax, and resident vs nonresident status in your first year on payroll.";
 
 export const metadata = buildPageMetadata({
   title: TITLE,

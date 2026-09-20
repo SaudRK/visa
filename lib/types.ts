@@ -49,6 +49,13 @@ export interface Visa {
    * at a reader who has already arrived. Falls back to the clamp when absent.
    */
   metaDescription?: string;
+  /**
+   * Search terms this guide targets — the code as people type it ("h1b visa
+   * requirements"), plus the long-tail variants Google autocompletes for it.
+   * Emitted as meta keywords, og:article:tag, and Article.keywords. Falls back
+   * to a generated set from `code` when absent.
+   */
+  keywords?: string[];
   whoIsFor: string[];
   whoShouldNotApply: string[];
   eligibility: string[];
@@ -87,4 +94,6 @@ export interface Category {
   h1?: string;
   /** Overrides the clamped `description` as search-result copy. */
   metaDescription?: string;
+  /** Search terms for the category hub. Falls back to a set built from `label`. */
+  keywords?: string[];
 }

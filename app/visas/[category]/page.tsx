@@ -14,6 +14,7 @@ import {
 import {
   categoryPageDescription,
   categoryPageHeading,
+  categoryPageKeywords,
   categoryPageTitle,
   clampDescription,
 } from "@/lib/visaSeo";
@@ -47,6 +48,7 @@ export async function generateMetadata({
     title: categoryPageTitle(category),
     description: categoryPageDescription(category),
     path: `/visas/${category.slug}`,
+    keywords: categoryPageKeywords(category),
   });
 }
 
@@ -67,8 +69,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         schema={[
           buildWebPageJsonLd({
             title: categoryPageTitle(category),
-            description: category.description,
+            description: categoryPageDescription(category),
             path,
+            keywords: categoryPageKeywords(category),
           }),
           buildItemListJsonLd(
             visas.map((visa) => ({

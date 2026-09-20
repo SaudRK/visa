@@ -4,8 +4,10 @@ import { sections } from "@/lib/contentMap";
 import { getVisas } from "@/lib/getVisas";
 import { getCategoriesWithVisas } from "@/lib/getCategories";
 import { buildPageMetadata } from "@/lib/metadata";
+import { buildWebPageJsonLd } from "@/lib/jsonLd";
 import { siteConfig } from "@/lib/siteConfig";
 import HomeShell from "@/components/HomeShell";
+import JsonLd from "@/components/JsonLd";
 /*
   Statically imported, not read from /public. The import gives Next the
   intrinsic dimensions at build time — so the panel reserves the right height
@@ -14,8 +16,10 @@ import HomeShell from "@/components/HomeShell";
 */
 import heroPortrait from "@/assets/guy-hero.png";
 
+const HOME_TITLE = `${siteConfig.name} — US Visa Guides, Taxes & Free Calculators`;
+
 export const metadata = buildPageMetadata({
-  title: `${siteConfig.name} — US Visa Guides, Taxes & Free Calculators`,
+  title: HOME_TITLE,
   description: siteConfig.description,
   path: "/",
 });
@@ -167,6 +171,15 @@ export default function HomePage() {
 
   return (
     <HomeShell>
+      {/* The homepage had no page-level node — only the root Organization +
+          WebSite graph. This gives it one, keyed to the same keywords. */}
+      <JsonLd
+        schema={buildWebPageJsonLd({
+          title: HOME_TITLE,
+          description: siteConfig.description,
+          path: "/",
+        })}
+      />
       {/* ════════════════ HERO — thesis + portrait ════════════════ */}
       <section className="atlas-grid relative">
         {/*

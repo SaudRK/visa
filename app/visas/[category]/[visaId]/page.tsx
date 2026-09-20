@@ -10,6 +10,7 @@ import {
   getMoneyGuidesFor,
   visaPageDescription,
   visaPageHeading,
+  visaPageKeywords,
   visaPageTitle,
 } from "@/lib/visaSeo";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -70,6 +71,7 @@ export async function generateMetadata({
     path: `/visas/${category?.slug}/${visa.id}`,
     type: "article",
     modifiedTime: visa.lastReviewedDate,
+    keywords: visaPageKeywords(visa),
   });
 }
 
@@ -115,6 +117,7 @@ export default async function VisaPage({ params }: VisaPageProps) {
             datePublished: visa.lastReviewedDate,
             dateModified: visa.lastReviewedDate,
             section: category.label,
+            keywords: visaPageKeywords(visa),
           }),
           visa.faqs.length > 0 ? buildFaqJsonLd(visa.faqs) : null,
         ]}
