@@ -161,28 +161,28 @@ export const sections: SectionMeta[] = [
         href: "/taxes/itin",
         description: "When you need an ITIN and how the process typically works.",
         priority: "phase2",
-        status: "soon",
+        status: "live",
       },
       {
         title: "Resident vs nonresident alien",
         href: "/taxes/resident-vs-nonresident",
         description: "How presence and visa status can change your tax world.",
         priority: "phase1",
-        status: "soon",
+        status: "live",
       },
       {
         title: "FBAR guide",
         href: "/taxes/fbar",
         description: "Foreign account reporting thresholds explained plainly.",
         priority: "phase2",
-        status: "soon",
+        status: "live",
       },
       {
         title: "FATCA guide",
         href: "/taxes/fatca",
         description: "Form 8938 basics for people with foreign assets.",
         priority: "phase2",
-        status: "soon",
+        status: "live",
       },
     ],
   },
@@ -274,14 +274,14 @@ export const sections: SectionMeta[] = [
         href: "/investing/on-a-visa",
         description: "What is commonly allowed and what to confirm with counsel.",
         priority: "phase2",
-        status: "soon",
+        status: "live",
       },
       {
         title: "H-1B and Roth IRA basics",
         href: "/investing/h1b-roth-ira",
         description: "Eligibility patterns and pitfalls for temporary workers.",
         priority: "phase2",
-        status: "soon",
+        status: "live",
       },
       {
         title: "Brokerages for nonresidents",
@@ -295,7 +295,7 @@ export const sections: SectionMeta[] = [
         href: "/investing/401k-if-you-leave",
         description: "Options people weigh when departing the U.S.",
         priority: "phase2",
-        status: "soon",
+        status: "live",
       },
     ],
   },
@@ -334,21 +334,21 @@ export const sections: SectionMeta[] = [
         href: "/insurance/health",
         description: "Marketplace, employer, and student plan basics.",
         priority: "phase3",
-        status: "soon",
+        status: "live",
       },
       {
         title: "Life insurance for immigrants",
         href: "/insurance/life",
         description: "When coverage matters for family abroad and in the U.S.",
         priority: "phase3",
-        status: "soon",
+        status: "live",
       },
       {
         title: "Car insurance with no U.S. history",
         href: "/insurance/auto",
         description: "How insurers treat foreign driving records.",
         priority: "phase3",
-        status: "soon",
+        status: "live",
       },
     ],
   },
@@ -362,6 +362,28 @@ export const sections: SectionMeta[] = [
     intro: [
       "Most financial calculators assume you have always lived in the United States. These do not. They are built around the specific arithmetic newcomers actually need: what an offered salary becomes after federal, state, and FICA withholding; what a transfer home really costs once the exchange rate margin is counted; and whether your days in the country have made you a tax resident.",
       "All of them run entirely in your browser. Nothing you type is sent to a server, stored, or attached to an account, and there is no sign-up. They are planning tools built on published rates and formulas, which means they are useful for deciding and budgeting, and not a substitute for tax software or a professional when you file.",
+    ],
+    faqs: [
+      {
+        question: "How accurate is the H-1B tax calculator?",
+        answer:
+          "It is a planning estimate, not a filing figure. It applies federal brackets, the standard deduction, Social Security and Medicare, and an illustrative state rate to an annual salary. It does not model itemised deductions, tax credits beyond a simple dependant allowance, city taxes, equity compensation, or a dual-status year. Expect it to land within a few percent of a real paycheck for a straightforward W-2 salary, and treat anything more complicated as a reason to run proper software.",
+      },
+      {
+        question: "Do the calculators store what I type?",
+        answer:
+          "No. Every calculation runs in your browser. Nothing is sent to a server, saved, or linked to you. If you reload the page, your inputs are gone, which is the trade-off for that privacy.",
+      },
+      {
+        question: "Is there a tax calculator for F-1 students on OPT?",
+        answer:
+          "Yes. The F-1 OPT tax calculator estimates federal and state tax on OPT or CPT wages and lets you toggle the FICA exemption, which is the main way a nonresident student's paycheck differs from an H-1B one. If you have passed five calendar years in the US you are usually no longer exempt, and the calculator lets you model that too.",
+      },
+      {
+        question: "Which calculator tells me if I am a US tax resident?",
+        answer:
+          "The substantial presence test calculator. Enter your days in the US for the current year and the two before it, and it applies the IRS weighting — all of this year, a third of last year, a sixth of the year before — against the 183-day threshold. F-1 and J-1 students should read the exempt-individual note on that page first, because their early years may not count.",
+      },
     ],
     links: [
       {
@@ -390,7 +412,7 @@ export const sections: SectionMeta[] = [
         href: "/calculators/f1-opt-tax",
         description: "Estimate taxes on OPT/CPT income for students.",
         priority: "phase1",
-        status: "soon",
+        status: "live",
       },
     ],
   },
@@ -405,6 +427,23 @@ export const sections: SectionMeta[] = [
       "Your visa status changes almost every financial question you will ask in your first year: how you are taxed, which retirement accounts you can use, whether you can work a second job, and what happens to your accounts if you leave. Generic personal finance advice skips all of it.",
       "These guides are organised the way your situation actually is — by status. Each one covers what to set up in the first weeks, what to estimate before your first payslip, and which decisions can safely wait until you have settled.",
       "If you are still working out which status applies to you, start with the visa library, which covers requirements, process, fees, and timelines for each category.",
+    ],
+    faqs: [
+      {
+        question: "What should I set up financially in my first month in the US?",
+        answer:
+          "In roughly this order: a checking account at a bank that accepts your passport and visa documents, a Social Security number if your status allows one, your employer's payroll and W-4 withholding, and one starter credit card you can pay in full each month. Health coverage should be in place before any of that if your employer plan has a waiting period. Everything else — investing, sending money home efficiently, insurance beyond health — can wait until those four exist.",
+      },
+      {
+        question: "Does my visa status change how I am taxed?",
+        answer:
+          "Indirectly. Tax residency is decided by the green card test and the substantial presence test, not by your visa category — but your category determines which days count. F-1 and J-1 students exclude their early years, so they often stay nonresident for tax purposes long after an H-1B holder on the same arrival date has become resident. That difference affects which return you file, whether you pay Social Security and Medicare, and whether your worldwide income is in scope.",
+      },
+      {
+        question: "Can I keep my bank accounts and investments back home?",
+        answer:
+          "Yes, but once you are a US tax resident they may need reporting. Foreign accounts whose combined value passes the FBAR threshold at any point in the year must be reported to FinCEN, and larger holdings may also trigger FATCA reporting on your tax return. Keeping the accounts is fine; forgetting to report them is what costs people money.",
+      },
     ],
     links: [
       {
@@ -426,14 +465,14 @@ export const sections: SectionMeta[] = [
         href: "/visa-guides/green-card",
         description: "Credit, mortgages, and retirement after permanent residence.",
         priority: "phase2",
-        status: "soon",
+        status: "live",
       },
       {
         title: "L-1 financial guide",
         href: "/visa-guides/l1",
         description: "Intracompany transfer money decisions and dual-country planning.",
         priority: "phase2",
-        status: "soon",
+        status: "live",
       },
     ],
   },

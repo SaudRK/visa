@@ -5,6 +5,7 @@ import { getCategories, getCategoryById } from "@/lib/getCategories";
 import { getVisas } from "@/lib/getVisas";
 import { getVisaById } from "@/lib/getVisaById";
 import { buildPageMetadata } from "@/lib/metadata";
+import { getContentDate } from "@/lib/contentDates";
 import { buildArticleJsonLd, buildFaqJsonLd } from "@/lib/jsonLd";
 import {
   getMoneyGuidesFor,
@@ -43,6 +44,12 @@ interface VisaPageProps {
 */
 export const dynamicParams = false;
 
+/**
+ * The visa library shipped as one release, so every guide shares the hub's
+ * publish date. Each guide's own `lastReviewedDate` is the modified date.
+ */
+const LIBRARY_PUBLISHED = getContentDate("/visas").published;
+
 export async function generateStaticParams() {
   const visas = getVisas();
   const categories = getCategories();
@@ -70,6 +77,7 @@ export async function generateMetadata({
     description: visaPageDescription(visa),
     path: `/visas/${category?.slug}/${visa.id}`,
     type: "article",
+    publishedTime: LIBRARY_PUBLISHED,
     modifiedTime: visa.lastReviewedDate,
     keywords: visaPageKeywords(visa),
   });
@@ -114,7 +122,7 @@ export default async function VisaPage({ params }: VisaPageProps) {
             title: visaPageTitle(visa),
             description: visaPageDescription(visa),
             path: pagePath,
-            datePublished: visa.lastReviewedDate,
+            datePublished: LIBRARY_PUBLISHED,
             dateModified: visa.lastReviewedDate,
             section: category.label,
             keywords: visaPageKeywords(visa),

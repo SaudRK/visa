@@ -3,6 +3,7 @@ import { getSiteUrl } from "@/lib/siteConfig";
 import { sections } from "@/lib/contentMap";
 import { getCategoriesWithVisas } from "@/lib/getCategories";
 import { getContentDate } from "@/lib/contentDates";
+import { getPosts, postDateOnly } from "@/lib/blog";
 
 /*
   Sitemap.
@@ -23,7 +24,7 @@ import { getContentDate } from "@/lib/contentDates";
 
 type Entry = MetadataRoute.Sitemap[number];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: Entry[] = [];
 
   const push = (
@@ -50,11 +51,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   /*
-    Blog hub. Individual posts are not listed: they live in Soro and this repo
-    has no way to enumerate them at build time. If Soro publishes its own
-    sitemap for the posts, submit that alongside this one.
+    Blog. The post index comes from Soro (lib/blog.ts) and revalidates hourly,
+    so a new post reaches the sitemap without a deploy. The hub's lastmod is
+    the newest post's date, which is when it genuinely last changed. A Soro
+    outage must not take the whole sitemap down with it, hence the catch.
   */
-  push("/blog", 0.7, "weekly");
+  let posts: Awaited<ReturnType<typeof getPosts>> = [];
+  try {
+    posts = await getPosts();
+  } catch (error) {
+    console.error("sitemap: could not load blog posts", error);
+  }
+  push("/blog", 0.7, "weekly", posts[0] ? postDateOnly(posts[0].isoDate) : undefined);
+  for (const post of posts) {
+    push(`/blog/${post.slug}`, 0.6, "monthly", postDateOnly(post.isoDate));
+  }
 
   // Visa categories and guides. Reference content on a review cadence.
   for (const { category, visas } of getCategoriesWithVisas()) {

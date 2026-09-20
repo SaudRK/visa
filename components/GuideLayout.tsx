@@ -2,9 +2,11 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { siteConfig } from "@/lib/siteConfig";
 import { getContentDate, formatReviewMonth } from "@/lib/contentDates";
-import { buildArticleJsonLd } from "@/lib/jsonLd";
+import { buildArticleJsonLd, buildFaqJsonLd } from "@/lib/jsonLd";
+import type { Faq } from "@/lib/types";
 import type { Crumb } from "./Breadcrumbs";
 import Breadcrumbs from "./Breadcrumbs";
+import FaqAccordion from "./FaqAccordion";
 import JsonLd from "./JsonLd";
 
 interface GuideLayoutProps {
@@ -17,6 +19,12 @@ interface GuideLayoutProps {
   crumbs: Crumb[];
   /** Official references for the claims on the page (E-E-A-T). */
   sources?: { label: string; href: string }[];
+  /**
+   * Questions the page genuinely answers. Rendered as an accordion after the
+   * body and mirrored into FAQPage structured data, which must match the
+   * visible text exactly — so both come from this one array.
+   */
+  faqs?: Faq[];
   children: ReactNode;
 }
 
@@ -34,6 +42,7 @@ export default function GuideLayout({
   path,
   crumbs,
   sources,
+  faqs,
   children,
 }: GuideLayoutProps) {
   const { published, reviewed } = getContentDate(path);
@@ -41,14 +50,17 @@ export default function GuideLayout({
   return (
     <>
       <JsonLd
-        schema={buildArticleJsonLd({
-          title,
-          description,
-          path,
-          datePublished: published,
-          dateModified: reviewed,
-          section: eyebrow,
-        })}
+        schema={[
+          buildArticleJsonLd({
+            title,
+            description,
+            path,
+            datePublished: published,
+            dateModified: reviewed,
+            section: eyebrow,
+          }),
+          faqs && faqs.length > 0 ? buildFaqJsonLd(faqs) : null,
+        ]}
       />
 
       <article className="page-shell section">
@@ -85,6 +97,12 @@ export default function GuideLayout({
         <div className="prose-width space-y-5 text-[1.05rem] leading-relaxed text-muted [&_h2]:mt-10 [&_h2]:border-l-4 [&_h2]:border-accent [&_h2]:pl-3 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-ink [&_h3]:mt-6 [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-ink [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-5 [&_strong]:text-ink [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5">
           {children}
         </div>
+
+        {faqs && faqs.length > 0 ? (
+          <div className="prose-width mt-12">
+            <FaqAccordion faqs={faqs} />
+          </div>
+        ) : null}
 
         {/* Primary sources. On YMYL topics, showing where a claim comes from is
             the difference between a guide and an opinion. */}

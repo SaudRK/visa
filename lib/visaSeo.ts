@@ -176,6 +176,11 @@ export const visaMoneyGuides: Record<
   ],
   "f1-opt": [
     {
+      href: "/calculators/f1-opt-tax",
+      label: "F-1 OPT tax calculator",
+      blurb: "Estimate take-home pay on OPT wages, FICA exemption included.",
+    },
+    {
       href: "/taxes/f1",
       label: "F-1 student taxes",
       blurb: "How OPT and CPT wages are taxed.",
@@ -188,9 +193,14 @@ export const visaMoneyGuides: Record<
   ],
   l1: [
     {
-      href: "/visa-guides",
-      label: "Visa money guides",
-      blurb: "Dual-country planning for intracompany transfers.",
+      href: "/visa-guides/l1",
+      label: "L-1 financial guide",
+      blurb: "Two-country money planning for intracompany transferees.",
+    },
+    {
+      href: "/taxes/fbar",
+      label: "FBAR: reporting accounts back home",
+      blurb: "What becomes reportable once you are a US tax resident.",
     },
     {
       href: "/send-money",

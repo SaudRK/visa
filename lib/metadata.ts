@@ -34,6 +34,17 @@ interface PageMetadataOptions {
    * og:article:tag.
    */
   keywords?: string[];
+  /**
+   * Page-specific social card. Defaults to the site-wide generated card;
+   * blog posts pass their own featured image.
+   */
+  image?: { url: string; alt: string; width?: number; height?: number };
+  /**
+   * Render the title exactly as given, without the " | SettleinUS" template.
+   * For pages whose title is authored elsewhere (blog posts) and would be
+   * truncated by Google once the suffix is appended.
+   */
+  absoluteTitle?: boolean;
 }
 
 export function buildPageMetadata({
@@ -45,7 +56,18 @@ export function buildPageMetadata({
   publishedTime,
   noindex = false,
   keywords,
+  image,
+  absoluteTitle = false,
 }: PageMetadataOptions): Metadata {
+  const ogImage = image
+    ? {
+        url: image.url,
+        alt: image.alt,
+        ...(image.width && image.height
+          ? { width: image.width, height: image.height }
+          : {}),
+      }
+    : { url: OG_IMAGE_PATH, width: 1200, height: 630, alt: OG_ALT };
   const url = getSiteUrl(path);
   const isHome = path === "/" || path === "";
   const terms = keywords ?? getPageKeywords(path);
@@ -64,7 +86,7 @@ export function buildPageMetadata({
   return {
     // The root layout owns the "%s | SettleinUS" template. The homepage sets an
     // absolute title so it never renders as "SettleinUS | SettleinUS".
-    title: isHome ? { absolute: title } : title,
+    title: isHome || absoluteTitle ? { absolute: title } : title,
     description,
     ...(terms.length > 0 ? { keywords: terms } : {}),
     metadataBase: new URL(getSiteUrl()),
@@ -100,13 +122,13 @@ export function buildPageMetadata({
       // a page exporting openGraph would otherwise drop the root
       // app/opengraph-image.tsx card. Pointing at that generated route keeps
       // one branded image on every page with nothing extra to maintain.
-      images: [{ url: OG_IMAGE_PATH, width: 1200, height: 630, alt: OG_ALT }],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [{ url: OG_IMAGE_PATH, alt: OG_ALT }],
+      images: [{ url: ogImage.url, alt: ogImage.alt }],
     },
   };
 }
