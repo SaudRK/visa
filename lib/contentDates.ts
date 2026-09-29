@@ -39,8 +39,8 @@ export const contentDates: Record<string, ContentDate> = {
   "/calculators": { published: "2026-07-14", reviewed: "2026-09-20" },
   "/visa-guides": { published: "2026-07-14", reviewed: "2026-09-20" },
 
-  // Guides
-  "/banking/build-credit": { published: "2026-07-14", reviewed: "2026-08-06" },
+  // Guides. The five launch guides below were rewritten in depth 2026-09-29.
+  "/banking/build-credit": { published: "2026-07-14", reviewed: "2026-09-29" },
 
   // September 2026 release — the scaffolded "soon" pages, written.
   "/taxes/resident-vs-nonresident": { published: "2026-09-20", reviewed: "2026-09-20" },
@@ -55,10 +55,10 @@ export const contentDates: Record<string, ContentDate> = {
   "/insurance/life": { published: "2026-09-20", reviewed: "2026-09-20" },
   "/visa-guides/l1": { published: "2026-09-20", reviewed: "2026-09-20" },
   "/visa-guides/green-card": { published: "2026-09-20", reviewed: "2026-09-20" },
-  "/taxes/h1b": { published: "2026-07-14", reviewed: "2026-08-06" },
-  "/taxes/f1": { published: "2026-07-14", reviewed: "2026-08-06" },
-  "/visa-guides/h1b": { published: "2026-07-14", reviewed: "2026-08-06" },
-  "/visa-guides/f1": { published: "2026-07-14", reviewed: "2026-08-06" },
+  "/taxes/h1b": { published: "2026-07-14", reviewed: "2026-09-29" },
+  "/taxes/f1": { published: "2026-07-14", reviewed: "2026-09-29" },
+  "/visa-guides/h1b": { published: "2026-07-14", reviewed: "2026-09-29" },
+  "/visa-guides/f1": { published: "2026-07-14", reviewed: "2026-09-29" },
 
   // Tools. The shell prints `reviewed` as "Rates reviewed", so for the two tax
   // calculators move it only when their federal figures are re-checked — last
