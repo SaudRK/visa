@@ -15,6 +15,29 @@
       "employment visa types USA",
       "work visa sponsorship USA",
       "us visa types for work"
+    ],
+    "intro": [
+      "Almost every US work visa is tied to a job rather than to the person holding it. An employer files on your behalf — or, for the E-2, the business you invest in anchors the status — and your permission to work generally covers that employer and that role. Changing jobs usually means a new or amended filing before you start, not after.",
+      "The categories on this page split along two lines. The first is who qualifies: degree-level professionals in specialty occupations (H-1B), employees transferring within a multinational (L-1), Canadian and Mexican professionals under USMCA (TN), nationals of treaty countries investing in a US business (E-2), religious workers (R-1), and temporary agricultural and non-agricultural workers (H-2A and H-2B). The second is scarcity. Cap-subject H-1B petitions are limited each year and usually decided by lottery, and H-2B has its own annual cap. TN, L-1, E-2, R-1, and H-2A have no annual lottery.",
+      "Each guide below covers eligibility, the filing sequence, which fees fall on the employer and which on you, the documents to gather, typical timelines, and what the status allows a spouse and children to do. Once the status is approved, the money questions begin — your first payslip, Social Security and Medicare withholding, and building a credit file from nothing — and the visa money guides pick up from there."
+    ],
+    "faqs": [
+      {
+        "question": "Which US work visa is easiest to get?",
+        "answer": "It depends on your nationality, your employer, and your career so far. Canadian and Mexican citizens in a listed USMCA profession often find TN the most direct route, because there is no lottery and Canadians can often apply at a port of entry. Employees of a multinational may qualify for an L-1 after one continuous year with a related company abroad in the past three years. For most other degree-holding professionals the H-1B is the main route, but a cap-subject petition depends on being selected in the annual lottery."
+      },
+      {
+        "question": "Can I change employers on a US work visa?",
+        "answer": "Usually only with a new filing. An H-1B worker can generally start with a new employer once that employer has properly filed a new petition, but the petition itself is not optional. An L-1 is tied to the sponsoring company group and does not carry over to an unrelated employer, and a TN professional needs new TN approval for a new employer. Starting work for anyone not covered by your approval is unauthorized employment, which can end your status."
+      },
+      {
+        "question": "Can a work visa lead to a green card?",
+        "answer": "It can, but categories treat immigrant intent differently. The H-1B and L-1 are dual intent: you can pursue permanent residence, typically through employer sponsorship, without undermining your temporary status. Most other work categories, including the TN, require you to show nonimmigrant intent, so starting a green card process while holding them takes more care and usually professional advice."
+      },
+      {
+        "question": "Do work visa holders pay US taxes?",
+        "answer": "Yes. Wages are generally subject to federal income tax, state income tax where your state has one, and Social Security and Medicare tax. Whether you are taxed as a resident or a nonresident is decided by the substantial presence test rather than by your visa type, and most workers present for a full year become residents for tax purposes. H-2A agricultural wages are a notable exception to Social Security and Medicare tax."
+      }
     ]
   },
   {
@@ -34,6 +57,29 @@
       "international student visa types",
       "F-1 vs M-1 visa",
       "study visa USA"
+    ],
+    "intro": [
+      "Three routes cover almost everyone who comes to the United States to study. The F-1 is the academic visa — universities, colleges, high schools, and English-language programs. The M-1 is for vocational and other nonacademic training, such as flight, technical, or trade programs. F-1 OPT is not a separate visa at all but work authorization attached to F-1 status, which lets students work in a job related to their field of study for a limited period.",
+      "All three begin the same way: admission to a school certified by the Student and Exchange Visitor Program (SEVP). The school issues the Form I-20 you need to pay the SEVIS fee, complete the DS-160 application, and attend a consular interview. At that interview you will need to show you can pay for tuition and living costs, and that the purpose of your stay is study rather than open-ended employment or settlement.",
+      "Where the routes differ most is work. F-1 students can generally work on campus within limits and can reach off-campus experience through CPT and OPT. M-1 students generally cannot work during their studies, and practical training afterwards is short and tightly restricted. The type of program decides which visa you hold — the school issues the I-20 that matches it — but the difference in work rights is worth understanding before you commit to a program."
+    ],
+    "faqs": [
+      {
+        "question": "What is the difference between an F-1 and an M-1 visa?",
+        "answer": "The F-1 covers academic study and the M-1 covers vocational or other nonacademic training. F-1 students are usually admitted for duration of status, while M-1 students are admitted for a fixed period tied to their program. F-1 students have access to on-campus work, CPT, and OPT; M-1 students generally cannot work during their program and can only apply for limited practical training once it ends."
+      },
+      {
+        "question": "Is OPT a visa?",
+        "answer": "No. Optional Practical Training is temporary employment authorization for F-1 students. After a recommendation from your school's Designated School Official, you file Form I-765 with USCIS and receive an Employment Authorization Document. You remain in F-1 status throughout. Standard post-completion OPT is typically up to 12 months, and graduates in eligible STEM fields may qualify for a further 24-month extension."
+      },
+      {
+        "question": "Can I work on an F-1 visa?",
+        "answer": "Within limits. On-campus employment is permitted with restrictions on hours during term. Off-campus work generally requires a specific authorization such as Curricular Practical Training or Optional Practical Training. Unauthorized employment can terminate your status, so confirm with your school before accepting any job."
+      },
+      {
+        "question": "Do international students pay US taxes?",
+        "answer": "Often, yes. Most F-1 students are nonresident aliens for tax purposes during their first five calendar years in the United States. As nonresidents, their on-campus, CPT, and OPT wages are generally exempt from Social Security and Medicare tax, but federal and state income tax can still apply, and most students must file an annual form with the IRS even if they had no income."
+      }
     ]
   },
   {

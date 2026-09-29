@@ -96,4 +96,11 @@ export interface Category {
   metaDescription?: string;
   /** Search terms for the category hub. Falls back to a set built from `label`. */
   keywords?: string[];
+  /**
+   * Explanatory copy under the lede. Without it a hub is a heading plus a list
+   * of links — a thin page Google crawls and then declines to index.
+   */
+  intro?: string[];
+  /** Questions the hub genuinely answers. Rendered and emitted as FAQPage. */
+  faqs?: Faq[];
 }

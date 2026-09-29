@@ -165,8 +165,15 @@ export default function SectionPage({ section }: { section: SectionMeta }) {
                 </>
               );
 
+              /*
+                Keyed by title, not href. React keys are serialised into the
+                page's inline RSC payload, and Googlebot crawls URL-shaped
+                strings it finds there — so keying a "soon" row by its href
+                published a link to a page that does not exist yet, and each
+                one surfaced in Search Console as a 404.
+              */
               return (
-                <li key={link.href} className="list-none">
+                <li key={link.title} className="list-none">
                   {isLive ? (
                     <Link href={link.href} className="index-row group">
                       {body}

@@ -2,8 +2,10 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { siteConfig } from "@/lib/siteConfig";
 import { getContentDate, formatReviewMonth } from "@/lib/contentDates";
-import { buildCalculatorJsonLd } from "@/lib/jsonLd";
+import { buildCalculatorJsonLd, buildFaqJsonLd } from "@/lib/jsonLd";
+import type { Faq } from "@/lib/types";
 import Breadcrumbs from "./Breadcrumbs";
+import FaqAccordion from "./FaqAccordion";
 import JsonLd from "./JsonLd";
 
 interface CalculatorShellProps {
@@ -15,6 +17,8 @@ interface CalculatorShellProps {
   related?: { href: string; label: string }[];
   children: ReactNode;
   guide: ReactNode;
+  /** Questions about the method and the result. Rendered and emitted as FAQPage. */
+  faqs?: Faq[];
 }
 
 /**
@@ -32,13 +36,17 @@ export default function CalculatorShell({
   related,
   children,
   guide,
+  faqs,
 }: CalculatorShellProps) {
   const { reviewed } = getContentDate(path);
 
   return (
     <>
       <JsonLd
-        schema={buildCalculatorJsonLd({ title, description, path })}
+        schema={[
+          buildCalculatorJsonLd({ title, description, path }),
+          faqs && faqs.length > 0 ? buildFaqJsonLd(faqs) : null,
+        ]}
       />
 
       {/*
@@ -89,9 +97,15 @@ export default function CalculatorShell({
             {children}
           </div>
 
-          <div className="mt-12 space-y-4 text-[1.02rem] leading-[1.68] text-muted [&_h2]:mt-9 [&_h2]:font-display [&_h2]:text-[1.4rem] [&_h2]:font-semibold [&_h2]:tracking-[-0.02em] [&_h2]:text-ink [&_li]:mt-1.5 [&_ul]:list-disc [&_ul]:pl-5">
+          <div className="mt-12 space-y-4 text-[1.02rem] leading-[1.68] text-muted [&_h2]:mt-9 [&_h2]:font-display [&_h2]:text-[1.4rem] [&_h2]:font-semibold [&_h2]:tracking-[-0.02em] [&_h2]:text-ink [&_li]:mt-1.5 [&_ol]:list-decimal [&_ol]:pl-5 [&_ul]:list-disc [&_ul]:pl-5">
             {guide}
           </div>
+
+          {faqs && faqs.length > 0 ? (
+            <div className="mt-14">
+              <FaqAccordion faqs={faqs} />
+            </div>
+          ) : null}
 
           {related && related.length > 0 ? (
             <section className="mt-14">

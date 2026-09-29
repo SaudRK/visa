@@ -8,6 +8,7 @@ import {
 import { getVisasByCategory } from "@/lib/getVisas";
 import { buildPageMetadata } from "@/lib/metadata";
 import {
+  buildFaqJsonLd,
   buildItemListJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/jsonLd";
@@ -79,6 +80,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               path: `${path}/${visa.id}`,
             }))
           ),
+          category.faqs && category.faqs.length > 0
+            ? buildFaqJsonLd(category.faqs)
+            : null,
         ]}
       />
 
@@ -117,6 +121,16 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </div>
         </div>
       </div>
+
+      {category.intro && category.intro.length > 0 ? (
+        <div className="page-wide section-tight pb-0!">
+          <div className="prose-width space-y-5 text-[1.04rem] leading-[1.68] text-muted">
+            {category.intro.map((paragraph) => (
+              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            ))}
+          </div>
+        </div>
+      ) : null}
 
       {/*
         The visa code is the index rail. A reader scanning this page is looking
@@ -159,6 +173,34 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </li>
           ))}
         </ul>
+
+        {/* Same ruled Q&A as the section hubs: the answers are the substance,
+            so they are not hidden behind an accordion. */}
+        {category.faqs && category.faqs.length > 0 ? (
+          <section className="mt-16">
+            <div className="section-marker">
+              <span>Questions</span>
+            </div>
+            <h2 className="mt-7 max-w-[28ch] text-ink">Common questions</h2>
+            <dl className="mt-9 grid gap-x-16 gap-y-0 border-t border-line lg:grid-cols-2">
+              {category.faqs.map((faq, i) => (
+                <div key={faq.question} className="border-b border-line py-7">
+                  <dt className="grid grid-cols-[2.5rem_1fr] items-baseline">
+                    <span className="index-num">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-display text-[1.2rem] font-semibold leading-snug tracking-[-0.016em] text-ink">
+                      {faq.question}
+                    </span>
+                  </dt>
+                  <dd className="muted mt-3 max-w-[58ch] pl-10 text-[0.96rem]">
+                    {faq.answer}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        ) : null}
 
         <div className="mt-14 border-t-2 border-ink pt-6">
           <h2 className="section-title max-w-[26ch]">

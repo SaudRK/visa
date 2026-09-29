@@ -26,6 +26,9 @@ export const contentDates: Record<string, ContentDate> = {
 
   // Visa library
   "/visas": { published: "2026-08-06", reviewed: "2026-08-06" },
+  // Category hubs — intro copy and FAQs added 2026-09-29.
+  "/visas/work": { published: "2026-07-14", reviewed: "2026-09-29" },
+  "/visas/study": { published: "2026-07-14", reviewed: "2026-09-29" },
 
   // Section hubs — substantive intro copy and FAQs added 2026-08-06.
   "/banking": { published: "2026-07-14", reviewed: "2026-08-06" },
@@ -57,12 +60,15 @@ export const contentDates: Record<string, ContentDate> = {
   "/visa-guides/h1b": { published: "2026-07-14", reviewed: "2026-08-06" },
   "/visa-guides/f1": { published: "2026-07-14", reviewed: "2026-08-06" },
 
-  // Tools
+  // Tools. Method copy and FAQs added to all three on 2026-09-29, but the
+  // H-1B date is deliberately left alone: the shell prints it as "Rates
+  // reviewed", and that calculator's brackets and deductions have not been
+  // re-checked. Move it only when the figures in H1bTaxCalculator are.
   "/calculators/h1b-tax": { published: "2026-07-14", reviewed: "2026-08-06" },
-  "/calculators/remittance": { published: "2026-07-14", reviewed: "2026-08-06" },
+  "/calculators/remittance": { published: "2026-07-14", reviewed: "2026-09-29" },
   "/calculators/substantial-presence": {
     published: "2026-07-14",
-    reviewed: "2026-08-06",
+    reviewed: "2026-09-29",
   },
   "/calculators/f1-opt-tax": { published: "2026-09-20", reviewed: "2026-09-20" },
 
