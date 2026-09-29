@@ -56,14 +56,18 @@ export default function F1OptTaxCalculator() {
   }>(null);
 
   function estimateFederal(taxable: number) {
-    // Nonresident aliens use the single brackets regardless of marriage
-    // (married nonresidents file separately), so one schedule serves both modes.
+    // Tax year 2026 single schedule (IRS Rev. Proc. 2025-32). Married
+    // nonresidents file separately, and that schedule only departs from this
+    // one above the 32% bracket — far beyond any OPT salary — so one schedule
+    // serves both modes. Re-check with H1bTaxCalculator each autumn.
     const brackets: [number, number][] = [
-      [11600, 0.1],
-      [47150, 0.12],
-      [100525, 0.22],
-      [191950, 0.24],
-      [Infinity, 0.32],
+      [12400, 0.1],
+      [50400, 0.12],
+      [105700, 0.22],
+      [201775, 0.24],
+      [256225, 0.32],
+      [640600, 0.35],
+      [Infinity, 0.37],
     ];
     let tax = 0;
     let remaining = Math.max(taxable, 0);
@@ -86,12 +90,12 @@ export default function F1OptTaxCalculator() {
       const wages = Math.max(salary - pretax, 0);
       const takesStandardDeduction =
         residency === "resident" || (residency === "nonresident" && indiaTreaty);
-      const stdDeduction = takesStandardDeduction ? 15000 : 0;
+      const stdDeduction = takesStandardDeduction ? 16100 : 0;
       const taxableIncome = Math.max(wages - stdDeduction, 0);
       const federal = estimateFederal(taxableIncome);
       const stateTax = wages * (stateRates[state] ?? 0.05);
 
-      const ssWage = Math.min(wages, 176100);
+      const ssWage = Math.min(wages, 184500);
       const ficaIfDue = ssWage * 0.062 + wages * 0.0145;
       const fica = residency === "nonresident" ? 0 : ficaIfDue;
 

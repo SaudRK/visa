@@ -11,10 +11,67 @@ const stateRates: Record<string, number> = {
   Other: 0.05,
 };
 
+/*
+  Tax year 2026 federal figures, from IRS Rev. Proc. 2025-32 (brackets,
+  standard deduction, Child Tax Credit) and the SSA 2026 contribution and
+  benefit base. Re-check every autumn when the next year's figures publish,
+  and move /calculators/h1b-tax in lib/contentDates.ts when you do — the page
+  prints that date as "Rates reviewed".
+
+  Married filing separately is not the joint schedule: its brackets are half
+  the joint thresholds and its standard deduction matches single.
+*/
+type Filing = "single" | "joint" | "separate";
+
+const BRACKETS: Record<Filing, [number, number][]> = {
+  single: [
+    [12400, 0.1],
+    [50400, 0.12],
+    [105700, 0.22],
+    [201775, 0.24],
+    [256225, 0.32],
+    [640600, 0.35],
+    [Infinity, 0.37],
+  ],
+  joint: [
+    [24800, 0.1],
+    [100800, 0.12],
+    [211400, 0.22],
+    [403550, 0.24],
+    [512450, 0.32],
+    [768700, 0.35],
+    [Infinity, 0.37],
+  ],
+  separate: [
+    [12400, 0.1],
+    [50400, 0.12],
+    [105700, 0.22],
+    [201775, 0.24],
+    [256225, 0.32],
+    [384350, 0.35],
+    [Infinity, 0.37],
+  ],
+};
+
+const STANDARD_DEDUCTION: Record<Filing, number> = {
+  single: 16100,
+  joint: 32200,
+  separate: 16100,
+};
+
+const CHILD_TAX_CREDIT = 2200;
+const SOCIAL_SECURITY_WAGE_BASE = 184500;
+/** Wages above these owe the 0.9% Additional Medicare Tax (not indexed). */
+const ADDITIONAL_MEDICARE_THRESHOLD: Record<Filing, number> = {
+  single: 200000,
+  joint: 250000,
+  separate: 125000,
+};
+
 export default function H1bTaxCalculator() {
   const [salary, setSalary] = useState(120000);
   const [state, setState] = useState("California");
-  const [filing, setFiling] = useState("single");
+  const [filing, setFiling] = useState<Filing>("single");
   const [dependents, setDependents] = useState(0);
   const [pretax, setPretax] = useState(6000);
   const [loading, setLoading] = useState(false);
@@ -28,34 +85,16 @@ export default function H1bTaxCalculator() {
     effective: number;
   }>(null);
 
-  function estimateFederal(taxable: number, status: string) {
-    // Simplified 2025-ish single brackets for planning demos only
-    const brackets =
-      status === "single"
-        ? [
-            [11600, 0.1],
-            [47150, 0.12],
-            [100525, 0.22],
-            [191950, 0.24],
-            [Infinity, 0.32],
-          ]
-        : [
-            [23200, 0.1],
-            [94300, 0.12],
-            [201050, 0.22],
-            [383900, 0.24],
-            [Infinity, 0.32],
-          ];
-
+  function estimateFederal(taxable: number, status: Filing) {
     let tax = 0;
     let remaining = Math.max(taxable, 0);
     let prev = 0;
-    for (const [limit, rate] of brackets) {
-      const chunk = Math.min(remaining, Number(limit) - prev);
+    for (const [limit, rate] of BRACKETS[status]) {
+      const chunk = Math.min(remaining, limit - prev);
       if (chunk <= 0) break;
-      tax += chunk * Number(rate);
+      tax += chunk * rate;
       remaining -= chunk;
-      prev = Number(limit);
+      prev = limit;
       if (remaining <= 0) break;
     }
     return tax;
@@ -65,16 +104,20 @@ export default function H1bTaxCalculator() {
     e.preventDefault();
     setLoading(true);
     window.setTimeout(() => {
-      const stdDeduction = filing === "single" ? 15000 : 30000;
-      const dependentCreditApprox = dependents * 2000;
-      const taxableIncome = Math.max(salary - pretax - stdDeduction, 0);
+      const wages = Math.max(salary - pretax, 0);
+      const taxableIncome = Math.max(wages - STANDARD_DEDUCTION[filing], 0);
+      // Approximates the Child Tax Credit; ignores its income phase-out.
       const federal = Math.max(
-        estimateFederal(taxableIncome, filing) - dependentCreditApprox,
+        estimateFederal(taxableIncome, filing) - dependents * CHILD_TAX_CREDIT,
         0
       );
-      const stateTax = Math.max(salary - pretax, 0) * (stateRates[state] ?? 0.05);
-      const ssWage = Math.min(Math.max(salary - pretax, 0), 176100);
-      const fica = ssWage * 0.062 + Math.max(salary - pretax, 0) * 0.0145;
+      const stateTax = wages * (stateRates[state] ?? 0.05);
+      // FICA is on gross salary: 401(k) deferrals do not reduce Social
+      // Security or Medicare wages, and most people use this field for them.
+      const fica =
+        Math.min(salary, SOCIAL_SECURITY_WAGE_BASE) * 0.062 +
+        salary * 0.0145 +
+        Math.max(salary - ADDITIONAL_MEDICARE_THRESHOLD[filing], 0) * 0.009;
       const net = salary - federal - stateTax - fica;
       setResult({
         gross: salary,
@@ -130,7 +173,7 @@ export default function H1bTaxCalculator() {
             id="filing"
             className="input"
             value={filing}
-            onChange={(e) => setFiling(e.target.value)}
+            onChange={(e) => setFiling(e.target.value as Filing)}
           >
             <option value="single">Single</option>
             <option value="joint">Married Filing Jointly</option>

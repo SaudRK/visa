@@ -60,17 +60,16 @@ export const contentDates: Record<string, ContentDate> = {
   "/visa-guides/h1b": { published: "2026-07-14", reviewed: "2026-08-06" },
   "/visa-guides/f1": { published: "2026-07-14", reviewed: "2026-08-06" },
 
-  // Tools. Method copy and FAQs added to all three on 2026-09-29, but the
-  // H-1B date is deliberately left alone: the shell prints it as "Rates
-  // reviewed", and that calculator's brackets and deductions have not been
-  // re-checked. Move it only when the figures in H1bTaxCalculator are.
-  "/calculators/h1b-tax": { published: "2026-07-14", reviewed: "2026-08-06" },
+  // Tools. The shell prints `reviewed` as "Rates reviewed", so for the two tax
+  // calculators move it only when their federal figures are re-checked — last
+  // done 2026-09-29 against the tax year 2026 IRS and SSA figures.
+  "/calculators/h1b-tax": { published: "2026-07-14", reviewed: "2026-09-29" },
   "/calculators/remittance": { published: "2026-07-14", reviewed: "2026-09-29" },
   "/calculators/substantial-presence": {
     published: "2026-07-14",
     reviewed: "2026-09-29",
   },
-  "/calculators/f1-opt-tax": { published: "2026-09-20", reviewed: "2026-09-20" },
+  "/calculators/f1-opt-tax": { published: "2026-09-20", reviewed: "2026-09-29" },
 
   // Blog. The posts live in Soro; only this hub has a date we control.
   "/blog": { published: "2026-09-07", reviewed: "2026-09-20" },

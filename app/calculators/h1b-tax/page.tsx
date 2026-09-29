@@ -48,25 +48,27 @@ export default function H1bTaxPage() {
           <h2>How the estimate is built</h2>
           <ol>
             <li>
-              Pre-tax deductions you enter, such as workplace retirement
-              contributions or health premiums, are taken off gross salary.
+              Pre-tax deductions you enter, such as 401(k) contributions, are
+              taken off gross salary for income tax.
             </li>
             <li>
-              The standard deduction for your filing status is subtracted to
-              reach taxable income.
+              The 2026 standard deduction for your filing status is subtracted
+              to reach taxable income.
             </li>
             <li>
-              Federal income tax is applied through progressive brackets, then
-              reduced by a flat amount per dependent as a stand-in for the Child
-              Tax Credit.
+              Federal income tax is applied through the 2026 brackets for your
+              filing status, then reduced by the Child Tax Credit for each
+              dependent.
             </li>
             <li>
               State income tax is a single illustrative rate for the state you
               choose, applied to your wages.
             </li>
             <li>
-              Social Security is charged on wages up to the annual wage base and
-              Medicare on all wages.
+              Social Security is charged on gross salary up to the 2026 wage
+              base, Medicare on all of it, and the 0.9% Additional Medicare Tax
+              on wages above its threshold. 401(k) contributions do not reduce
+              these.
             </li>
           </ol>
           <p>
@@ -77,12 +79,17 @@ export default function H1bTaxPage() {
 
           <h2>What this tool simplifies</h2>
           <ul>
-            <li>Uses approximate brackets and standard deduction assumptions</li>
-            <li>Applies illustrative state rates — not every locality</li>
-            <li>Ignores many credits, AMT, city taxes, and treaty nuances</li>
             <li>
-              Stops at a middle federal bracket, so estimates for very high
-              salaries run low
+              Assumes the standard deduction — no itemised deductions
+            </li>
+            <li>Applies illustrative state rates — not every locality</li>
+            <li>
+              Ignores other credits, the Child Tax Credit income phase-out, AMT,
+              city taxes, and treaty nuances
+            </li>
+            <li>
+              Treats every dependent as a child who qualifies for the Child Tax
+              Credit
             </li>
             <li>
               Assumes a full year of resident tax treatment — it does not model a
