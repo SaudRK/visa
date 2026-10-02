@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Schibsted_Grotesk, IBM_Plex_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { siteConfig, getSiteUrl } from "@/lib/siteConfig";
 import { buildSiteGraphJsonLd } from "@/lib/jsonLd";
@@ -120,6 +121,16 @@ export default function RootLayout({
         </main>
         <Footer />
       </body>
+      {/*
+        Google Analytics 4 (gtag.js). Rendered through @next/third-parties
+        rather than a pasted <head> snippet: it loads after hydration so the
+        tag never competes with LCP, and GA4 picks up client-side route
+        changes as pageviews on its own. One tag site-wide — do not add a
+        second one on individual pages.
+      */}
+      {siteConfig.gaMeasurementId && (
+        <GoogleAnalytics gaId={siteConfig.gaMeasurementId} />
+      )}
     </html>
   );
 }

@@ -2,6 +2,12 @@ export const siteConfig = {
   /** Brand name — one word, capital U and S. Used in titles, schema, wordmark. */
   name: process.env.NEXT_PUBLIC_SITE_NAME ?? "SettleinUS",
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN ?? "settleinus.com",
+  /**
+   * Google Analytics 4 measurement ID. Production default is baked in; set
+   * NEXT_PUBLIC_GA_MEASUREMENT_ID to an empty string on staging/preview hosts
+   * so test traffic never lands in the live property.
+   */
+  gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-BDWDXRXBN2",
   tagline: "Your practical guide to settling in the United States",
   /** Site-wide fallback meta description (kept under ~158 chars). */
   description:
