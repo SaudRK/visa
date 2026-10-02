@@ -1,6 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    /*
+      Turbopack normally runs PostCSS (Tailwind) in spawned Node child
+      processes that connect back to the build over loopback TCP. Hostinger's
+      build runner kills those children before they connect, and the build
+      dies with "node process exited before we could connect to it with exit
+      status: 0" on app/globals.css. Worker threads do the same work inside
+      the build process, so nothing is spawned.
+    */
+    turbopackPluginRuntimeStrategy: "workerThreads",
+  },
   async redirects() {
     return [
       /*
