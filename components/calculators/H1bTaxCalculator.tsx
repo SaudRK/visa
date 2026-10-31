@@ -211,28 +211,36 @@ export default function H1bTaxCalculator() {
           onChange={(e) => setPretax(Number(e.target.value) || 0)}
         />
       </div>
-      <button type="submit" className="btn btn-primary w-full sm:w-auto" disabled={loading}>
-        {loading ? "Calculating…" : "Estimate taxes"}
-      </button>
-
-      {result ? (
-        <div className="result-box grid gap-3 sm:grid-cols-2">
-          <Result line="Gross income" value={result.gross} />
-          <Result line="Estimated federal tax" value={result.federal} />
-          <Result line="Estimated state tax" value={result.stateTax} />
-          <Result line="FICA (SS + Medicare)" value={result.fica} />
-          <Result line="Estimated net annual take-home" value={result.net} emphasize />
-          <Result line="Estimated monthly take-home" value={result.monthly} emphasize />
-          <p className="sm:col-span-2 text-sm text-muted">
-            Effective tax rate (all-in estimate):{" "}
-            <strong className="text-navy">{result.effective.toFixed(1)}%</strong>
-          </p>
-          <p className="sm:col-span-2 text-sm text-muted">
-            This is a simplified educational estimate, not tax advice. Brackets,
-            credits, treaties, and state rules can change outcomes significantly.
-          </p>
+      {/* The button and its result share one wrapper. The result region
+          stays mounted so assistive tech and browsing agents get the result
+          as a status update, and with the button no longer a direct child
+          of the form, space-y-5 leaves no gap under it before the first
+          result. */}
+      <div>
+        <button type="submit" className="btn btn-primary w-full sm:w-auto" disabled={loading}>
+          {loading ? "Calculating…" : "Estimate taxes"}
+        </button>
+        <div role="status" aria-live="polite">
+          {result ? (
+            <div className="result-box mt-5 grid gap-3 sm:grid-cols-2">
+              <Result line="Gross income" value={result.gross} />
+              <Result line="Estimated federal tax" value={result.federal} />
+              <Result line="Estimated state tax" value={result.stateTax} />
+              <Result line="FICA (SS + Medicare)" value={result.fica} />
+              <Result line="Estimated net annual take-home" value={result.net} emphasize />
+              <Result line="Estimated monthly take-home" value={result.monthly} emphasize />
+              <p className="sm:col-span-2 text-sm text-muted">
+                Effective tax rate (all-in estimate):{" "}
+                <strong className="text-navy">{result.effective.toFixed(1)}%</strong>
+              </p>
+              <p className="sm:col-span-2 text-sm text-muted">
+                This is a simplified educational estimate, not tax advice. Brackets,
+                credits, treaties, and state rules can change outcomes significantly.
+              </p>
+            </div>
+          ) : null}
         </div>
-      ) : null}
+      </div>
     </form>
   );
 }

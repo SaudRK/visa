@@ -27,6 +27,26 @@ export default function F1OptTaxPage() {
         },
         { href: "/visa-guides/f1", label: "F-1 student financial guide" },
       ]}
+      sources={[
+        {
+          label:
+            "IRS Rev. Proc. 2025-32 — tax year 2026 brackets and standard deduction",
+          href: "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf",
+        },
+        {
+          label:
+            "IRS — Foreign student liability for Social Security and Medicare taxes",
+          href: "https://www.irs.gov/individuals/international-taxpayers/foreign-student-liability-for-social-security-and-medicare-taxes",
+        },
+        {
+          label: "IRS Publication 519 — U.S. Tax Guide for Aliens",
+          href: "https://www.irs.gov/forms-pubs/about-publication-519",
+        },
+        {
+          label: "SSA — Contribution and benefit base (Social Security wage base)",
+          href: "https://www.ssa.gov/oact/cola/cbb.html",
+        },
+      ]}
       guide={
         <>
           <h2>Why OPT pay is not taxed like H-1B pay</h2>

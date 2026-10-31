@@ -29,7 +29,7 @@ const destinations = [
   {
     href: "/visas",
     label: "US visa types",
-    blurb: "Work, student, and family categories with requirements and fees.",
+    blurb: "Work and student visas with requirements, fees, and timelines.",
   },
   {
     href: "/calculators",

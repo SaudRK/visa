@@ -48,44 +48,52 @@ export default function RemittanceCalculator() {
           required
         />
       </div>
-      <button type="submit" className="btn btn-primary w-full sm:w-auto" disabled={loading}>
-        {loading ? "Calculating…" : "Calculate"}
-      </button>
-
-      {show ? (
-        <div className="result-box space-y-4">
-          <p className="font-semibold text-navy">Estimated cost comparison</p>
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[28rem] text-left text-sm">
-              <thead>
-                <tr className="border-b border-border text-muted">
-                  <th className="py-2 pr-3 font-medium">Option</th>
-                  <th className="py-2 pr-3 font-medium">Fee</th>
-                  <th className="py-2 pr-3 font-medium">FX estimate</th>
-                  <th className="py-2 font-medium">Total cost</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((row) => (
-                  <tr key={row.id} className="border-b border-border/70">
-                    <td className="py-3 pr-3 font-medium text-text">{row.name}</td>
-                    <td className="py-3 pr-3">${row.fee.toFixed(2)}</td>
-                    <td className="py-3 pr-3">${row.fxCost.toFixed(2)}</td>
-                    <td className="py-3 font-semibold text-navy">
-                      ${row.totalCost.toFixed(2)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="text-sm text-muted">
-            These are educational estimates using sample fee models — not live
-            quotes from transfer providers. Always check the provider’s final
-            locked rate before sending.
-          </p>
+      {/* The button and its result share one wrapper. The result region
+          stays mounted so assistive tech and browsing agents get the result
+          as a status update, and with the button no longer a direct child
+          of the form, space-y-5 leaves no gap under it before the first
+          result. */}
+      <div>
+        <button type="submit" className="btn btn-primary w-full sm:w-auto" disabled={loading}>
+          {loading ? "Calculating…" : "Calculate"}
+        </button>
+        <div role="status" aria-live="polite">
+          {show ? (
+            <div className="result-box mt-5 space-y-4">
+              <p className="font-semibold text-navy">Estimated cost comparison</p>
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[28rem] text-left text-sm">
+                  <thead>
+                    <tr className="border-b border-border text-muted">
+                      <th className="py-2 pr-3 font-medium">Option</th>
+                      <th className="py-2 pr-3 font-medium">Fee</th>
+                      <th className="py-2 pr-3 font-medium">FX estimate</th>
+                      <th className="py-2 font-medium">Total cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {rows.map((row) => (
+                      <tr key={row.id} className="border-b border-border/70">
+                        <td className="py-3 pr-3 font-medium text-text">{row.name}</td>
+                        <td className="py-3 pr-3">${row.fee.toFixed(2)}</td>
+                        <td className="py-3 pr-3">${row.fxCost.toFixed(2)}</td>
+                        <td className="py-3 font-semibold text-navy">
+                          ${row.totalCost.toFixed(2)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-sm text-muted">
+                These are educational estimates using sample fee models — not live
+                quotes from transfer providers. Always check the provider’s final
+                locked rate before sending.
+              </p>
+            </div>
+          ) : null}
         </div>
-      ) : null}
+      </div>
     </form>
   );
 }

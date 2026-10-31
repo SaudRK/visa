@@ -12,8 +12,18 @@ import { getPageKeywords } from "./seoKeywords";
 const ORG_ID = `${getSiteUrl()}/#organization`;
 const SITE_ID = `${getSiteUrl()}/#website`;
 
-/** Reference to the publisher node defined once in the root layout. */
-export const organizationRef = { "@id": ORG_ID };
+/**
+ * Reference to the publisher node defined once in the root layout. The name
+ * and URL ride along with the @id so an Article's author and publisher are
+ * complete on their own, for consumers that read one script block at a time
+ * instead of merging the page's graph.
+ */
+export const organizationRef = {
+  "@type": "Organization",
+  "@id": ORG_ID,
+  name: siteConfig.name,
+  url: getSiteUrl(),
+};
 
 /**
  * schema.org `keywords` for a CreativeWork node. Comma-separated text is the
@@ -34,11 +44,14 @@ export function buildOrganizationJsonLd() {
     url: getSiteUrl(),
     description: siteConfig.shortDescription,
     email: siteEmail,
+    // The square compass mark (app/apple-icon.png, the same mark as the
+    // favicon), not the 1200x630 social card: a logo is shown in a small
+    // square slot, where a wide, text-heavy banner is illegible.
     logo: {
       "@type": "ImageObject",
-      url: getSiteUrl("/opengraph-image"),
-      width: 1200,
-      height: 630,
+      url: getSiteUrl("/apple-icon.png"),
+      width: 180,
+      height: 180,
     },
     // The audience and service area are genuinely US-scoped, which helps
     // disambiguate the brand for US queries.

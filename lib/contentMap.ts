@@ -357,7 +357,7 @@ export const sections: SectionMeta[] = [
     label: "Calculators",
     href: "/calculators",
     description:
-      "Free calculators for immigrants and visa holders — H-1B take-home pay, remittance costs, and the IRS substantial presence test.",
+      "Free calculators for immigrants and visa holders — H-1B and F-1 OPT take-home pay, remittance costs, and the IRS substantial presence test.",
     h1: "Free calculators for immigrants and visa holders",
     intro: [
       "Most financial calculators assume you have always lived in the United States. These do not. They are built around the specific arithmetic newcomers actually need: what an offered salary becomes after federal, state, and FICA withholding; what a transfer home really costs once the exchange rate margin is counted; and whether your days in the country have made you a tax resident.",

@@ -25,6 +25,17 @@ export default function RemittancePage() {
         { href: "/banking", label: "Banking and credit for immigrants" },
         { href: "/visa-guides/h1b", label: "H-1B financial guide" },
       ]}
+      sources={[
+        {
+          label:
+            "CFPB — Sending money to another country: required disclosures and your rights",
+          href: "https://www.consumerfinance.gov/consumer-tools/sending-money/",
+        },
+        {
+          label: "IRS — The 1% remittance transfer tax",
+          href: "https://www.irs.gov/newsroom/treasury-irs-issue-proposed-regulations-on-the-new-remittance-transfer-tax-established-under-the-one-big-beautiful-bill",
+        },
+      ]}
       guide={
         <>
           <h2>How to read remittance costs</h2>

@@ -72,7 +72,7 @@ const startHere = [
   { no: "01", label: "Choosing a visa", meta: "Requirements · fees · timelines", href: "/visas" },
   { no: "02", label: "H-1B / Work visa", meta: "Taxes · 401(k) · investing", href: "/visa-guides/h1b" },
   { no: "03", label: "F-1 / Student", meta: "Banking · OPT taxes", href: "/visa-guides/f1" },
-  { no: "04", label: "New green card", meta: "Credit · mortgages", href: "/visa-guides" },
+  { no: "04", label: "New green card", meta: "Taxes · FBAR · credit", href: "/visa-guides/green-card" },
   { no: "05", label: "Sending money home", meta: "Fees · FX · transfers", href: "/send-money" },
   { no: "06", label: "Taxes & residency", meta: "FBAR · FATCA · filing", href: "/taxes" },
 ];
@@ -248,7 +248,11 @@ export default function HomePage() {
                 <Image
                   src={heroPortrait}
                   alt="A man holding a paper cut-out of the United States in the flag's stars and stripes, and a passport with travel documents tucked inside."
-                  preload
+                  // fetchPriority, not preload: the portrait is the LCP element
+                  // only on desktop. On phones it sits below the fold, where a
+                  // <head> preload spent bandwidth the text and fonts needed.
+                  loading="eager"
+                  fetchPriority="high"
                 />
               </div>
             </div>

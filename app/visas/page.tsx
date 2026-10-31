@@ -12,8 +12,10 @@ import JsonLd from "@/components/JsonLd";
 
 const PATH = "/visas";
 const TITLE = "US Visa Types Explained";
+// Names only the categories the library actually covers. The previous line
+// promised visitor, family, and green card routes that have no pages here.
 const DESCRIPTION =
-  "A plain-English guide to US visa categories — work, student, visitor, family, and green card routes — with requirements, fees, and timelines for each.";
+  "Plain-English guides to US work and student visas — H-1B, L-1, TN, E-2, F-1, OPT and more — with requirements, fees, and timelines for each.";
 
 export const metadata = buildPageMetadata({
   title: TITLE,

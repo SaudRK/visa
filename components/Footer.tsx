@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { footerColumns, siteConfig } from "@/lib/siteConfig";
+import { getContentDate } from "@/lib/contentDates";
 import Wordmark from "./Wordmark";
 
 /*
@@ -20,6 +21,9 @@ import Wordmark from "./Wordmark";
 */
 export default function Footer() {
   const year = new Date().getFullYear();
+  // The launch year, not the build year — "Established" must not move every
+  // January.
+  const established = getContentDate("/").published.slice(0, 4);
 
   return (
     <footer className="mt-auto border-t border-line bg-navy text-white">
@@ -57,7 +61,7 @@ export default function Footer() {
             <div>
               <dt className="mono-label">Established</dt>
               <dd className="mt-1.5 font-mono text-[0.9rem] tabular-nums text-white/70">
-                {year}
+                {established}
               </dd>
             </div>
           </dl>

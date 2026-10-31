@@ -13,6 +13,8 @@ import {
   getPosts,
   postDateOnly,
   relatedGuidesFor,
+  relatedPostsFor,
+  type BlogPost,
 } from "@/lib/blog";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
@@ -31,6 +33,14 @@ interface BlogPostProps {
   params: Promise<{ slug: string }>;
 }
 
+/** One description for the meta tag and the Article node, so they agree. */
+function describe(post: BlogPost) {
+  return clampDescription(
+    post.excerpt || `${post.title} — from ${siteConfig.name}.`,
+    158
+  );
+}
+
 export async function generateStaticParams() {
   const posts = await getPosts();
   return posts.map((p) => ({ slug: p.slug }));
@@ -43,10 +53,7 @@ export async function generateMetadata({
   const post = await getPostBySlug(slug);
   if (!post) return { title: "Post not found" };
 
-  const description = clampDescription(
-    post.excerpt || `${post.title} — from ${siteConfig.name}.`,
-    158
-  );
+  const description = describe(post);
   // " | SettleinUS" is 13 characters. Soro's titles run 40–63, so the suffix
   // pushes some past Google's ~60-character budget; those render bare.
   const BRAND_SUFFIX_LENGTH = 13;
@@ -69,6 +76,7 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
   if (!post) notFound();
 
   const [content, related] = [await getPostContent(post.id), relatedGuidesFor(post)];
+  const morePosts = relatedPostsFor(post, await getPosts());
   const path = `/blog/${post.slug}`;
   const dateOnly = postDateOnly(post.isoDate);
 
@@ -78,7 +86,7 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
         schema={{
           ...buildArticleJsonLd({
             title: post.title,
-            description: post.excerpt,
+            description: describe(post),
             path,
             datePublished: dateOnly,
             dateModified: dateOnly,
@@ -115,7 +123,8 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
               src={post.image}
               alt={post.title}
               fill
-              priority
+              loading="eager"
+              fetchPriority="high"
               sizes="(min-width: 896px) 896px, 100vw"
               className="object-cover"
             />
@@ -145,6 +154,31 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
             ))}
           </ul>
         </section>
+
+        {morePosts.length > 0 ? (
+          <section className="prose-width mt-10">
+            <h2 className="text-xl font-bold tracking-tight text-ink">
+              More from the blog
+            </h2>
+            <ul className="mt-4 space-y-3">
+              {morePosts.map((other) => (
+                <li key={other.id}>
+                  <Link
+                    href={`/blog/${other.slug}`}
+                    className="font-semibold text-accent hover:underline"
+                  >
+                    {other.title}
+                  </Link>
+                  <span className="mono-label ml-2">
+                    <time dateTime={postDateOnly(other.isoDate)}>
+                      {formatPostDate(other.isoDate)}
+                    </time>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
         <aside className="prose-width mt-12 border-2 border-ink bg-soft p-5 text-sm leading-relaxed text-muted">
           <p>{siteConfig.disclaimerText}</p>

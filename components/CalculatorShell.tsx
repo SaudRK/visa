@@ -19,6 +19,12 @@ interface CalculatorShellProps {
   guide: ReactNode;
   /** Questions about the method and the result. Rendered and emitted as FAQPage. */
   faqs?: Faq[];
+  /**
+   * Official pages the tool's figures and rules come from. The About page
+   * promises a source for every stated figure; the calculators state the most
+   * figures on the site, so they list theirs too.
+   */
+  sources?: { label: string; href: string }[];
 }
 
 /**
@@ -37,6 +43,7 @@ export default function CalculatorShell({
   children,
   guide,
   faqs,
+  sources,
 }: CalculatorShellProps) {
   const { reviewed } = getContentDate(path);
 
@@ -105,6 +112,33 @@ export default function CalculatorShell({
             <div className="mt-14">
               <FaqAccordion faqs={faqs} />
             </div>
+          ) : null}
+
+          {sources && sources.length > 0 ? (
+            <section className="mt-14">
+              <div className="section-marker">
+                <span>Sources</span>
+              </div>
+              <h2 className="mt-6 text-ink">Official sources</h2>
+              <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">
+                The figures and rules this calculator applies come from these
+                pages. Check them before you rely on a result.
+              </p>
+              <ul className="mt-4 list-disc space-y-2 pl-5 text-[0.95rem] text-muted">
+                {sources.map((source) => (
+                  <li key={source.href}>
+                    <a
+                      href={source.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-semibold text-accent hover:underline"
+                    >
+                      {source.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
           ) : null}
 
           {related && related.length > 0 ? (

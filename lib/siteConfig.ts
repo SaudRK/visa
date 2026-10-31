@@ -1,7 +1,11 @@
 export const siteConfig = {
-  /** Brand name — one word, capital U and S. Used in titles, schema, wordmark. */
-  name: process.env.NEXT_PUBLIC_SITE_NAME ?? "SettleinUS",
-  domain: process.env.NEXT_PUBLIC_SITE_DOMAIN ?? "settleinus.com",
+  /**
+   * Brand name — one word, capital U and S. Used in titles, schema, wordmark.
+   * `||`, not `??`: an env var set but left empty must fall back too, or every
+   * title and canonical on the site renders with a blank name or "https://".
+   */
+  name: process.env.NEXT_PUBLIC_SITE_NAME || "SettleinUS",
+  domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || "settleinus.com",
   /**
    * Google Analytics 4 measurement ID. Production default is baked in; set
    * NEXT_PUBLIC_GA_MEASUREMENT_ID to an empty string on staging/preview hosts
@@ -84,6 +88,7 @@ export const footerColumns = [
     heading: "Free calculators",
     links: [
       { href: "/calculators/h1b-tax", label: "H-1B tax calculator" },
+      { href: "/calculators/f1-opt-tax", label: "F-1 OPT tax calculator" },
       { href: "/calculators/remittance", label: "Remittance fee calculator" },
       {
         href: "/calculators/substantial-presence",

@@ -72,32 +72,40 @@ export default function SubstantialPresenceCalculator() {
         Some visa days can be exempt from the count. This tool uses a simplified
         formula for education — confirm exempt-day rules for your status.
       </p>
-      <button type="submit" className="btn btn-primary w-full sm:w-auto" disabled={loading}>
-        {loading ? "Calculating…" : "Run substantial presence test"}
-      </button>
-
-      {result ? (
-        <div className="result-box space-y-3">
-          <p className="text-sm text-muted">Weighted day count</p>
-          <p className="text-3xl font-bold text-navy">
-            {result.weighted.toFixed(1)} days
-          </p>
-          <p
-            className={`font-semibold ${
-              result.pass ? "text-success" : "text-warning"
-            }`}
-          >
-            {result.pass
-              ? "Likely meets the substantial presence test (simplified)."
-              : "Likely does not meet the test under this simplified count."}
-          </p>
-          <p className="text-sm text-muted">
-            {result.pass
-              ? "If you are a resident alien for tax purposes, you generally report worldwide income like U.S. citizens — with important exceptions and filing details."
-              : "If you remain a nonresident alien for tax purposes, U.S. tax usually focuses more on U.S.-source income and different forms. Confirm with a qualified tax professional."}
-          </p>
+      {/* The button and its result share one wrapper. The result region
+          stays mounted so assistive tech and browsing agents get the result
+          as a status update, and with the button no longer a direct child
+          of the form, space-y-5 leaves no gap under it before the first
+          result. */}
+      <div>
+        <button type="submit" className="btn btn-primary w-full sm:w-auto" disabled={loading}>
+          {loading ? "Calculating…" : "Run substantial presence test"}
+        </button>
+        <div role="status" aria-live="polite">
+          {result ? (
+            <div className="result-box mt-5 space-y-3">
+              <p className="text-sm text-muted">Weighted day count</p>
+              <p className="text-3xl font-bold text-navy">
+                {result.weighted.toFixed(1)} days
+              </p>
+              <p
+                className={`font-semibold ${
+                  result.pass ? "text-success" : "text-warning"
+                }`}
+              >
+                {result.pass
+                  ? "Likely meets the substantial presence test (simplified)."
+                  : "Likely does not meet the test under this simplified count."}
+              </p>
+              <p className="text-sm text-muted">
+                {result.pass
+                  ? "If you are a resident alien for tax purposes, you generally report worldwide income like U.S. citizens — with important exceptions and filing details."
+                  : "If you remain a nonresident alien for tax purposes, U.S. tax usually focuses more on U.S.-source income and different forms. Confirm with a qualified tax professional."}
+              </p>
+            </div>
+          ) : null}
         </div>
-      ) : null}
+      </div>
     </form>
   );
 }

@@ -27,6 +27,24 @@ export default function SubstantialPresencePage() {
         { href: "/taxes/f1", label: "F-1 student taxes" },
         { href: "/taxes/h1b", label: "H-1B taxes explained" },
       ]}
+      sources={[
+        {
+          label: "IRS — Substantial presence test",
+          href: "https://www.irs.gov/individuals/international-taxpayers/substantial-presence-test",
+        },
+        {
+          label: "IRS — Exempt individual: who is a student",
+          href: "https://www.irs.gov/individuals/international-taxpayers/exempt-individual-who-is-a-student",
+        },
+        {
+          label: "IRS Form 8843 — Statement for exempt individuals",
+          href: "https://www.irs.gov/forms-pubs/about-form-8843",
+        },
+        {
+          label: "IRS Publication 519 — U.S. Tax Guide for Aliens",
+          href: "https://www.irs.gov/forms-pubs/about-publication-519",
+        },
+      ]}
       guide={
         <>
           <h2>What the substantial presence test is</h2>

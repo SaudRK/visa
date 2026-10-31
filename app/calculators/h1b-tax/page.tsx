@@ -8,7 +8,7 @@ const PATH = "/calculators/h1b-tax";
 export const metadata = buildPageMetadata({
   title: "H-1B Tax Calculator: Estimate Take-Home Pay",
   description:
-    "Free H-1B tax calculator. Estimate federal tax, state tax, FICA, and your salary after tax in any US state from an offered salary. Runs in your browser.",
+    "Free H-1B tax calculator. Estimate federal tax, FICA, and take-home pay from an offered salary, with state tax for CA, NY, TX, WA, or an estimate.",
   path: PATH,
 });
 
@@ -25,6 +25,25 @@ export default function H1bTaxPage() {
         {
           href: "/calculators/substantial-presence",
           label: "Substantial presence test",
+        },
+      ]}
+      sources={[
+        {
+          label:
+            "IRS Rev. Proc. 2025-32 — tax year 2026 brackets, standard deduction, and Child Tax Credit",
+          href: "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf",
+        },
+        {
+          label: "SSA — Contribution and benefit base (Social Security wage base)",
+          href: "https://www.ssa.gov/oact/cola/cbb.html",
+        },
+        {
+          label: "IRS Topic 751 — Social Security and Medicare withholding rates",
+          href: "https://www.irs.gov/taxtopics/tc751",
+        },
+        {
+          label: "IRS — Substantial presence test",
+          href: "https://www.irs.gov/individuals/international-taxpayers/substantial-presence-test",
         },
       ]}
       guide={

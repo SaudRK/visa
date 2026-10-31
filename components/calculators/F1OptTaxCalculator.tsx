@@ -196,62 +196,70 @@ export default function F1OptTaxCalculator() {
         </label>
       ) : null}
 
-      <button
-        type="submit"
-        className="btn btn-primary w-full sm:w-auto"
-        disabled={loading}
-      >
-        {loading ? "Calculating…" : "Estimate taxes"}
-      </button>
-
-      {result ? (
-        <div className="result-box grid gap-3 sm:grid-cols-2">
-          <Result line="Gross wages" value={result.gross} />
-          <Result line="Estimated federal tax" value={result.federal} />
-          <Result line="Estimated state tax" value={result.stateTax} />
-          <Result
-            line={
-              residency === "nonresident"
-                ? "FICA (exempt as nonresident F-1)"
-                : "FICA (SS + Medicare)"
-            }
-            value={result.fica}
-          />
-          <Result
-            line="Estimated net annual take-home"
-            value={result.net}
-            emphasize
-          />
-          <Result
-            line="Estimated monthly take-home"
-            value={result.monthly}
-            emphasize
-          />
-          {result.ficaSaved > 0 ? (
-            <p className="sm:col-span-2 text-sm text-muted">
-              The FICA exemption is worth about{" "}
-              <strong className="text-navy">
-                $
-                {result.ficaSaved.toLocaleString(undefined, {
-                  maximumFractionDigits: 0,
-                })}
-              </strong>{" "}
-              a year on these wages. If your employer is withholding Social
-              Security and Medicare anyway, ask payroll to stop and refund it —
-              or claim it back with Form 843.
-            </p>
+      {/* The button and its result share one wrapper. The result region
+          stays mounted so assistive tech and browsing agents get the result
+          as a status update, and with the button no longer a direct child
+          of the form, space-y-5 leaves no gap under it before the first
+          result. */}
+      <div>
+        <button
+          type="submit"
+          className="btn btn-primary w-full sm:w-auto"
+          disabled={loading}
+        >
+          {loading ? "Calculating…" : "Estimate taxes"}
+        </button>
+        <div role="status" aria-live="polite">
+          {result ? (
+            <div className="result-box mt-5 grid gap-3 sm:grid-cols-2">
+              <Result line="Gross wages" value={result.gross} />
+              <Result line="Estimated federal tax" value={result.federal} />
+              <Result line="Estimated state tax" value={result.stateTax} />
+              <Result
+                line={
+                  residency === "nonresident"
+                    ? "FICA (exempt as nonresident F-1)"
+                    : "FICA (SS + Medicare)"
+                }
+                value={result.fica}
+              />
+              <Result
+                line="Estimated net annual take-home"
+                value={result.net}
+                emphasize
+              />
+              <Result
+                line="Estimated monthly take-home"
+                value={result.monthly}
+                emphasize
+              />
+              {result.ficaSaved > 0 ? (
+                <p className="sm:col-span-2 text-sm text-muted">
+                  The FICA exemption is worth about{" "}
+                  <strong className="text-navy">
+                    $
+                    {result.ficaSaved.toLocaleString(undefined, {
+                      maximumFractionDigits: 0,
+                    })}
+                  </strong>{" "}
+                  a year on these wages. If your employer is withholding Social
+                  Security and Medicare anyway, ask payroll to stop and refund it —
+                  or claim it back with Form 843.
+                </p>
+              ) : null}
+              <p className="sm:col-span-2 text-sm text-muted">
+                Effective tax rate (all-in estimate):{" "}
+                <strong className="text-navy">{result.effective.toFixed(1)}%</strong>
+              </p>
+              <p className="sm:col-span-2 text-sm text-muted">
+                A simplified educational estimate, not tax advice. Treaty income
+                exclusions, scholarship income, state residency rules, and a
+                dual-status year can change the outcome significantly.
+              </p>
+            </div>
           ) : null}
-          <p className="sm:col-span-2 text-sm text-muted">
-            Effective tax rate (all-in estimate):{" "}
-            <strong className="text-navy">{result.effective.toFixed(1)}%</strong>
-          </p>
-          <p className="sm:col-span-2 text-sm text-muted">
-            A simplified educational estimate, not tax advice. Treaty income
-            exclusions, scholarship income, state residency rules, and a
-            dual-status year can change the outcome significantly.
-          </p>
         </div>
-      ) : null}
+      </div>
     </form>
   );
 }

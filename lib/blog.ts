@@ -144,48 +144,22 @@ export function postDateOnly(iso: string): string {
   Editorial cross-links from a post to the site's own guides, chosen by the
   post's subject. This is the point of having a blog on the domain at all: a
   post about OPT unemployment rules should hand its reader to the F-1 OPT
-  guide and the F-1 tax page, and hand a crawler the same links. Order matters
-  — the first rule that matches wins, and the generic fallback is last.
+  guide and the F-1 tax page, and hand a crawler the same links.
+
+  Order matters — the first rule that matches wins — so narrow subjects (a
+  visa code, FBAR, a 401(k)) come before broad ones (students, H-1B, credit).
+  The title is tried against every rule before the excerpt is, because
+  excerpts mention side topics: matching title and excerpt together sent a TN
+  post to the F-1 guides on the word "treaty", and an H-2A post to the H-1B
+  guides on "FICA".
 */
 const RELATED_RULES: { test: RegExp; links: { href: string; label: string }[] }[] = [
   {
-    test: /\bopt\b|optional practical training/i,
+    test: /\bopt\b|\bcpt\b|optional practical training/i,
     links: [
       { href: "/visas/study/f1-opt", label: "F-1 OPT requirements and timeline" },
       { href: "/taxes/f1", label: "F-1 student taxes explained" },
       { href: "/calculators/f1-opt-tax", label: "F-1 OPT tax calculator" },
-    ],
-  },
-  {
-    test: /f-?1\b|international student|treaty/i,
-    links: [
-      { href: "/taxes/f1", label: "F-1 student taxes explained" },
-      { href: "/visas/study/f1", label: "F-1 visa requirements" },
-      { href: "/visa-guides/f1", label: "F-1 student financial guide" },
-    ],
-  },
-  {
-    test: /h-?4\b/i,
-    links: [
-      { href: "/visas/work/h1b", label: "H-1B visa requirements" },
-      { href: "/taxes/itin", label: "ITIN: who needs one and how to apply" },
-      { href: "/banking/build-credit", label: "How to build credit as an immigrant" },
-    ],
-  },
-  {
-    test: /h-?1b|fica/i,
-    links: [
-      { href: "/taxes/h1b", label: "H-1B taxes explained" },
-      { href: "/calculators/h1b-tax", label: "H-1B tax calculator" },
-      { href: "/visa-guides/h1b", label: "H-1B financial guide" },
-    ],
-  },
-  {
-    test: /itin/i,
-    links: [
-      { href: "/taxes/itin", label: "ITIN: who needs one and how to apply" },
-      { href: "/taxes", label: "US taxes for visa holders" },
-      { href: "/banking/build-credit", label: "How to build credit as an immigrant" },
     ],
   },
   {
@@ -213,11 +187,99 @@ const RELATED_RULES: { test: RegExp; links: { href: string; label: string }[] }[
     ],
   },
   {
-    test: /401\s?k|retirement|ira\b/i,
+    test: /h-?4\b/i,
     links: [
-      { href: "/investing", label: "Investing in the US on a visa" },
+      { href: "/visas/work/h1b", label: "H-1B visa requirements" },
+      { href: "/taxes/itin", label: "ITIN: who needs one and how to apply" },
+      { href: "/banking/build-credit", label: "How to build credit as an immigrant" },
+    ],
+  },
+  {
+    test: /\bl-?[12]s?\b/i,
+    links: [
+      { href: "/visas/work/l1", label: "L-1 visa requirements" },
+      { href: "/visa-guides/l1", label: "L-1 financial guide" },
+      { href: "/taxes/resident-vs-nonresident", label: "Resident vs nonresident alien" },
+    ],
+  },
+  {
+    test: /fbar|fincen/i,
+    links: [
+      { href: "/taxes/fbar", label: "FBAR: reporting foreign bank accounts" },
+      { href: "/taxes/fatca", label: "FATCA and Form 8938" },
+      { href: "/visa-guides/green-card", label: "New green card holder checklist" },
+    ],
+  },
+  {
+    test: /fatca|8938/i,
+    links: [
+      { href: "/taxes/fatca", label: "FATCA and Form 8938" },
+      { href: "/taxes/fbar", label: "FBAR: reporting foreign bank accounts" },
+      { href: "/taxes/resident-vs-nonresident", label: "Resident vs nonresident alien" },
+    ],
+  },
+  {
+    test: /401\s?\(?k\)?|retirement|\bira\b/i,
+    links: [
       { href: "/investing/401k-if-you-leave", label: "What happens to a 401(k) if you leave" },
       { href: "/investing/h1b-roth-ira", label: "H-1B and Roth IRA basics" },
+      { href: "/investing", label: "Investing in the US on a visa" },
+    ],
+  },
+  {
+    test: /brokerage|invest/i,
+    links: [
+      { href: "/investing/on-a-visa", label: "Investing in the US on a visa" },
+      { href: "/investing", label: "Investing guides for visa holders" },
+      { href: "/taxes/resident-vs-nonresident", label: "Resident vs nonresident alien" },
+    ],
+  },
+  {
+    test: /green card|permanent resident/i,
+    links: [
+      { href: "/visa-guides/green-card", label: "New green card holder checklist" },
+      { href: "/taxes/fbar", label: "FBAR: reporting foreign bank accounts" },
+      { href: "/banking/build-credit", label: "How to build credit as an immigrant" },
+    ],
+  },
+  {
+    test: /f-?1\b|international student|\bstudents?\b/i,
+    links: [
+      { href: "/taxes/f1", label: "F-1 student taxes explained" },
+      { href: "/visas/study/f1", label: "F-1 visa requirements" },
+      { href: "/visa-guides/f1", label: "F-1 student financial guide" },
+    ],
+  },
+  {
+    test: /resident alien|nonresident alien|substantial presence|w-4|withholding/i,
+    links: [
+      { href: "/taxes/resident-vs-nonresident", label: "Resident vs nonresident alien" },
+      { href: "/calculators/substantial-presence", label: "Substantial presence test" },
+      { href: "/taxes/h1b", label: "H-1B taxes: withholding and FICA" },
+    ],
+  },
+  {
+    test: /h-?1b|fica/i,
+    links: [
+      { href: "/taxes/h1b", label: "H-1B taxes explained" },
+      { href: "/calculators/h1b-tax", label: "H-1B tax calculator" },
+      { href: "/visa-guides/h1b", label: "H-1B financial guide" },
+    ],
+  },
+  {
+    test: /payroll|paycheck|pay ?stub/i,
+    links: [
+      { href: "/calculators/h1b-tax", label: "H-1B tax calculator" },
+      { href: "/taxes/h1b", label: "H-1B taxes: withholding and FICA" },
+      { href: "/taxes/resident-vs-nonresident", label: "Resident vs nonresident alien" },
+    ],
+  },
+  {
+    test: /itin/i,
+    links: [
+      { href: "/taxes/itin", label: "ITIN: who needs one and how to apply" },
+      { href: "/taxes", label: "US taxes for visa holders" },
+      { href: "/banking/build-credit", label: "How to build credit as an immigrant" },
     ],
   },
   {
@@ -244,6 +306,14 @@ const RELATED_RULES: { test: RegExp; links: { href: string; label: string }[] }[
       { href: "/visa-guides/h1b", label: "H-1B financial guide" },
     ],
   },
+  {
+    test: /tax (forms?|software|returns?|filing)/i,
+    links: [
+      { href: "/taxes", label: "US taxes for visa holders" },
+      { href: "/taxes/resident-vs-nonresident", label: "Resident vs nonresident alien" },
+      { href: "/calculators/substantial-presence", label: "Substantial presence test" },
+    ],
+  },
 ];
 
 const DEFAULT_RELATED = [
@@ -252,7 +322,28 @@ const DEFAULT_RELATED = [
   { href: "/calculators", label: "Free calculators for immigrants" },
 ];
 
+/** The topic rule for a post: its title decides, its excerpt breaks ties. */
+function topicFor(post: BlogPost) {
+  return (
+    RELATED_RULES.find((r) => r.test.test(post.title)) ??
+    RELATED_RULES.find((r) => r.test.test(post.excerpt))
+  );
+}
+
 export function relatedGuidesFor(post: BlogPost) {
-  const haystack = `${post.title} ${post.excerpt}`;
-  return RELATED_RULES.find((r) => r.test.test(haystack))?.links ?? DEFAULT_RELATED;
+  return topicFor(post)?.links ?? DEFAULT_RELATED;
+}
+
+/*
+  Other posts for the "More from the blog" list: same topic first, then the
+  newest of the rest. Without it a post's only guaranteed inbound link was the
+  /blog index, so most posts sat behind a single page and nothing tied related
+  posts together for readers or crawlers.
+*/
+export function relatedPostsFor(post: BlogPost, posts: BlogPost[], limit = 3) {
+  const topic = topicFor(post);
+  const others = posts.filter((p) => p.id !== post.id);
+  const sameTopic = topic ? others.filter((p) => topicFor(p) === topic) : [];
+  const rest = others.filter((p) => !sameTopic.includes(p));
+  return [...sameTopic, ...rest].slice(0, limit);
 }
