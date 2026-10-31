@@ -1,5 +1,12 @@
 {
   "lastReviewedDate": "2026-07-14",
+  "updates": [
+    {
+      "date": "2026-10-25",
+      "note": "Corrected the Form I-129 fee: $1,090 for named workers, $530 for unnamed workers (the $460 previously shown is the small-employer rate for unnamed workers); Asylum Program Fee added.",
+      "sourceUrl": "https://www.uscis.gov/g-1055"
+    }
+  ],
   "timelineUpdatedDate": "2026-07",
   "financeBlock": null,
   "id": "h2a",
@@ -77,10 +84,22 @@
   ],
   "fees": [
     {
-      "name": "Form I-129 filing fee",
-      "amount": "$460",
+      "name": "Form I-129 filing fee (named workers)",
+      "amount": "$1,090",
       "payer": "employer",
-      "note": "Confirm current fee."
+      "note": "For 1–25 named workers. $545 for small employers and nonprofits."
+    },
+    {
+      "name": "Form I-129 filing fee (unnamed workers only)",
+      "amount": "$530",
+      "payer": "employer",
+      "note": "$460 for small employers and nonprofits."
+    },
+    {
+      "name": "Asylum Program Fee",
+      "amount": "$600",
+      "payer": "employer",
+      "note": "$300 for small employers; nonprofits pay no fee."
     },
     {
       "name": "MRV visa fee",

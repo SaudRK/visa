@@ -1,5 +1,12 @@
 {
   "lastReviewedDate": "2026-07-14",
+  "updates": [
+    {
+      "date": "2026-10-25",
+      "note": "Form I-765 fee shown as $520 on paper ($470 online, previously the only figure shown); premium processing fee ($1,780) added.",
+      "sourceUrl": "https://www.uscis.gov/g-1055"
+    }
+  ],
   "timelineUpdatedDate": "2026-07",
   "financeBlock": null,
   "id": "f1-opt",
@@ -91,15 +98,21 @@
   "fees": [
     {
       "name": "Form I-765 filing fee",
-      "amount": "$470",
+      "amount": "$520",
       "payer": "applicant",
-      "note": "Confirm current fee before filing."
+      "note": "$470 if filed online. Confirm current fee before filing."
     },
     {
       "name": "STEM OPT extension I-765 fee",
-      "amount": "$470",
+      "amount": "$520",
       "payer": "applicant",
-      "note": "Separate filing for the extension."
+      "note": "Separate filing for the extension; $470 if filed online."
+    },
+    {
+      "name": "Premium processing (Form I-907, optional)",
+      "amount": "$1,780",
+      "payer": "applicant",
+      "note": "Available for OPT and STEM OPT applications ($1,780 from March 1, 2026)."
     }
   ],
   "documents": [

@@ -1,5 +1,12 @@
 {
   "lastReviewedDate": "2026-07-14",
+  "updates": [
+    {
+      "date": "2026-10-25",
+      "note": "Corrected the visa application (MRV) fee to $315, the E-category fee.",
+      "sourceUrl": "https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fees/fees-visa-services.html"
+    }
+  ],
   "timelineUpdatedDate": "2026-07",
   "financeBlock": null,
   "id": "e2",
@@ -82,8 +89,9 @@
   "fees": [
     {
       "name": "MRV visa application fee",
-      "amount": "$205",
-      "payer": "applicant"
+      "amount": "$315",
+      "payer": "applicant",
+      "note": "The E category has its own, higher application fee."
     },
     {
       "name": "Form I-129 fee for change/extend in U.S.",

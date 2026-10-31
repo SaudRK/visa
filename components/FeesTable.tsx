@@ -57,7 +57,25 @@ export default function FeesTable({ fees }: FeesTableProps) {
       <div className="mt-4">
         <Callout tone="warning" title="Fees change">
           USCIS and State Department fees update periodically. Always verify the
-          current amount on the official fee page before payment.
+          current amount on the official fee page before payment: the{" "}
+          <a
+            href="https://www.uscis.gov/g-1055"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold underline underline-offset-2"
+          >
+            USCIS fee schedule (Form G-1055)
+          </a>{" "}
+          for petitions and applications, and the{" "}
+          <a
+            href="https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/fees/fees-visa-services.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold underline underline-offset-2"
+          >
+            State Department visa fee page
+          </a>{" "}
+          for consular fees.
         </Callout>
       </div>
     </section>

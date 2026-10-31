@@ -1,5 +1,12 @@
 {
   "lastReviewedDate": "2026-07-14",
+  "updates": [
+    {
+      "date": "2026-10-25",
+      "note": "Duration of status replaced by a fixed admission period, and the post-program departure period cut from 60 to 30 days, for admissions from September 15, 2026.",
+      "sourceUrl": "https://studyinthestates.dhs.gov/final-rule-establishing-a-fixed-time-period-of-admission-and-an-extension-of-stay-procedure-quick"
+    }
+  ],
   "timelineUpdatedDate": "2026-07",
   "financeBlock": null,
   "id": "f1",
@@ -131,8 +138,8 @@
       "why": "Helps address nonimmigrant intent questions."
     }
   ],
-  "timelineText": "Embassy appointment wait is often the longest variable. After issuance, students typically enter shortly before classes. Inside the U.S., F-1 is usually admitted for duration of status if you maintain enrollment and school reporting rules.",
-  "validityPeriod": "Usually duration of status (D/S). Follow I-20 dates, transfer rules, and the post-completion grace period unless another authorization applies.",
+  "timelineText": "Embassy appointment wait is often the longest variable. After issuance, students typically enter shortly before classes. Since September 15, 2026, F-1 students are admitted for a fixed period based on the program end date on the I-20 (up to four years) rather than open-ended duration of status, so staying longer requires an extension of stay with USCIS or a new admission.",
+  "validityPeriod": "A fixed period tied to the program dates on your I-20 (up to four years), plus 30 days to depart, for admissions from September 15, 2026. Earlier admissions were for duration of status (D/S). Follow I-20 dates and transfer rules unless another authorization applies.",
   "extensionInfo": "Program extensions go through your DSO with an updated I-20. School transfers require coordinated SEVIS release. Practical training has separate filing windows.",
   "employmentRights": "On-campus work is limited. Off-campus work generally needs CPT, OPT, or another specific authorization. Unauthorized employment can terminate status.",
   "travelRestrictions": "Reentry typically needs a valid F-1 stamp, current I-20 travel signature, passport, and enrollment proof. Travel during pending OPT is higher risk.",
@@ -157,7 +164,7 @@
     }
   ],
   "didYouKnow": [
-    "F-1 is often admitted for duration of status (D/S), so the I-94 may not show a hard end date.",
+    "Since September 15, 2026, new F-1 admissions are for a fixed period based on the I-20 program dates instead of duration of status (D/S), so the admission now carries an end date.",
     "A travel signature on the I-20 is frequently required before reentering after a trip abroad."
   ],
   "faqs": [
@@ -167,7 +174,7 @@
     },
     {
       "question": "How long can I stay after graduation?",
-      "answer": "Many students receive a 60-day grace period after program completion. Approved OPT can authorize additional stay for qualifying employment."
+      "answer": "Students admitted under the rule that took effect on September 15, 2026 have 30 days after their program, or their post-completion OPT, ends to depart or change status. Students already in the U.S. on that date keep the previous 60-day period. Approved OPT can authorize additional stay for qualifying employment."
     },
     {
       "question": "Can I transfer schools?",

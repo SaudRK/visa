@@ -62,8 +62,8 @@
     {
       "step": 2,
       "title": "Complete cap registration if required",
-      "description": "For cap-subject cases, the employer registers during the designated USCIS window. Only selected registrations may file a full petition for that season.",
-      "timeframe": "Lottery season (typically spring)"
+      "description": "For cap-subject cases, the employer registers each beneficiary during the designated USCIS window. From the FY 2027 season, selection is weighted by the wage level of the offered job rather than purely random. Only selected registrations may file a full petition for that season.",
+      "timeframe": "Registration season (typically spring)"
     },
     {
       "step": 3,
@@ -92,10 +92,16 @@
   ],
   "fees": [
     {
+      "name": "H-1B registration fee (cap cases)",
+      "amount": "$215",
+      "payer": "employer",
+      "note": "Per beneficiary, paid when registering for the annual cap selection."
+    },
+    {
       "name": "Form I-129 base filing fee",
       "amount": "$780",
       "payer": "employer",
-      "note": "Confirm the current USCIS fee schedule before filing."
+      "note": "$460 for small employers and nonprofits. Confirm the current USCIS fee schedule before filing."
     },
     {
       "name": "ACWIA training fee",
@@ -109,15 +115,22 @@
       "payer": "employer"
     },
     {
-      "name": "Asylum Program Fee (if applicable)",
-      "amount": "Varies by employer size",
+      "name": "Asylum Program Fee",
+      "amount": "$600",
       "payer": "employer",
-      "note": "Check current USCIS rules for your employer category."
+      "note": "$300 for small employers; nonprofits pay no fee."
     },
     {
       "name": "Premium processing (Form I-907, optional)",
-      "amount": "$2,805",
-      "payer": "employer"
+      "amount": "$2,965",
+      "payer": "employer",
+      "note": "Raised from $2,805 for requests postmarked on or after March 1, 2026."
+    },
+    {
+      "name": "Presidential proclamation payment (certain new petitions)",
+      "amount": "$100,000",
+      "payer": "employer",
+      "note": "Required by a September 2025 proclamation for certain new petitions for workers outside the U.S. A federal court vacated USCIS's implementing guidance in June 2026, and DHS says it will comply while it considers next steps. Check the USCIS H-1B page for the current position before filing."
     },
     {
       "name": "MRV visa application fee (consular cases)",
@@ -158,6 +171,23 @@
   "timelineText": "Cap-subject H-1B cases generally follow the annual registration cycle, with new employment often tied to the fiscal year start (commonly October 1). Regular USCIS processing can take several months; premium processing can shorten the agency decision window when available. Consular appointment and administrative processing times then vary by embassy.",
   "timelineUpdatedDate": "2026-07",
   "lastReviewedDate": "2026-07-14",
+  "updates": [
+    {
+      "date": "2026-10-25",
+      "note": "Premium processing fee updated to $2,965 (effective March 1, 2026); $215 registration fee and Asylum Program Fee amounts added.",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/01/12/2026-00321/adjustment-to-premium-processing-fees"
+    },
+    {
+      "date": "2026-10-25",
+      "note": "Cap selection now weighted by wage level from the FY 2027 season.",
+      "sourceUrl": "https://www.federalregister.gov/documents/2025/12/29/2025-23853/weighted-selection-process-for-registrants-and-petitioners-seeking-to-file-cap-subject-h-1b"
+    },
+    {
+      "date": "2026-10-25",
+      "note": "Added the $100,000 proclamation payment and its litigation status.",
+      "sourceUrl": "https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations"
+    }
+  ],
   "validityPeriod": "Initial approval is commonly up to three years, with extensions often possible up to six years total. Limited exceptions may allow time beyond six years when certain employment-based green card steps are underway.",
   "extensionInfo": "Employers file extensions on Form I-129, ideally before status expires. H-1B portability may allow continued work after a timely extension or transfer filing if legal conditions are met. Track I-797 and I-94 end dates carefully.",
   "employmentRights": "Employment is employer- and petition-specific. You generally may work only for the petitioning employer, or for concurrent employers that each have their own H-1B filing. Material changes in duties or worksite can require amended petitions.",
@@ -197,7 +227,7 @@
     },
     {
       "question": "What is the H-1B lottery?",
-      "answer": "When registrations exceed the annual numerical limit, USCIS randomly selects which registrations may file full petitions. Selection is not the same as petition approval."
+      "answer": "When registrations exceed the annual numerical limit, USCIS selects which registrations may file full petitions. From the FY 2027 season, that selection is weighted by the wage level of the offered job, so higher-paid offers have better odds, although employers can still register workers at every wage level. Selection is not the same as petition approval."
     },
     {
       "question": "Is an H-1B LCA the same as PERM?",

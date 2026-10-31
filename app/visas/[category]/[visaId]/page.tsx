@@ -12,6 +12,7 @@ import {
   visaPageDescription,
   visaPageHeading,
   visaPageKeywords,
+  visaLastModified,
   visaPageTitle,
 } from "@/lib/visaSeo";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -45,10 +46,14 @@ interface VisaPageProps {
 export const dynamicParams = false;
 
 /**
- * The visa library shipped as one release, so every guide shares the hub's
- * publish date. Each guide's own `lastReviewedDate` is the modified date.
+ * The guides launched with their category hubs (2026-07-14), weeks before the
+ * /visas directory existed, so each takes its category's publish date. Using
+ * the directory's date stamped them published 2026-08-06 but modified
+ * 2026-07-14 — modified before published. Each guide's own `lastReviewedDate`
+ * is the modified date.
  */
-const LIBRARY_PUBLISHED = getContentDate("/visas").published;
+const guidePublished = (categorySlug: string) =>
+  getContentDate(`/visas/${categorySlug}`).published;
 
 export async function generateStaticParams() {
   const visas = getVisas();
@@ -77,8 +82,8 @@ export async function generateMetadata({
     description: visaPageDescription(visa),
     path: `/visas/${category?.slug}/${visa.id}`,
     type: "article",
-    publishedTime: LIBRARY_PUBLISHED,
-    modifiedTime: visa.lastReviewedDate,
+    publishedTime: guidePublished(category?.slug ?? ""),
+    modifiedTime: visaLastModified(visa),
     keywords: visaPageKeywords(visa),
   });
 }
@@ -113,6 +118,7 @@ export default async function VisaPage({ params }: VisaPageProps) {
   const parentCategory = parent ? getCategoryById(parent.category) : null;
 
   const moneyGuides = getMoneyGuidesFor(visa.id);
+  const lastModified = visaLastModified(visa);
 
   return (
     <>
@@ -122,8 +128,8 @@ export default async function VisaPage({ params }: VisaPageProps) {
             title: visaPageTitle(visa),
             description: visaPageDescription(visa),
             path: pagePath,
-            datePublished: LIBRARY_PUBLISHED,
-            dateModified: visa.lastReviewedDate,
+            datePublished: guidePublished(category.slug),
+            dateModified: visaLastModified(visa),
             section: category.label,
             keywords: visaPageKeywords(visa),
           }),
@@ -203,6 +209,15 @@ export default async function VisaPage({ params }: VisaPageProps) {
                       {visa.lastReviewedDate}
                     </time>
                   </span>
+                  {lastModified !== visa.lastReviewedDate ? (
+                    <a
+                      href="#source-heading"
+                      className="mt-2 block text-[0.82rem] text-muted hover:text-accent"
+                    >
+                      Updated <time dateTime={lastModified}>{lastModified}</time>{" "}
+                      — see changes
+                    </a>
+                  ) : null}
                 </dd>
               </div>
             </dl>
@@ -330,6 +345,34 @@ export default async function VisaPage({ params }: VisaPageProps) {
                 </time>
                 .
               </p>
+              {visa.updates && visa.updates.length > 0 ? (
+                <div className="text-sm text-muted">
+                  <p className="font-semibold text-ink">
+                    Changes since that review
+                  </p>
+                  <ul className="mt-2 list-disc space-y-1.5 pl-5">
+                    {visa.updates.map((update) => (
+                      <li key={`${update.date}-${update.note.slice(0, 24)}`}>
+                        <time dateTime={update.date}>{update.date}</time>:{" "}
+                        {update.note}
+                        {update.sourceUrl ? (
+                          <>
+                            {" "}
+                            <a
+                              href={update.sourceUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-semibold text-accent hover:underline"
+                            >
+                              Source
+                            </a>
+                          </>
+                        ) : null}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
               <Disclaimer />
             </section>
           </article>

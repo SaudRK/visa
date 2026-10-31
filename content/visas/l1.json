@@ -1,5 +1,12 @@
 {
   "lastReviewedDate": "2026-07-14",
+  "updates": [
+    {
+      "date": "2026-10-25",
+      "note": "Premium processing fee updated to $2,965 (effective March 1, 2026); Asylum Program Fee amounts added.",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/01/12/2026-00321/adjustment-to-premium-processing-fees"
+    }
+  ],
   "timelineUpdatedDate": "2026-07",
   "financeBlock": null,
   "id": "l1",
@@ -92,14 +99,16 @@
       "payer": "employer"
     },
     {
-      "name": "Asylum Program Fee (if applicable)",
-      "amount": "Varies by employer size",
-      "payer": "employer"
+      "name": "Asylum Program Fee",
+      "amount": "$600",
+      "payer": "employer",
+      "note": "$300 for small employers; nonprofits pay no fee."
     },
     {
       "name": "Premium processing (optional)",
-      "amount": "$2,805",
-      "payer": "employer"
+      "amount": "$2,965",
+      "payer": "employer",
+      "note": "Raised from $2,805 for requests postmarked on or after March 1, 2026."
     },
     {
       "name": "MRV fee for consular applicants",

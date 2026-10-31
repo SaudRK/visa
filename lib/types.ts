@@ -66,7 +66,15 @@ export interface Visa {
   documents: DocumentItem[];
   timelineText: string;
   timelineUpdatedDate: string;
+  /** Date of the last full editorial review of the whole guide. */
   lastReviewedDate: string;
+  /**
+   * Dated corrections made since that review — a changed fee or rule checked
+   * against its official source, without re-reviewing the rest of the page.
+   * Shown beside the review stamp so the stamp never claims more than was
+   * checked, and the newest one becomes the page's modified date.
+   */
+  updates?: { date: string; note: string; sourceUrl?: string }[];
   validityPeriod: string;
   extensionInfo: string;
   employmentRights: string;

@@ -1,5 +1,12 @@
 {
   "lastReviewedDate": "2026-07-14",
+  "updates": [
+    {
+      "date": "2026-10-25",
+      "note": "Comparison with F-1 updated: F-1 admission moved from duration of status to a fixed period on September 15, 2026.",
+      "sourceUrl": "https://www.federalregister.gov/documents/2026/07/17/2026-14439/establishing-a-fixed-time-period-of-admission-and-an-extension-of-stay-procedure-for-nonimmigrant"
+    }
+  ],
   "timelineUpdatedDate": "2026-07",
   "financeBlock": null,
   "id": "m1",
@@ -106,7 +113,7 @@
       "why": "Explains why the vocational program fits your goals."
     }
   ],
-  "timelineText": "Visa wait times vary by embassy. M-1 stays are often admitted for a fixed period tied to the vocational program, not open-ended duration of status like many F-1 cases. Practical training after completion is limited and requires separate authorization.",
+  "timelineText": "Visa wait times vary by embassy. M-1 students are admitted for a fixed period tied to the vocational program — the model F-1 students also moved to on September 15, 2026. Practical training after completion is limited and requires separate authorization.",
   "validityPeriod": "Usually tied to the program length on the I-20, subject to maximum admission rules and any authorized extension.",
   "extensionInfo": "Extensions may be possible if more time is needed to finish the same program. Transfers and practical training are more restricted than F-1 pathways.",
   "employmentRights": "M-1 students generally cannot work during studies. After completion, limited practical training may be available under narrow formulas and approval requirements.",
@@ -129,7 +136,7 @@
   ],
   "didYouKnow": [
     "M-1 practical training is measured carefully and is not equivalent to F-1 OPT.",
-    "M-1 status is typically more date-certain than F-1 duration of status."
+    "M-1 admission has always been for a fixed period; F-1 admission moved from duration of status to a fixed period on September 15, 2026."
   ],
   "faqs": [
     {

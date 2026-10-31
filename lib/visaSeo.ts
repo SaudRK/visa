@@ -83,6 +83,18 @@ export function visaPageDescription(visa: Visa): string {
   return visa.metaDescription ?? clampDescription(visa.quickAnswer);
 }
 
+/**
+ * When a visa guide last changed: its full review, or a later dated correction
+ * in `updates`, whichever is newer. Article dateModified, og modified_time, and
+ * the sitemap lastmod all read this so they cannot disagree.
+ */
+export function visaLastModified(visa: Visa): string {
+  return (visa.updates ?? []).reduce(
+    (latest, update) => (update.date > latest ? update.date : latest),
+    visa.lastReviewedDate
+  );
+}
+
 /** H1 for a visa detail page — matches the title's intent in natural prose. */
 export function visaPageHeading(visa: Visa): string {
   return `${visa.name}: requirements, process and fees`;

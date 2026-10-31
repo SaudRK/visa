@@ -4,6 +4,7 @@ import { sections } from "@/lib/contentMap";
 import { getCategoriesWithVisas } from "@/lib/getCategories";
 import { getContentDate } from "@/lib/contentDates";
 import { getPosts, postDateOnly } from "@/lib/blog";
+import { visaLastModified } from "@/lib/visaSeo";
 
 /*
   Sitemap.
@@ -75,7 +76,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         `/visas/${category.slug}/${visa.id}`,
         0.8,
         "monthly",
-        visa.lastReviewedDate
+        visaLastModified(visa)
       );
     }
   }

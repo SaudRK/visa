@@ -26,16 +26,19 @@ export const contentDates: Record<string, ContentDate> = {
 
   // Visa library
   "/visas": { published: "2026-08-06", reviewed: "2026-08-06" },
-  // Category hubs — intro copy and FAQs added 2026-09-29.
+  // Category hubs — intro copy and FAQs added 2026-09-29. The study FAQ was
+  // updated 2026-10-25 for the F-1 fixed admission period.
   "/visas/work": { published: "2026-07-14", reviewed: "2026-09-29" },
-  "/visas/study": { published: "2026-07-14", reviewed: "2026-09-29" },
+  "/visas/study": { published: "2026-07-14", reviewed: "2026-10-25" },
 
-  // Section hubs — substantive intro copy and FAQs added 2026-08-06.
+  // Section hubs — substantive intro copy and FAQs added 2026-08-06. Taxes,
+  // investing, and insurance then gained ten newly written guides in their
+  // listings on 2026-09-20 (commit 9d8c7eb).
   "/banking": { published: "2026-07-14", reviewed: "2026-08-06" },
-  "/taxes": { published: "2026-07-14", reviewed: "2026-08-06" },
+  "/taxes": { published: "2026-07-14", reviewed: "2026-09-20" },
   "/send-money": { published: "2026-07-14", reviewed: "2026-08-06" },
-  "/investing": { published: "2026-07-14", reviewed: "2026-08-06" },
-  "/insurance": { published: "2026-07-14", reviewed: "2026-08-06" },
+  "/investing": { published: "2026-07-14", reviewed: "2026-09-20" },
+  "/insurance": { published: "2026-07-14", reviewed: "2026-09-20" },
   "/calculators": { published: "2026-07-14", reviewed: "2026-09-20" },
   "/visa-guides": { published: "2026-07-14", reviewed: "2026-09-20" },
 
@@ -91,9 +94,11 @@ export function getContentDate(path: string): ContentDate {
 /** "2026-08-06" → "August 2026", for display next to a machine-readable date. */
 export function formatReviewMonth(iso: string): string {
   const [year, month] = iso.split("-");
-  const monthName = new Date(Number(year), Number(month) - 1, 1).toLocaleString(
-    "en-US",
-    { month: "long", timeZone: "UTC" }
-  );
+  // Built in UTC to match the UTC formatting. A local-time date is the previous
+  // month in UTC on any build machine east of Greenwich, which printed
+  // 2026-09-20 as "August 2026".
+  const monthName = new Date(
+    Date.UTC(Number(year), Number(month) - 1, 1)
+  ).toLocaleString("en-US", { month: "long", timeZone: "UTC" });
   return `${monthName} ${year}`;
 }
