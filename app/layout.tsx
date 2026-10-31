@@ -113,7 +113,7 @@ export default function RootLayout({
 
         {/* Progressive enhancement: if JS is off, don't hide reveal content */}
         <noscript>
-          <style>{`.reveal,.reveal-left,.reveal-right,.reveal-scale{opacity:1!important;transform:none!important}`}</style>
+          <style>{`.reveal,.reveal-left,.reveal-right,.reveal-scale,.stagger-children>*{opacity:1!important;transform:none!important}`}</style>
         </noscript>
         <Header />
         <main id="main" className="flex-1">
@@ -123,10 +123,13 @@ export default function RootLayout({
       </body>
       {/*
         Google Analytics 4 (gtag.js). Rendered through @next/third-parties
-        rather than a pasted <head> snippet: it loads after hydration so the
-        tag never competes with LCP, and GA4 picks up client-side route
-        changes as pageviews on its own. One tag site-wide — do not add a
-        second one on individual pages.
+        rather than a pasted <head> snippet: it executes after hydration, and
+        GA4 picks up client-side route changes as pageviews on its own. The
+        script is still preloaded in <head>, so its ~180 KB download does
+        share bandwidth with the page's own CSS, fonts, and images; a
+        lazyOnload <Script> would avoid that at the cost of missing visits
+        that leave before onload. One tag site-wide — do not add a second one
+        on individual pages.
       */}
       {siteConfig.gaMeasurementId && (
         <GoogleAnalytics gaId={siteConfig.gaMeasurementId} />

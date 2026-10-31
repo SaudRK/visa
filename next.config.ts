@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // The framework banner tells a visitor nothing and a scanner which exploits to try.
+  poweredByHeader: false,
   experimental: {
     /*
       Turbopack normally runs PostCSS (Tailwind) in spawned Node child
@@ -42,7 +44,30 @@ const nextConfig: NextConfig = {
       { source: "/visas/protection", destination: "/visas", permanent: true },
     ];
   },
+  /*
+    Baseline headers with no behavioural cost. HSTS is deliberately absent:
+    browsers remember it for its whole max-age, so it is the owner's decision
+    once they are sure every subdomain will always serve HTTPS.
+  */
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+        ],
+      },
+    ];
+  },
   images: {
+    /*
+      Soro's featured images live at UUID-named URLs that never change, so a
+      rendition can be kept for 31 days. At the 4-hour default the origin kept
+      re-optimising them, and a cache miss cost 0.7–1.7 s of TTFB on the image
+      that is usually a blog post's LCP element.
+    */
+    minimumCacheTTL: 2678400,
     // Featured images for blog posts are hosted by Soro on Supabase storage.
     remotePatterns: [
       {
